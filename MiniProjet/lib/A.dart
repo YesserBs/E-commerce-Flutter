@@ -33,10 +33,9 @@ class _AState extends State<A> {
 
           return Card(
             child: ListTile(
-              leading: FlutterLogo(size: 40.0),
               title: Text("$nom"),
               subtitle: Text("age: $age"),
-              trailing: Icon(Icons.more_vert),
+              //trailing: Icon(Icons.more_vert),
             ),
           );
 
