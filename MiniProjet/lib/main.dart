@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'A.dart';
 import 'B.dart';
+import 'C.dart';
 
 void main() {
   runApp(const MyApp());
@@ -28,21 +29,18 @@ class _MyAppState extends State<MyApp> {
   Widget build(BuildContext context) {
     return MaterialApp(
       home: Scaffold(
-        appBar: AppBar(
-          title: const Text('Hello, World!'),
-        ),
-        body: [A(), B()][_currentIndex],
+        body: [A(), B(), C()][_currentIndex],
         bottomNavigationBar: BottomNavigationBar(
           currentIndex: _currentIndex,
           onTap: (index) => affecterIndex(index),
           items: [
             BottomNavigationBarItem(
               icon: Icon(Icons.home),
-              label: "Home",
+              label: "accueil",
             ),
             BottomNavigationBarItem(
-              icon: Icon(Icons.add),
-              label: "New",
+              icon: Icon(Icons.euro),
+              label: "paiement",
             )
           ],
         ),

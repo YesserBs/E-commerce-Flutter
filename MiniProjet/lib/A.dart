@@ -1,89 +1,50 @@
 import 'package:flutter/material.dart';
 
-class A extends StatelessWidget {
+class A extends StatefulWidget {
   const A({Key? key}) : super(key: key);
+
+  @override
+  State<A> createState() => _AState();
+}
+
+class _AState extends State<A> {
+  final personnes = [
+
+    {
+      "Nom": "Mark",
+      "Age": "20",
+    },
+    {
+      "Nom": "Edaurdo",
+      "Age": "23",
+    },
+  ];
 
   @override
   Widget build(BuildContext context) {
     return Center(
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.start,
-        crossAxisAlignment: CrossAxisAlignment.stretch,
+      child:
+      ListView.builder(
+        itemCount: personnes.length,
+        itemBuilder: (context, index){
+          final personne = personnes[index];
+          final nom = personne["Nom"];
+          final age = personne["Age"];
 
-        children: [
-          Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            //crossAxisAlignment: CrossAxisAlignment.end,
-            children: [
-              Expanded(
-                flex: 1,
-                child: Container(
-                padding: EdgeInsets.symmetric(horizontal: 20.0, vertical: 60.0),
-                margin: EdgeInsets.fromLTRB(10.0, 10.0, 5.0, 10.0),
-                decoration: BoxDecoration(
-                  //color: Colors.red,
-                  borderRadius: BorderRadius.circular(10.0),
-                ),
-                child: Text(" ",
-                  style: TextStyle(
-                    fontSize: 30.0,
-                  ),
-                ),
-              ),
-              ),
-
-              Expanded(
-                flex: 5,
-                child: Container(
-                padding: EdgeInsets.symmetric(horizontal: 20.0, vertical: 60.0),
-                margin: EdgeInsets.fromLTRB(5.0, 10.0, 10.0, 10.0),
-                decoration: BoxDecoration(
-                  color: Colors.blue,
-                  borderRadius: BorderRadius.circular(10.0),
-                ),
-                child: Text(" ",
-                  style: TextStyle(
-                    fontSize: 30.0,
-                  ),
-                ),
-              ),),
-              Expanded(
-                flex: 1,
-                child: Container(
-                  padding: EdgeInsets.symmetric(horizontal: 20.0, vertical: 60.0),
-                  margin: EdgeInsets.fromLTRB(5.0, 10.0, 10.0, 10.0),
-                  decoration: BoxDecoration(
-                    //color: Colors.red,
-                    borderRadius: BorderRadius.circular(10.0),
-                  ),
-                  child: Text(" ",
-                    style: TextStyle(
-                      fontSize: 30.0,
-                    ),
-                  ),
-                ),),
-            ],
-          ),
-          Expanded(child: Container(
-            //padding: EdgeInsets.symmetric(horizontal: 20.0, vertical: 60.0),
-            margin: EdgeInsets.fromLTRB(10.0, 5.0, 5.0, 10.0),
-            decoration: BoxDecoration(
-              color: Colors.blue,
-              borderRadius: BorderRadius.circular(10.0),
+          return Card(
+            child: ListTile(
+              leading: FlutterLogo(size: 40.0),
+              title: Text("$nom"),
+              subtitle: Text("age: $age"),
+              trailing: Icon(Icons.more_vert),
             ),
-            child: Text(" ",
-              style: TextStyle(
-                fontSize: 30.0,
-              ),
-            ),
-          ),
-          ),
+          );
 
-
-        ],
+        }
       ),
     );
   }
 }
+
 
 
