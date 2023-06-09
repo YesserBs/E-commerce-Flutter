@@ -8,95 +8,64 @@ class B extends StatefulWidget {
 }
 
 class _BState extends State<B> {
-  final _formKey = GlobalKey<FormState>();
-  String? dropdownValue;
+  final TextEditingController jour = TextEditingController();
+  final TextEditingController mois = TextEditingController();
+  final TextEditingController annee = TextEditingController();
+
 
   @override
   Widget build(BuildContext context) {
     return Center(
-      child: Container(
-        margin: EdgeInsets.all(10.0),
-        child: Form(
-          key: _formKey,
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              DropdownButtonFormField<String>(
-                items: const [
-                  DropdownMenuItem(value: "n 1", child: Text("1")),
-                  DropdownMenuItem(value: "n 2", child: Text("2")),
-                  DropdownMenuItem(value: "n 3", child: Text("3")),
-                ],
-                value: dropdownValue,
-                onChanged: (value) {
-                  setState(() {
-                    dropdownValue = value;
-                  });
-                },
-                decoration: InputDecoration(
-                  labelText: "Select an option",
-                  border: OutlineInputBorder(),
+      child: Padding(
+        padding: const EdgeInsets.all(20.0),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Row(
+              children: [
+                Expanded(
+                  child: TextFormField(
+                    controller: jour,
+                    decoration: InputDecoration(
+                      labelText: 'Field 1',
+                    ),
+                  ),
                 ),
-              ),
-              SizedBox(height: 15.0),
-              TextFormField(
-                decoration: InputDecoration(
-                  labelText: "Enter something",
-                  hintText: "idk man",
-                  border: OutlineInputBorder(),
+                SizedBox(width: 10.0),
+                Expanded(
+                  child: TextFormField(
+                    controller: mois,
+                    decoration: InputDecoration(
+                      labelText: 'Field 2',
+                    ),
+                  ),
                 ),
-                validator: (value) {
-                  if (value == null || value.isEmpty) {
-                    return "Please fill in the field";
-                  }
-                  return null;
-                },
-              ),
-              SizedBox(height: 15.0),
-              TextFormField(
-                decoration: InputDecoration(
-                  labelText: "Enter something",
-                  hintText: "idk man",
-                  border: OutlineInputBorder(),
+                SizedBox(width: 10.0),
+                Expanded(
+                  child: TextFormField(
+                    controller: annee,
+                    decoration: InputDecoration(
+                      labelText: 'Field 3',
+                    ),
+                  ),
                 ),
-                validator: (value) {
-                  if (value == null || value.isEmpty) {
-                    return "Please fill in the field";
-                  }
-                  return null;
-                },
-              ),
-              SizedBox(height: 15.0),
-              TextFormField(
-                decoration: InputDecoration(
-                  labelText: "Enter something",
-                  hintText: "idk man",
-                  border: OutlineInputBorder(),
-                ),
-                validator: (value) {
-                  if (value == null || value.isEmpty) {
-                    return "Please fill in the field";
-                  }
-                  return null;
-                },
-              ),
-              SizedBox(height: 15.0),
-              SizedBox(
-                width: double.infinity,
-                height: 50,
-                child: ElevatedButton(
-                  onPressed: () {
-                    if (_formKey.currentState!.validate()) {
-                      print("Hello world");
-                    }
-                    FocusScope.of(context).requestFocus(FocusNode());
-                  },
-                  child: Text("Save"),
-                ),
-              ),
-            ],
-          ),
+              ],
+            ),
+            SizedBox(height: 20.0),
+            ElevatedButton(
+              onPressed: () {
+                String fieldValue1 = jour.text;
+                String fieldValue2 = mois.text;
+                String fieldValue3 = annee.text;
+
+                // Perform any desired actions with the form field values
+                print('Field 1: $fieldValue1');
+                print('Field 2: $fieldValue2');
+                print('Field 3: $fieldValue3');
+              },
+              child: Text('Submit'),
+            ),
+          ],
         ),
       ),
     );
