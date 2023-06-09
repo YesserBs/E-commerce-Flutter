@@ -9,7 +9,6 @@ class A extends StatefulWidget {
 
 class _AState extends State<A> {
   final personnes = [
-
     {
       "Nom": "Mark",
       "Age": "20",
@@ -22,28 +21,35 @@ class _AState extends State<A> {
 
   @override
   Widget build(BuildContext context) {
-    return Center(
-      child:
-      ListView.builder(
-        itemCount: personnes.length,
-        itemBuilder: (context, index){
-          final personne = personnes[index];
-          final nom = personne["Nom"];
-          final age = personne["Age"];
+    return Padding(
+      padding: const EdgeInsets.all(20.0),
+      child: Center(
+        child: ListView.builder(
+          itemCount: personnes.length,
+          itemBuilder: (context, index) {
+            final personne = personnes[index];
+            final nom = personne["Nom"];
+            final age = personne["Age"];
 
-          return Card(
-            child: ListTile(
-              title: Text("$nom"),
-              subtitle: Text("age: $age"),
-              //trailing: Icon(Icons.more_vert),
-            ),
-          );
-
-        }
+            return GestureDetector(
+              onTap: () {
+                print(nom); // Print the value of "Nom" when the card is tapped
+              },
+              child: Card(
+                child: ListTile(
+                  title: Text("$nom"),
+                  subtitle: Text("age: $age"),
+                  //trailing: Icon(Icons.more_vert),
+                ),
+              ),
+            );
+          },
+        ),
       ),
     );
   }
 }
+
 
 
 

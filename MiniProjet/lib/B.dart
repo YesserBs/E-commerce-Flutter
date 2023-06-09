@@ -8,6 +8,7 @@ class B extends StatefulWidget {
 }
 
 class _BState extends State<B> {
+  String? dropdownValue;
   final TextEditingController jour = TextEditingController();
   final TextEditingController mois = TextEditingController();
   final TextEditingController annee = TextEditingController();
@@ -21,6 +22,32 @@ class _BState extends State<B> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
+            Container(
+              width: 200, // Set the desired width for the dropdown field
+              child: DropdownButtonFormField<String>(
+                items: const [
+                  DropdownMenuItem(value: "n 1", child: Text("1")),
+                  DropdownMenuItem(value: "n 2", child: Text("2")),
+                  DropdownMenuItem(value: "n 3", child: Text("3")),
+                  DropdownMenuItem(value: "n 4", child: Text("4")),
+                  DropdownMenuItem(value: "n 5", child: Text("5")),
+                  DropdownMenuItem(value: "n 6", child: Text("6")),
+                  DropdownMenuItem(value: "n 7", child: Text("7")),
+                  DropdownMenuItem(value: "n 8", child: Text("8")),
+                ],
+                value: dropdownValue,
+                onChanged: (value) {
+                  setState(() {
+                    dropdownValue = value;
+                  });
+                },
+                decoration: InputDecoration(
+                  labelText: "Select an option",
+                  border: OutlineInputBorder(),
+                ),
+              ),
+            ),
+
             Row(
               children: [
                 Expanded(

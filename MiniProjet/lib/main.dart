@@ -17,6 +17,7 @@ class MyApp extends StatefulWidget {
 class _MyAppState extends State<MyApp> {
 
   int _currentIndex = 0;
+  int isC = 0;
 
   affecterIndex(int index)
   {
@@ -29,7 +30,7 @@ class _MyAppState extends State<MyApp> {
   Widget build(BuildContext context) {
     return MaterialApp(
       home: Scaffold(
-        body: [A(), B(), C()][_currentIndex],
+        body: [A(), B()][_currentIndex],
         bottomNavigationBar: BottomNavigationBar(
           currentIndex: _currentIndex,
           onTap: (index) => affecterIndex(index),
