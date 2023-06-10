@@ -8,54 +8,60 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Page Navigation',
+      title: 'Card Index',
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: Page1(),
+      home: CardList(),
     );
   }
 }
 
-class Page1 extends StatelessWidget {
+class CardList extends StatefulWidget {
+  @override
+  _CardListState createState() => _CardListState();
+}
+
+class _CardListState extends State<CardList> {
+  List<int> cardIndices = [];
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Page 1'),
+        title: Text('Card Index'),
       ),
-      body: GestureDetector(
-        onTap: () {
-          Navigator.push(
-            context,
-            MaterialPageRoute(builder: (context) => Page2()),
-          );
+      body: ListView.builder(
+        itemCount: cardIndices.length,
+        itemBuilder: (context, index) {
+          return CardItem(index + 1);
         },
-        child: Card(
-          child: Padding(
-            padding: EdgeInsets.all(16.0),
-            child: Text(
-              'Tap this card to go to Page 2',
-              style: TextStyle(fontSize: 20),
-            ),
-          ),
-        ),
+      ),
+      floatingActionButton: FloatingActionButton(
+        child: Icon(Icons.add),
+        onPressed: () {
+          setState(() {
+            cardIndices.add(cardIndices.length + 1);
+          });
+        },
       ),
     );
   }
 }
 
-class Page2 extends StatelessWidget {
+class CardItem extends StatelessWidget {
+  final int index;
+
+  CardItem(this.index);
+
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text('Page 2'),
-      ),
-      body: Center(
+    return Card(
+      child: Padding(
+        padding: EdgeInsets.all(16.0),
         child: Text(
-          'Page 2',
-          style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+          'Card $index',
+          style: TextStyle(fontSize: 20),
         ),
       ),
     );
