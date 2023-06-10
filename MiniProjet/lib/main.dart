@@ -12,29 +12,39 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: CardList(),
+      home: Page1(),
     );
   }
 }
 
-class CardList extends StatefulWidget {
+class Page1 extends StatefulWidget {
   @override
-  _CardListState createState() => _CardListState();
+  _Page1State createState() => _Page1State();
 }
 
-class _CardListState extends State<CardList> {
+class _Page1State extends State<Page1> {
   List<int> cardIndices = [];
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Card Index'),
+        title: Text('Page 1'),
       ),
       body: ListView.builder(
         itemCount: cardIndices.length,
         itemBuilder: (context, index) {
-          return CardItem(index + 1);
+          return GestureDetector(
+            onTap: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => Page2(cardIndices[index]),
+                ),
+              );
+            },
+            child: CardItem(index + 1),
+          );
         },
       ),
       floatingActionButton: FloatingActionButton(
@@ -44,6 +54,27 @@ class _CardListState extends State<CardList> {
             cardIndices.add(cardIndices.length + 1);
           });
         },
+      ),
+    );
+  }
+}
+
+class Page2 extends StatelessWidget {
+  final int index;
+
+  Page2(this.index);
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('Page 2'),
+      ),
+      body: Center(
+        child: Text(
+          'Index: $index',
+          style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+        ),
       ),
     );
   }
