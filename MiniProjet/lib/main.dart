@@ -27,6 +27,9 @@ class MyHomePage extends StatelessWidget {
 
     return Scaffold(
       body: Obx(() => [A(), B()][myController.currentIndex.value]),
+
+
+
       bottomNavigationBar: Obx(
             () => BottomNavigationBar(
           currentIndex: myController.currentIndex.value,
@@ -49,8 +52,12 @@ class MyHomePage extends StatelessWidget {
 
 class MyController extends GetxController {
   var currentIndex = 0.obs;
+  var entier = 0.obs;
 
   void changePage(int index) {
     currentIndex.value = index;
+  }
+  void increment() {
+    entier.value++;
   }
 }

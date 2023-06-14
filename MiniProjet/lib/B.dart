@@ -1,23 +1,25 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'main.dart';
 
-class B extends StatefulWidget {
+class B extends StatelessWidget {
   const B({Key? key}) : super(key: key);
 
   @override
-  State<B> createState() => _BState();
-}
-
-class _BState extends State<B> {
-  String? dropdownValue;
-  final TextEditingController jour = TextEditingController();
-  final TextEditingController mois = TextEditingController();
-  final TextEditingController annee = TextEditingController();
-
-
-  @override
   Widget build(BuildContext context) {
-    return Center(
-      child: Text("Page 2")
+    final MyController myController = Get.find<MyController>();
+
+    return MaterialApp(
+      home: Scaffold(
+        body: Center(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Text('Current Index: ${myController.currentIndex.value}'),
+            ],
+          ),
+        ),
+      ),
     );
   }
 }
