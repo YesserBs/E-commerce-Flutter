@@ -10,12 +10,12 @@ class A extends StatefulWidget {
 class _AState extends State<A> {
   final personnes = [
     {
-      "Nom": "Mark",
-      "Age": "20",
+      "Nom": "Article 1",
+      "Age": "?",
     },
     {
-      "Nom": "Edaurdo",
-      "Age": "23",
+      "Nom": "Article 2",
+      "Age": "?",
     },
   ];
 
@@ -38,7 +38,7 @@ class _AState extends State<A> {
               child: Card(
                 child: ListTile(
                   title: Text("$nom"),
-                  subtitle: Text("age: $age"),
+                  subtitle: Text("prix: $age"),
                   //trailing: Icon(Icons.more_vert),
                 ),
               ),
@@ -49,7 +49,6 @@ class _AState extends State<A> {
     );
   }
 }
-
 
 
 

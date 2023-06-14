@@ -1,76 +1,106 @@
-"import 'package:flutter/material.dart';
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 void main() {
   runApp(MyApp());
 }
 
-class IncNumber extends GetxController {
-  var x = 0.obs; // Use ".obs" to make it observable
+class TextController extends GetxController {
+  // Create an observable string using RxString
+  var message = ''.obs;
+  var xInt = 0.obs;
+  var xCh = ''.obs;
+  var somme = 0.obs;
 
-  void increment() {
-    x.value++; // Access the value using ".value"
+  // Function to update the message
+  void updateMessage(String newMessage) {
+    if (newMessage == ''){
+      message.value = '';
+      xCh.value = '';
+    }
+    else{
+      message.value =  message.value + newMessage;
+      xCh.value = xCh.value + newMessage;
+    }
   }
-  void decrement() {
-    x.value--; // Access the value using ".value"
+  void updateX(String x) {
+    if (xCh.value.length > 1) {
+      String result = xCh.substring(0, xCh.value.length - 1);
+      print(result);
+
+      //xInt.value = int.tryParse(result.value) ?? 0;
+      int? number = int.tryParse(result);
+      somme.value = somme.value + number!;
+      xCh.value = '';
+      //print(somme);
+    }
+    if (x == "=")
+      {
+        print(somme);
+        updateMessage(somme.value.toString());
+      }
   }
 }
 
 class MyApp extends StatelessWidget {
-  final IncNumber _instance = Get.put(IncNumber());
+  final TextController textController = Get.put(TextController());
 
   @override
   Widget build(BuildContext context) {
     return GetMaterialApp(
-      title: 'Get Example',
+      title: 'GetX String Observable',
       home: Scaffold(
         appBar: AppBar(
-          title: Text('Get Example'),
+          title: Text('GetX String Observable'),
         ),
         body: Center(
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Obx(() => Text(
-                'Count: ${_instance.x.value}', // Access the value using ".value"
+                textController.message.value,
                 style: TextStyle(fontSize: 24),
               )),
-              SizedBox(height: 16),
-
-          Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              ElevatedButton(
-                onPressed: () => _instance.increment(),
-                child: Text('Increment'),
-
-              ),
-              SizedBox(width: 20.0,),
-              ElevatedButton(
-                onPressed: () => _instance.decrement(),
-                child: Text('Decrement'),
-              ),
-            ],),],
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  SizedBox(height: 16),
+                  ElevatedButton(
+                    onPressed: () {
+                      textController.updateMessage('5');
+                    },
+                    child: Text('5'),
+                  ),
+                  SizedBox(width: 16),
+                  ElevatedButton(
+                    onPressed: () {
+                      textController.updateMessage('+');
+                      textController.updateX('+');
+                    },
+                    child: Text('+'),
+                  ),
+                  SizedBox(width: 16),
+                  ElevatedButton(
+                    onPressed: () {
+                      textController.updateMessage('=');
+                      textController.updateX('=');
+                    },
+                    child: Text('='),
+                  ),
+                  SizedBox(width: 16),
+                  ElevatedButton(
+                    onPressed: () {
+                      textController.updateMessage('');
+                      textController.updateX('C');
+                    },
+                    child: Text('C'),
+                  ),
+                ],
+              )
+            ],
           ),
         ),
       ),
     );
   }
-}"
-
-
-
-About GetX in this example:
-First we create a separate class called IncNumber to handle the state and logic related to the count. While it may seem like a simple case to have a separate class for just a number, this approach becomes useful as your application grows in complexity.
-"var x = 0.obs;"
-.obs stands for observable, An observable is an object that can be observed for changes, and whenever the value of the observable changes, it notifies its observers to update themselves. In the case of GetX, the obs extension on a variable creates an observable that can be used to track changes to that variable.
-In the given example, the Obx widget is used to observe the x observable from the IncNumber. Here's the relevant code snippet from the example:
-"Obx(() => Text(
-                'Count: ${_instance.x.value}', // Access the value using ".value"
-                style: TextStyle(fontSize: 24),
-              )
-         ),"
-
-
-
-
+}
