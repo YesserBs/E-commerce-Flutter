@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'main.dart';
 
 class A extends StatelessWidget {
-  final MyController myController = Get.find<MyController>();
   final RxList<Map<String, String>> items = [
     {
       "Nom": "Article 1",
