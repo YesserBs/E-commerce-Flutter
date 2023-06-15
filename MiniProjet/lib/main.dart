@@ -50,8 +50,13 @@ class MyHomePage extends StatelessWidget {
 
 class MyController extends GetxController {
   var currentIndex = 0.obs;
+  Rx<String> ch = ''.obs;
 
   void changePage(int index) {
     currentIndex.value = index;
+  }
+  void test(String saisie) {
+    ch.value = saisie;
+    print(ch.value);
   }
 }

@@ -19,9 +19,11 @@ class B extends StatelessWidget {
       home: Scaffold(
         body: SingleChildScrollView(
             child:
-                Container(
-                  margin: EdgeInsets.fromLTRB(20.0, 0.0, 20.0, 10.0),
-                  child:
+                Column(
+                  children: [
+                    Container(
+                      margin: EdgeInsets.fromLTRB(20.0, 0.0, 20.0, 10.0),
+                      child:
                       Form(child:
                       Column(
                         mainAxisAlignment: MainAxisAlignment.center,
@@ -39,15 +41,18 @@ class B extends StatelessWidget {
                         SizedBox(width: double.infinity,
                           child:
                           ElevatedButton(
-                            onPressed: handleButtonPress,
+                            onPressed:  () => myController.test(textFieldController.text),
                             child: Text('print'),
-                          ),),]
-                            ),),
+                          ),
+                        ),
+                        ]
 
+                      ),
+                      ),
 
-
-
-            ),
+                    ),
+                  ],
+                ),
           ),
         ),
       );
