@@ -1,21 +1,25 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'main.dart'; // Necessaire pour acceder a Controller dans main
+import 'A.dart';
+import 'main.dart';
 
 class B extends StatelessWidget {
   const B({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    final MyController myController = Get.find<MyController>(); //
+    final RxList<Map<String, String>> items = Get.find<A>().items;
 
     return MaterialApp(
       home: Scaffold(
         body: Center(
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.center,
+
             children: [
-              Text('Current Index: ${myController.currentIndex.value}'),
+              Text("Déscription:"),
+              Text("Nombre d'articles: ${items.length}"),
             ],
           ),
         ),

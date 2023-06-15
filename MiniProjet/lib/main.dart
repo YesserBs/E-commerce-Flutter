@@ -12,6 +12,7 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    Get.put(A());
     return GetMaterialApp(
       home: const MyHomePage(),
     );
@@ -23,7 +24,7 @@ class MyHomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final MyController myController = Get.put(MyController());
+    final MyController myController = Get.put(MyController()); // Creation d'un controleur, une instance de la class crée en bas
 
     return Scaffold(
       body: Obx(() => [A(), B()][myController.currentIndex.value]),
