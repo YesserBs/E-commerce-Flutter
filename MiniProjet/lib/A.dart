@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class A extends StatelessWidget {
-  final RxList<Map<String, String>> personnes = [
+  final RxList<Map<String, String>> items = [
     {
       "Nom": "Article 1",
       "prix": "?",
@@ -13,34 +13,56 @@ class A extends StatelessWidget {
     },
   ].obs;
 
+
+  final TextEditingController search = TextEditingController();
+
+
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.all(20.0),
-      child: Center(
-        child: Obx(
-              () => ListView.builder(
-            itemCount: personnes.length,
-            itemBuilder: (context, index) {
-              final personne = personnes[index];
-              final nom = personne["Nom"];
-              final age = personne["prix"];
-
-              return GestureDetector(
-                onTap: () {
-                  print(nom); // Print the value of "Nom" when the card is tapped
-                },
-                child: Card(
-                  child: ListTile(
-                    title: Text("$nom"),
-                    subtitle: Text("prix: $age"),
-                    //trailing: Icon(Icons.more_vert),
-                  ),
-                ),
-              );
+      padding: const EdgeInsets.fromLTRB(10.0, 0.0, 10.0, 0.0), // Adjust vertical padding here
+      child: Column(
+        children: [
+          SizedBox(height: 25.0,),
+          TextField(
+            controller: search,
+            onChanged: (value) {
+              // search logic
             },
+            decoration: InputDecoration(
+              hintText: 'Search',
+              prefixIcon: Icon(Icons.search),
+              border: OutlineInputBorder(
+                borderRadius: BorderRadius.circular(20.0), // Set the border radius here
+              ),
+            ),
           ),
-        ),
+          Expanded(
+            child: Obx(
+                  () => ListView.builder(
+                itemCount: items.length,
+                itemBuilder: (context, index) {
+                  final item = items[index];
+                  final nom = item["Nom"];
+                  final prix = item["prix"];
+
+                  return GestureDetector(
+                    onTap: () {
+                      print(nom); // Print the value of "Nom" when the card is tapped
+                    },
+                    child: Card(
+                      child: ListTile(
+                        title: Text("$nom"),
+                        subtitle: Text("prix: $prix"),
+                        //trailing: Icon(Icons.more_vert),
+                      ),
+                    ),
+                  );
+                },
+              ),
+            ),
+          ),
+        ],
       ),
     );
   }

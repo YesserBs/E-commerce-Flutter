@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'main.dart';
+import 'main.dart'; // Necessaire pour acceder a Controller dans main
 
 class B extends StatelessWidget {
   const B({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    final MyController myController = Get.find<MyController>();
+    final MyController myController = Get.find<MyController>(); //
 
     return MaterialApp(
       home: Scaffold(
