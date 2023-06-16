@@ -7,6 +7,39 @@ void main() {
   runApp(const MyApp());
 }
 
+
+Container createCircularContainer(double radius, Color color) {
+  return Container(
+    width: radius,
+    height: radius,
+    decoration: BoxDecoration(
+      shape: BoxShape.circle,
+      color: color,
+    ),
+  );
+}
+
+Container CustomContainer(String text) {
+  return Container(
+    margin: EdgeInsets.fromLTRB(5.0, 2.0, 5.0, 2.0),
+    padding: EdgeInsets.all(20.0),
+    decoration: BoxDecoration(
+      borderRadius: BorderRadius.circular(8),
+      color: Colors.blue,
+    ),
+    child: Center(
+      child:
+      Text(
+        text,
+        style: TextStyle(
+            color: Colors.white,
+            fontSize: 20.0),
+      ),
+    ),
+  );
+}
+
+
 class MyApp extends StatelessWidget {
   const MyApp({Key? key}) : super(key: key);
 
@@ -32,17 +65,11 @@ class MyHomePage extends StatelessWidget {
       drawer: Drawer(child: SingleChildScrollView(
         scrollDirection: Axis.vertical,
         child: Container(
-          padding: EdgeInsets.all(70.0),
+          padding: EdgeInsets.fromLTRB(10.0, 25.0, 10.0, 25.0),
           child: Column(children: [
-            Container(
-              padding: EdgeInsets.fromLTRB(10.0, 5.0, 10.0, 5.0),
-              child: Text("Text"),),
-            Container(
-              padding: EdgeInsets.fromLTRB(10.0, 5.0, 10.0, 5.0),
-              child: Text("Text"),),
-            Container(
-              padding: EdgeInsets.fromLTRB(10.0, 5.0, 10.0, 5.0),
-              child: Text("Text"),),
+            CustomContainer("Text"),
+            CustomContainer("Text"),
+            CustomContainer("Text"),
 
         ],),),
       )),
@@ -71,13 +98,16 @@ class MyHomePage extends StatelessWidget {
 
 class MyController extends GetxController {
   var currentIndex = 0.obs;
-  Rx<String> ch = ''.obs;
+  Rx<String> nom = ''.obs;
+  Rx<String> prenom = ''.obs;
 
   void changePage(int index) {
     currentIndex.value = index;
   }
-  void test(String saisie) {
-    ch.value = saisie;
-    print(ch.value);
+  void test(String ch1, String ch2) {
+    nom.value = ch1;
+    prenom.value = ch2;
+    print(nom.value);
+    print(prenom.value);
   }
 }
