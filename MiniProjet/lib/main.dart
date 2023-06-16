@@ -13,6 +13,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GetMaterialApp(
+
       home: const MyHomePage(),
     );
   }
@@ -26,10 +27,30 @@ class MyHomePage extends StatelessWidget {
     final MyController myController = Get.put(MyController());
 
     return Scaffold(
+      appBar: AppBar(),
+
+      drawer: Drawer(child: SingleChildScrollView(
+        scrollDirection: Axis.vertical,
+        child: Container(
+          padding: EdgeInsets.all(70.0),
+          child: Column(children: [
+            Container(
+              padding: EdgeInsets.fromLTRB(10.0, 5.0, 10.0, 5.0),
+              child: Text("Text"),),
+            Container(
+              padding: EdgeInsets.fromLTRB(10.0, 5.0, 10.0, 5.0),
+              child: Text("Text"),),
+            Container(
+              padding: EdgeInsets.fromLTRB(10.0, 5.0, 10.0, 5.0),
+              child: Text("Text"),),
+
+        ],),),
+      )),
       body: Obx(() => [A(), B()][myController.currentIndex.value]),
 
       bottomNavigationBar: Obx(
             () => BottomNavigationBar(
+
           currentIndex: myController.currentIndex.value,
           onTap: (index) => myController.changePage(index),
           items: const [

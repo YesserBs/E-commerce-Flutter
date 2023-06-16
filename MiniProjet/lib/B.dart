@@ -18,18 +18,18 @@ class B extends StatelessWidget {
     return MaterialApp(
       home: Scaffold(
         body: SingleChildScrollView(
-            child:
+          child:
+          Column(
+            children: [
+              Container(
+                margin: EdgeInsets.fromLTRB(20.0, 0.0, 20.0, 10.0),
+                child:
+                Form(child:
                 Column(
-                  children: [
-                    Container(
-                      margin: EdgeInsets.fromLTRB(20.0, 0.0, 20.0, 10.0),
-                      child:
-                      Form(child:
-                      Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          SizedBox(height: 50.0,),
-                          TextField(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      SizedBox(height: 50.0,),
+                      TextFormField(
                         controller: textFieldController,
                         decoration: InputDecoration(
                           labelText: "Saisie",
@@ -37,24 +37,24 @@ class B extends StatelessWidget {
                           border: OutlineInputBorder(),
                         ),
                       ),
-                        //SizedBox(height: 10.0),
-                        SizedBox(width: double.infinity,
-                          child:
-                          ElevatedButton(
-                            onPressed:  () => myController.test(textFieldController.text),
-                            child: Text('print'),
-                          ),
+                      //SizedBox(height: 10.0),
+                      SizedBox(width: double.infinity,
+                        child:
+                        ElevatedButton(
+                          onPressed:  () => myController.test(textFieldController.text),
+                          child: Text('print'),
                         ),
-                        ]
-
                       ),
-                      ),
+                    ]
 
-                    ),
-                  ],
                 ),
+                ),
+
+              ),
+            ],
           ),
         ),
-      );
+      ),
+    );
   }
 }
