@@ -1,36 +1,5 @@
-Récap:
+Dans l'emplacment 
+C:\Users\Yesser\StudioProjects\myproj\android\app\src\main\res
 
-On peut déclarer le GetxController dans un fichier séparé. Par exemple, on crée un fichier counter_controller.dart avec le code suivant:
-
-"
-import 'package:get/get.dart';
-
-class CounterController extends GetxController {
-  RxInt counter = 0.obs;
-
-  void increment() {
-    counter.value++;
-  }
-}
-"
-On déclare les variables et les methodes.
-
-Maintenant dans le fichier ou on souhaite utiliser Obx(), On doit obtenir une instance de CounterController. En utilisant Get.put() ou Get.find(). 
-Voici un exemple utilisant Get.find() pour créer et mettre en mémoire un CounterController :
-
-"
-import 'package:get/get.dart';
-import 'counter_controller.dart';
-
-class MyWidget extends StatelessWidget {
-  final CounterController controller = Get.find(CounterController());
-
-  @override
-  Widget build(BuildContext context) {
-    return Obx(() => Text('Counter: ${controller.counter.value}'));
-  }
-}
-"
-
-
+Je colle les fichiers dans le dossier android généré par le site https://www.appicon.co/ (App icon generator)
 
