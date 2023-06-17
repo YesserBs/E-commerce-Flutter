@@ -5,3 +5,8 @@ Je colle les fichiers dans le dossier android généré par le site https://www.
 
 Je suppose que ce n'est pas necessaire mais pour ajouter de l'arrondissment a limage (Logo) on peut aller sur photoshop et faire ceci:
 creer un rectangle de meme taille, puis superpositioner le calque de la photo par rapporrt au rectangle, ensuite clique droit de souris sur le calque de limage et activer le encrage 'masque dencrage' puis changer la bordure du rectangle
+
+
+Pour changer le nom de lapp:
+acceder au fichier AndroidManifest (C:\Users\Yesser\StudioProjects\myproj\android\app\src\main)
+dans le tag <Application> sous application label changer le nom.
