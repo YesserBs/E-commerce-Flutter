@@ -4,10 +4,9 @@ import 'package:get/get.dart';
 import 'package:myproj/Custom/MyText.dart';
 import 'package:myproj/Custom/MyTextFormField.dart';
 import 'package:myproj/screens/home.dart';
-import 'package:myproj/controllers/login_controller.dart';
-import 'package:myproj/screens/connexion.dart';
+import 'package:myproj/screens/register.dart';
 
-class LoginScreen extends GetWidget<authController> {
+class LoginScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
@@ -36,7 +35,7 @@ class LoginScreen extends GetWidget<authController> {
                       ),
                       GestureDetector(
                         onTap: (){
-                          Get.to(ConnexionScreen());
+                          Get.off(ConnexionScreen());
                         },
                         child: Text("Sign up?",
                         style: TextStyle(

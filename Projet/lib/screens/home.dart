@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
+import 'package:myproj/Controllers/home_controller.dart';
 
 class HomeScreen extends StatelessWidget {
   final List<String> items = <String>["IPhone A", "IPhone B", "IPhone C", "IPhone D", "IPhone E", "IPhone A", "IPhone B", "IPhone C", "IPhone D", "IPhone E","IPhone A", "IPhone B", "IPhone C", "IPhone D", "IPhone E"];
@@ -82,35 +83,47 @@ Widget _SearchFormField() {
 }
 
 Widget _BottomNav() {
-  return BottomNavigationBar(
-    selectedItemColor: Colors.grey[800],
-      items: [
-        BottomNavigationBarItem(
-          activeIcon: Text("Explore",
-          style: TextStyle(
-            fontSize: 18.0,
-            fontFamily: 'OstrichSans'
-          ),),
-          label: "",
-            icon: Icon(FontAwesomeIcons.house,
-              size: 16.0,)
-        ),
-        BottomNavigationBarItem(
-            activeIcon: Text("Cart"),
+  return GetBuilder<HomeController>(
+    init: HomeController(),
+    builder: (controller) => BottomNavigationBar(
+      selectedItemColor: Colors.grey[800],
+        items: [
+          BottomNavigationBarItem(
+            activeIcon: Text("Explore",
+            style: TextStyle(
+              fontSize: 18.0,
+              fontFamily: 'OstrichSans'
+              ),
+            ),
             label: "",
-            icon: Icon(FontAwesomeIcons.cartShopping,
-            size: 16.0,)
-        ),
-        BottomNavigationBarItem(
-            activeIcon: Text("Profile"),
-            label: "",
-            icon: Icon(FontAwesomeIcons.userLarge,
+              icon: Icon(FontAwesomeIcons.house,
+                size: 16.0,)
+          ),
+          BottomNavigationBarItem(
+              activeIcon: Text("Cart",
+                style: TextStyle(
+                    fontSize: 18.0,
+                    fontFamily: 'OstrichSans'
+                ),
+              ),
+              label: "",
+              icon: Icon(FontAwesomeIcons.cartShopping,
               size: 16.0,)
-        ),
-      ],
-    currentIndex: 0,
-    onTap: (index){
-      print(index);
-    },
+          ),
+          BottomNavigationBarItem(
+              activeIcon: Text("Profile",
+                style: TextStyle(
+                    fontSize: 18.0,
+                    fontFamily: 'OstrichSans'
+                ),
+              ),
+              label: "",
+              icon: Icon(FontAwesomeIcons.userLarge,
+                size: 16.0,)
+          ),
+        ],
+      currentIndex: controller.navValue,
+      onTap: (index) => controller.ChangeValue(index),
+    ),
   );
 }
