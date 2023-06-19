@@ -4,7 +4,7 @@ import 'package:get/get.dart';
 import 'package:myproj/Custom/MyText.dart';
 import 'package:myproj/Custom/MyTextFormField.dart';
 import 'package:myproj/screens/home.dart';
-import 'package:myproj/auth_controller.dart';
+import 'package:myproj/controllers/login_controller.dart';
 import 'package:myproj/screens/connexion.dart';
 
 class LoginScreen extends GetWidget<authController> {

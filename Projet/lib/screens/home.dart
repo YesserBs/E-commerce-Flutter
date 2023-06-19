@@ -9,17 +9,15 @@ class HomeScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-        body: Padding(
-          padding: EdgeInsets.fromLTRB(10.0, 10.0, 10.0, 20.0),
-          child: Column(
-            children: [
-              _SearchFormField(),
-              _Category(),
-              _ListItems(),
-              _BottomNav()
-            ],
-          ),
+        //resizeToAvoidBottomInset: false,
+        body: Column(
+          children: [
+            _SearchFormField(),
+            _Category(),
+            _ListItems(),
+          ],
         ),
+        bottomNavigationBar: _BottomNav(),
       ),
     );
   }
@@ -69,6 +67,7 @@ Widget _Category() {
 
 Widget _SearchFormField() {
   return Container(
+    margin: EdgeInsets.fromLTRB(8.0, 16.0, 8.0, 0.0),
     decoration: BoxDecoration(
       color: Colors.grey[200],
       borderRadius: BorderRadius.circular(40),
@@ -84,17 +83,34 @@ Widget _SearchFormField() {
 
 Widget _BottomNav() {
   return BottomNavigationBar(
+    selectedItemColor: Colors.grey[800],
       items: [
         BottomNavigationBarItem(
-          label: "Explore",
-            icon: Icon(Icons.home)
+          activeIcon: Text("Explore",
+          style: TextStyle(
+            fontSize: 18.0,
+            fontFamily: 'OstrichSans'
+          ),),
+          label: "",
+            icon: Icon(FontAwesomeIcons.house,
+              size: 16.0,)
         ),
         BottomNavigationBarItem(
-            label: "Explore",
-            icon: Icon(Icons.home)
+            activeIcon: Text("Cart"),
+            label: "",
+            icon: Icon(FontAwesomeIcons.cartShopping,
+            size: 16.0,)
+        ),
+        BottomNavigationBarItem(
+            activeIcon: Text("Profile"),
+            label: "",
+            icon: Icon(FontAwesomeIcons.userLarge,
+              size: 16.0,)
         ),
       ],
     currentIndex: 0,
-    onTap: (index){},
+    onTap: (index){
+      print(index);
+    },
   );
 }
