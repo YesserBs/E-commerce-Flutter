@@ -10,7 +10,6 @@ class HomeScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-        //resizeToAvoidBottomInset: false,
         body: Column(
           children: [
             _SearchFormField(),
@@ -18,7 +17,7 @@ class HomeScreen extends StatelessWidget {
             _ListItems(),
           ],
         ),
-        bottomNavigationBar: _BottomNav(),
+        //bottomNavigationBar: _BottomNav(),
       ),
     );
   }
@@ -123,7 +122,12 @@ Widget _BottomNav() {
           ),
         ],
       currentIndex: controller.navValue,
-      onTap: (index) => controller.ChangeValue(index),
+      onTap: (index){
+        controller.ChangeValue(index);
+        //if (index == 1){
+        //  Get.to(CartScreen());
+        //}
+      }
     ),
   );
 }
