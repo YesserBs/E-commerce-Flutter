@@ -71,11 +71,7 @@ class _AlertsPageState extends State<AlertsPage> {
                         elevation: 0,
                         backgroundColor: Colors.white,
                       ),
-                      onPressed: () {
-                        setState(() {
-                          isFormOpen = !isFormOpen; // Toggle the form open/close
-                        });
-                      },
+                      onPressed: () {},
                       child: Icon(
                         FontAwesomeIcons.minus,
                         color: Colors.grey[900],
@@ -100,11 +96,7 @@ class _AlertsPageState extends State<AlertsPage> {
                         elevation: 0,
                         backgroundColor: Colors.white,
                       ),
-                      onPressed: () {
-                        setState(() {
-                          isFormOpen = !isFormOpen; // Toggle the form open/close
-                        });
-                      },
+                      onPressed: () {},
                       child: Icon(
                         FontAwesomeIcons.plus,
                         color: Colors.grey[900],
@@ -139,21 +131,37 @@ class _AlertsPageState extends State<AlertsPage> {
       builder: (context) {
         return AlertDialog(
           title: Text('Enter Text'),
-          content: TextFormField(
-            controller: textController, // Set the controller for the text input
-            decoration: InputDecoration(labelText: 'Text'),
+          content: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              TextFormField(
+                controller: textController,
+                decoration: InputDecoration(labelText: 'Text'),
+              ),
+              SizedBox(height: 16.0),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.end,
+                children: [
+                  TextButton(
+                    onPressed: () {
+                      Navigator.pop(context); // Fermer la boîte de dialogue
+                    },
+                    child: Text('Annuler'),
+                  ),
+                  ElevatedButton(
+                    onPressed: () {
+                      print(textController.text);
+                      Navigator.pop(context);
+                    },
+                    child: Text('Soumettre'),
+                  ),
+                ],
+              ),
+            ],
           ),
-          actions: [
-            ElevatedButton(
-              onPressed: () {
-                print(textController.text); // Print the entered text to the console
-                Navigator.pop(context); // Close the dialog
-              },
-              child: Text('Submit'),
-            ),
-          ],
         );
       },
     );
   }
+
 }
