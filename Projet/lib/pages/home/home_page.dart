@@ -34,11 +34,16 @@ class HomePage extends StatelessWidget {
                 leading: Image.asset('assets/images/IPhone.jpg'),
                 title: Padding(
                     padding: EdgeInsets.fromLTRB(0.0, 15.0, 0.0, 0.0),
-                    child: Text(items[index])),
+                    child: Text(items[index],
+                      style: TextStyle(
+                          fontSize: 18,
+                          fontFamily: 'OstrichSans',
+                          color: Colors.grey[900]
+                      ),)),
                 subtitle: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text('Brand/ Seller'),
+                    Text('Brand/ Seller',),
                     SizedBox(height: 2.0,),
                     Text('1000 dts'),
                   ],
