@@ -3,9 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '../account/account_page.dart';
-import '../alerts/alerts_page.dart';
+import '../cart/cart_page.dart';
 import '../home/home_page.dart';
-import '../news/news_page.dart';
 import 'dashboard_controller.dart';
 
 class DashboardPage extends StatelessWidget {
@@ -19,15 +18,14 @@ class DashboardPage extends StatelessWidget {
               index: controller.tabIndex,
               children: [
                 HomePage(),
-                NewsPage(),
                 AlertsPage(),
                 AccountPage(),
               ],
             ),
           ),
           bottomNavigationBar: BottomNavigationBar(
-            unselectedItemColor: Colors.black,
-            selectedItemColor: Colors.redAccent,
+            unselectedItemColor: Colors.grey[500],
+            selectedItemColor: Colors.grey[900],
             onTap: controller.changeTabIndex,
             currentIndex: controller.tabIndex,
             showSelectedLabels: false,
@@ -41,17 +39,13 @@ class DashboardPage extends StatelessWidget {
                 label: 'Home',
               ),
               _bottomNavigationBarItem(
-                icon: CupertinoIcons.sportscourt,
+                icon: CupertinoIcons.cart,
                 label: 'News',
-              ),
-              _bottomNavigationBarItem(
-                icon: CupertinoIcons.bell,
-                label: 'Alerts',
               ),
               _bottomNavigationBarItem(
                 icon: CupertinoIcons.person,
                 label: 'Account',
-              ),
+              )
             ],
           ),
         );
