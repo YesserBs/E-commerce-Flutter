@@ -4,7 +4,11 @@ import 'package:get/get.dart';
 
 
 class HomePage extends StatelessWidget {
-  final List<String> items = <String>["IPhone A", "IPhone B", "IPhone C", "IPhone D", "IPhone E"];
+  final List<String> items = <String>["IPhone A", "IPhone B", "IPhone C"];
+  final List<String> pics = <String>[
+    'assets/images/IPhone.jpg',
+    'assets/images/IPH5.webp',
+    'assets/images/IPH4.webp',];
 
   @override
   Widget build(BuildContext context) {
@@ -31,7 +35,7 @@ class HomePage extends StatelessWidget {
             height: 100,
             child: Card(
               child: ListTile(
-                leading: Image.asset('assets/images/IPhone.jpg'),
+                leading: Image.asset(pics[index]),
                 title: Padding(
                     padding: EdgeInsets.fromLTRB(0.0, 15.0, 0.0, 0.0),
                     child: Text(items[index],

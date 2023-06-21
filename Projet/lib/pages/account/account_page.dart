@@ -14,7 +14,7 @@ class AccountPage extends GetView<AccountController> {
             padding: EdgeInsets.all(20.0),
             child: Column(
               children: [
-                SizedBox(height: 40.0,),
+                SizedBox(height: 55.0,),
                 Center(
                   child: Container(
                     child: Container(
@@ -31,12 +31,15 @@ class AccountPage extends GetView<AccountController> {
                       ),
                       child: CircleAvatar(
                         radius: 70,
-                        backgroundImage: AssetImage('assets/images/Logo.png'),
+                        backgroundImage: AssetImage('assets/images/profile.jpg'),
                       ),
                     ),
                   ),
                 ),
-            SizedBox(height: 90.0,),
+            SizedBox(height: 20.0,),
+            Text("Username here",
+            style: TextStyle(fontSize: 25.0, fontFamily: 'OstrichSans', color: Colors.grey[900]),),
+            SizedBox(height: 50.0,),
             MyDevider(),
                 SizedBox(height: 35.0,),
                 ActionButton(Icons.edit, "Edit profile"),
