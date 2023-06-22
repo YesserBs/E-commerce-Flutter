@@ -42,6 +42,7 @@ class AccountPage extends GetView<AccountController> {
             style: TextStyle(fontSize: 25.0, fontFamily: 'OstrichSans', color: Colors.grey[900]),),
             SizedBox(height: 50.0,),
                 CustomWidget(
+                  //image: "assets/images/flutterImage.png",
                   text: 'Hello, world!',
                   //indent: true,
                   style: TextStyle(

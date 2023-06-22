@@ -4,12 +4,14 @@ class CustomWidget extends StatelessWidget {
   final String text;
   final TextStyle style;
   final bool indent;
+  final String? image;
 
   const CustomWidget({
     Key? key,
     required this.text,
     this.style = const TextStyle(),
-    this.indent = false, // New boolean parameter with default value
+    this.indent = false,
+    this.image,
   }) : super(key: key);
 
   @override
@@ -22,7 +24,12 @@ class CustomWidget extends StatelessWidget {
       ),
       child: Row(
         children: [
-          if (indent) SizedBox(width: 30), // Show SizedBox if indent is true
+          if (indent) SizedBox(width: 30),
+          if (image != null)
+            SizedBox(
+              width: 30,
+              child: Image.asset(image!),
+            ),
           Text(
             text,
             style: style,
