@@ -1,3 +1,3 @@
 import 'package:get/get.dart';
 
-class AlertsController extends GetxController {}
+class CartController extends GetxController {}

@@ -1,24 +1,26 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-
 import '../account/account_page.dart';
 import '../cart/cart_page.dart';
 import '../home/home_page.dart';
 import 'dashboard_controller.dart';
 
 class DashboardPage extends StatelessWidget {
+  // DashboardController dashboardController =Get.find()
   @override
   Widget build(BuildContext context) {
     return GetBuilder<DashboardController>(
       builder: (controller) {
         return Scaffold(
+          appBar: AppBar(backgroundColor: Colors.black87,),
+          drawer: Drawer(),
           body: SafeArea(
             child: IndexedStack(
               index: controller.tabIndex,
               children: [
                 HomePage(),
-                AlertsPage(),
+                CartPage(),
                 AccountPage(),
               ],
             ),

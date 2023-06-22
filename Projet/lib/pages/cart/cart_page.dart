@@ -1,14 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:get/get.dart';
-import 'cart_controller.dart';
 
-class AlertsPage extends StatefulWidget {
+class CartPage extends StatefulWidget {
   @override
   _AlertsPageState createState() => _AlertsPageState();
 }
 
-class _AlertsPageState extends State<AlertsPage> {
+class _AlertsPageState extends State<CartPage> {
   final List<String> items = <String>[
     "IPhone A",
     "IPhone B",
@@ -28,6 +26,7 @@ class _AlertsPageState extends State<AlertsPage> {
           padding: EdgeInsets.symmetric(vertical: 15.0, horizontal: 0.0),
           child: Column(
             children: [
+              // AlertDialog(),
               _ListItems(),
             ],
           ),
@@ -66,7 +65,12 @@ class _AlertsPageState extends State<AlertsPage> {
                                   fontFamily: 'OstrichSans',
                                 ),
                               ),
-                              SizedBox(height: 5),
+                              Text("1000 dts", style: TextStyle(
+                                  fontSize: 14,
+                                  //fontFamily: 'OstrichSans',
+                                  color: Colors.grey[400]
+                              ),),
+                              //SizedBox(height: 5),
                               Row(
                                 mainAxisAlignment: MainAxisAlignment.start,
                                 children: [
@@ -88,7 +92,7 @@ class _AlertsPageState extends State<AlertsPage> {
                                       backgroundColor: Colors.white,
                                     ),
                                     onPressed: () {
-                                      _showTextInputDialog(context); // Show the text input dialog
+                                      _showTextInputDialog(context); 
                                     },
                                     child: Text(
                                       "1",
@@ -113,6 +117,7 @@ class _AlertsPageState extends State<AlertsPage> {
                                   ),
                                 ],
                               ),
+
                             ],
                           ),
                         ),

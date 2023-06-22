@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
+import 'package:myproj/pages/details/details_page.dart';
+import 'package:myproj/pages/home/home_controller.dart';
 
 
 class HomePage extends StatelessWidget {
@@ -19,6 +21,7 @@ class HomePage extends StatelessWidget {
             _SearchFormField(),
             _Category(),
             _ListItems(),
+            Divider()
           ],
         ),
         //bottomNavigationBar: _BottomNav(),
@@ -35,6 +38,9 @@ class HomePage extends StatelessWidget {
             height: 100,
             child: Card(
               child: ListTile(
+                onTap: (){
+                  Get.to(DetailsPage());
+                },
                 leading: Image.asset(pics[index]),
                 title: Padding(
                     padding: EdgeInsets.fromLTRB(0.0, 15.0, 0.0, 0.0),
