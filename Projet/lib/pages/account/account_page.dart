@@ -2,10 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
 
+import '../../const/MyWidget.dart';
 import 'account_controller.dart';
 
 class AccountPage extends GetView<AccountController> {
-
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -41,13 +41,16 @@ class AccountPage extends GetView<AccountController> {
             Text("Username here",
             style: TextStyle(fontSize: 25.0, fontFamily: 'OstrichSans', color: Colors.grey[900]),),
             SizedBox(height: 50.0,),
-            MyDevider(),
-                SizedBox(height: 35.0,),
-                ActionButton(Icons.edit, "Edit profile"),
-                ActionButton(Icons.reorder, "Orders list"),
-                ActionButton(Icons.settings, "Settings"),
-                ActionButton(Icons.logout, "Log out"),
-                MyDevider()
+                CustomWidget(
+                  text: 'Hello, world!',
+                  //indent: true,
+                  style: TextStyle(
+                    fontSize: 20,
+                    fontWeight: FontWeight.bold,
+                    color: Colors.black,
+                  ),
+                ),
+
 
               ],
             ),
@@ -56,48 +59,4 @@ class AccountPage extends GetView<AccountController> {
       ),
     );
   }
-}
-
-Widget MyDevider(){
-  return
-    Divider(
-    color: Colors.grey[400],
-    thickness: 1,
-    indent: 30,
-    endIndent: 30,
-  );
-
-}
-
-Widget ActionButton(IconData icon, String text) {
-  return Column(
-    children: [
-      GestureDetector(
-        child: Container(
-          padding: EdgeInsets.symmetric(horizontal: 16.0),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Row(
-                children: [
-                  Icon(icon, size: 20.0),
-                  SizedBox(width: 15.0),
-                  Text(
-                    text,
-                    style: TextStyle(
-                      fontSize: 18,
-                      fontFamily: 'OstrichSans',
-                      color: Colors.grey[900],
-                    ),
-                  ),
-                ],
-              ),
-              Icon(FontAwesomeIcons.chevronRight, size: 15.0),
-            ],
-          ),
-        ),
-      ),
-      SizedBox(height: 35.0),
-    ],
-  );
 }

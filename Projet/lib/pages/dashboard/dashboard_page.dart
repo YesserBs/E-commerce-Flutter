@@ -2,7 +2,6 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import '../account/account_page.dart';
-import '../cart/cart_page.dart';
 import '../home/home_page.dart';
 import 'dashboard_controller.dart';
 
@@ -20,7 +19,6 @@ class DashboardPage extends StatelessWidget {
               index: controller.tabIndex,
               children: [
                 HomePage(),
-                CartPage(),
                 AccountPage(),
               ],
             ),
@@ -41,12 +39,8 @@ class DashboardPage extends StatelessWidget {
                 label: 'Home',
               ),
               _bottomNavigationBarItem(
-                icon: CupertinoIcons.cart,
-                label: 'News',
-              ),
-              _bottomNavigationBarItem(
                 icon: CupertinoIcons.person,
-                label: 'Account',
+                label: 'profile',
               )
             ],
           ),
