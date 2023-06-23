@@ -1,9 +1,11 @@
 import 'package:get/get.dart';
 
 class AccountController extends GetxController {
-  var counter = 0.obs;
+  final List<Map<String, dynamic>> elements = [];
+  var name = ''.obs;
 
-  void increaseCounter() {
-    counter.value += 1;
+  void NewItem(String ItemName) {
+    elements.add({'name': '$ItemName', 'price': 10});
+    update();
   }
 }
