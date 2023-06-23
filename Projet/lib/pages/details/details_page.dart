@@ -1,17 +1,14 @@
-
-
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:get/get_core/src/get_main.dart';
-import 'package:myproj/pages/dashboard/dashboard_page.dart';
-import 'package:myproj/pages/home/home_page.dart';
 
 class DetailsPage extends StatelessWidget {
   const DetailsPage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    final String name = Get.arguments as String; // Retrieve the passed argument
+
     return SafeArea(
       child: Scaffold(
         body: Column(
@@ -29,17 +26,21 @@ class DetailsPage extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.start,
                   children: [
                     SizedBox(width: 10.0,),
-                    Icon(Icons.chevron_left, color: Colors.grey[900],
-                    size: 35.0,), // Icon on the left
+                    Icon(
+                      Icons.chevron_left,
+                      color: Colors.grey[900],
+                      size: 35.0,
+                    ), // Icon on the left
                   ],
                 ),
               ),
             ),
-
-
             Center(
-              child: Text("Details screen"),
+              child: Text("Details"),
             ),
+            SizedBox(height: 30.0,),
+            Center(child: Text("Name: $name",
+            style: TextStyle(fontSize:  30.0),)), // Display the name
           ],
         ),
       ),

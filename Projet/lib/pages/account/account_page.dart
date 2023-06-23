@@ -9,19 +9,7 @@ class AccountPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Center(
-        child: ElevatedButton.icon(
-          style: ElevatedButton.styleFrom(
-            backgroundColor: Colors.red[200], // Set button color to red
-          ),
-          onPressed: () {
-            HC.addItem();
-          },
-          icon: Icon(Icons.add, color: Colors.black),
-          label: Text(
-            'Add',
-            style: TextStyle(color: Colors.black),
-          ),
-        ),
+        child: Text("Cart")
       ),
     );
   }

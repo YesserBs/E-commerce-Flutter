@@ -15,47 +15,26 @@ class HomePage extends StatelessWidget {
             Expanded(
               child: GetBuilder<HomeController>(
                 builder: (controller) => ListView.builder(
-                  itemCount: controller.items.length,
-                  itemBuilder: (context, index) {
-                    return Container(
-                      height: 100,
-                      child: Card(
-                        color: Colors.red[200],
-                        child: ListTile(
-                          onTap: () {
-                            Get.to(DetailsPage());
-                          },
-                          title: Center(
-                            child: Text(
-                              controller.items[index],
-                              style: TextStyle(
-                                fontSize: 30,
-                                fontFamily: 'OstrichSans',
-                                color: Colors.grey[900],
-                              ),
-                            ),
-                          ),
-                          subtitle: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                          ),
-                        ),
+                  itemCount: controller.elements.length,
+                  itemBuilder: (BuildContext context, int index) {
+                    final element = controller.elements[index];
+                    final String name = element['name'];
+                    final String price = element['price'].toString();
+
+                    return Card(
+                      child: ListTile(
+                        onTap: () {
+                          Get.to(
+                            DetailsPage(),
+                            arguments: name, // Pass the name as an argument
+                          );
+                        },
+                        title: Text(name),
+                        subtitle: Text('Price: $price'),
                       ),
                     );
                   },
                 ),
-              ),
-            ),
-            ElevatedButton.icon(
-              style: ElevatedButton.styleFrom(
-                backgroundColor: Colors.red[200], // Set button color to red
-              ),
-              onPressed: () {
-                HC.addItem();
-              },
-              icon: Icon(Icons.add, color: Colors.black),
-              label: Text(
-                'Add',
-                style: TextStyle(color: Colors.black),
               ),
             ),
           ],

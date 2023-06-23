@@ -12,8 +12,6 @@ class DashboardPage extends StatelessWidget {
     return GetBuilder<DashboardController>(
       builder: (controller) {
         return Scaffold(
-          appBar: AppBar(backgroundColor: Colors.black87,),
-          drawer: Drawer(),
           body: SafeArea(
             child: IndexedStack(
               index: controller.tabIndex,
@@ -39,8 +37,8 @@ class DashboardPage extends StatelessWidget {
                 label: 'Home',
               ),
               _bottomNavigationBarItem(
-                icon: CupertinoIcons.person,
-                label: 'profile',
+                icon: CupertinoIcons.cart,
+                label: 'cart',
               )
             ],
           ),

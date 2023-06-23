@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:myproj/pages/dashboard/dashboard_binding.dart';
 import 'routes/app_pages.dart';
 import 'routes/app_routes.dart';
 
@@ -13,7 +12,6 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return GetMaterialApp(
       initialRoute: AppRoutes.DASHBOARD,
-      initialBinding: DashboardBinding(),
       getPages: AppPages.list,
       debugShowCheckedModeBanner: false,
     );

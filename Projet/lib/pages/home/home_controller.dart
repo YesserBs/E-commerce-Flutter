@@ -1,9 +1,9 @@
 import 'package:get/get.dart';
 
 class HomeController extends GetxController {
-  var items = <String>["Item"];
-  void addItem() {
-    items.add('New item');
-    update();
-  }
+  final List<Map<String, dynamic>> elements = [
+    {'name': 'A', 'price': 10},
+    {'name': 'B', 'price': 12},
+    {'name': 'C', 'price': 9},
+  ];
 }
