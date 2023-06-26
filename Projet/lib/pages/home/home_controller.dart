@@ -32,7 +32,7 @@ class HomeController extends GetxController {
     if (value.isEmpty) {
       filteredItems.assignAll(items);
     } else {
-      filteredItems.assignAll(items.where((item) => item['nom'].contains(value)));
+      filteredItems.assignAll(items.where((item) => item['nom'].toLowerCase().contains(value.toLowerCase())));
     }
   }
 }
