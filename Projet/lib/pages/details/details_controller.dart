@@ -4,7 +4,7 @@ import 'package:myproj/pages/home/home_controller.dart';
 
 class DetailsController extends GetxController {
   CartController CC = Get.find();
-  var selectedItem = {}.obs;
+  RxMap<String, dynamic> selectedItem = RxMap<String, dynamic>();
 
   void GetItem(Map<String, dynamic> value){
     selectedItem.value = value;

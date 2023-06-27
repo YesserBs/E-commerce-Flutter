@@ -4,9 +4,12 @@ import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:myproj/pages/details/details_controller.dart';
 
+import '../cart/cart_controller.dart';
+
 
 class DetailsPage extends StatelessWidget {
   DetailsController DC = Get.find();
+  CartController CC = Get.find();
 
   @override
   Widget build(BuildContext context) {
@@ -47,7 +50,8 @@ class DetailsPage extends StatelessWidget {
                       ),),
                   ),
                   ElevatedButton(onPressed: (){
-                    //DC.AddCart();
+                    print(DC.selectedItem.value);
+                    CC.addItem(DC.selectedItem.value);
                   },
                   child: Text("Change",
                     style: TextStyle(
