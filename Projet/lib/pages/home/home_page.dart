@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
+import 'package:myproj/pages/details/details_controller.dart';
 import 'package:myproj/pages/details/details_page.dart';
 import 'package:myproj/pages/home/home_controller.dart';
 
 class HomePage extends StatelessWidget {
   HomeController HC = Get.find();
+  DetailsController DC = Get.find();
 
   @override
   Widget build(BuildContext context) {
@@ -19,7 +21,6 @@ class HomePage extends StatelessWidget {
             Divider(),
           ],
         ),
-        //bottomNavigationBar: _BottomNav(),
       ),
     );
   }
@@ -36,7 +37,8 @@ class HomePage extends StatelessWidget {
               child: Card(
                 child: ListTile(
                   onTap: () {
-                    Get.to(DetailsPage());
+                      Get.to(DetailsPage());
+                      DC.GetItem(item);
                   },
                   leading: Image.asset(item['image']),
                   title: Padding(

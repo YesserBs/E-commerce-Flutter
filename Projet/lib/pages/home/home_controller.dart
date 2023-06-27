@@ -7,18 +7,21 @@ class HomeController extends GetxController {
       'image': 'assets/images/IPhone.jpg',
       'marque': 'Apple',
       'prix': 1099,
+      'added': 0
     },
     {
       'nom': 'iPhone SE',
       'image': 'assets/images/IPH5.webp',
       'marque': 'Apple',
       'prix': 499,
+      'added': 0
     },
     {
       'nom': 'iPhone 13 Pro',
       'image': 'assets/images/IPH4.webp',
       'marque': 'Apple',
       'prix': 1299,
+      'added': 0
     },
   ].obs;
 

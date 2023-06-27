@@ -1,14 +1,12 @@
-
-
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
-import 'package:myproj/pages/dashboard/dashboard_page.dart';
-import 'package:myproj/pages/home/home_page.dart';
+import 'package:myproj/pages/details/details_controller.dart';
+
 
 class DetailsPage extends StatelessWidget {
-  const DetailsPage({Key? key}) : super(key: key);
+  DetailsController DC = Get.find();
 
   @override
   Widget build(BuildContext context) {
@@ -38,7 +36,25 @@ class DetailsPage extends StatelessWidget {
 
 
             Center(
-              child: Text("Details screen"),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Padding(
+                    padding: EdgeInsets.all(20.0),
+                    child: Text(DC.selectedItem['nom'],
+                      style: TextStyle(
+                        fontSize: 30,
+                      ),),
+                  ),
+                  ElevatedButton(onPressed: (){
+                    //DC.AddCart();
+                  },
+                  child: Text("Change",
+                    style: TextStyle(
+                    fontSize: 30,
+                  ),))
+                ],
+              ),
             ),
           ],
         ),

@@ -14,6 +14,9 @@ class MyApp extends StatelessWidget {
     return GetMaterialApp(
       initialRoute: AppRoutes.DASHBOARD,
       initialBinding: DashboardBinding(),
+      theme: ThemeData(colorScheme: ColorScheme.fromSwatch().copyWith(
+          primary: Colors.grey[900]),
+      ),
       getPages: AppPages.list,
       debugShowCheckedModeBanner: false,
     );
