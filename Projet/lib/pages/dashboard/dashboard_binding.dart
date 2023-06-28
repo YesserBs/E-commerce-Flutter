@@ -13,7 +13,7 @@ class DashboardBinding extends Bindings {
     Get.lazyPut<DashboardController>(() => DashboardController());
     Get.lazyPut<HomeController>(() => HomeController());
     Get.lazyPut<AccountController>(() => AccountController());
-    Get.lazyPut<CartController>(() => CartController());
+    Get.put<CartController>(CartController());
     Get.lazyPut<DetailsController>(() => DetailsController());
   }
 }

@@ -116,14 +116,14 @@ class CartPage extends StatelessWidget {
                                             Get.back();
                                           },
                                           onConfirm: () {
-                                            String enteredName = CC.textController.text;
-                                            print(enteredName);
+                                            String value = CC.textController.text;
+                                            CC.changeValue(index, int.parse(value));
                                             Get.back();
                                           },
                                         );
                                       },
                                       child: Obx(()=>Text(
-                                        CC.Quantity.value.toString(),
+                                        CC.TheText(index),
                                         style: TextStyle(
                                             fontSize: 18,
                                             fontFamily: 'OstrichSans',
