@@ -43,11 +43,26 @@ class DetailsPage extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: [
                   Expanded(
-                    child: Center(
-                      child: Text(DC.selectedItem['nom'],
-                        style: TextStyle(
-                          fontSize: 30,
-                        ),),
+                    child: SingleChildScrollView(
+                      child: Column(
+                        children: [
+                          Text(DC.selectedItem['nom'],
+                              style: TextStyle(fontSize: 35.0,
+                                  fontFamily: 'OstrichSans',
+                                  color: Colors.grey[800]),textAlign: TextAlign.center),
+                          Text("${DC.selectedItem['prix'].toString()} dts",
+                              style: TextStyle(fontSize: 20.0,
+                                  fontFamily: 'OstrichSans',
+                                  color: Colors.grey[500]),textAlign: TextAlign.center),
+                          Padding(padding: EdgeInsets.symmetric(horizontal: 0.0, vertical: 30.0),
+                              child: Image.asset(DC.selectedItem['image'])),
+                          const Text("Introducing this new iPhone: a technological marvel that pushes the boundaries of innovation. With its stunning edge-to-edge OLED display, every image and video comes to life with incredible clarity and vibrant colors. Powered by the lightning-fast A14 Bionic chip, it effortlessly handles multitasking and demanding apps. The triple-camera system lets you capture professional-grade photos and videos, while the advanced Face ID ensures secure and convenient unlocking. The iPhone Pro X also offers 5G connectivity for lightning-fast browsing and downloads. Experience the pinnacle of performance and luxury with the iPhone Pro X.",
+                            style: TextStyle(
+                              fontSize: 24,
+                            ),
+                            textAlign: TextAlign.center,),
+                        ],
+                      ),
                     ),
                   ),
                   ElevatedButton(
