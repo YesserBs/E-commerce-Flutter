@@ -31,32 +31,52 @@ class DetailsPage extends StatelessWidget {
                   children: [
                     SizedBox(width: 10.0,),
                     Icon(Icons.chevron_left, color: Colors.grey[900],
-                    size: 35.0,), // Icon on the left
+                      size: 35.0,), // Icon on the left
                   ],
                 ),
               ),
             ),
 
 
-            Center(
+            Expanded(
               child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: [
-                  Padding(
-                    padding: EdgeInsets.all(20.0),
-                    child: Text(DC.selectedItem['nom'],
-                      style: TextStyle(
-                        fontSize: 30,
-                      ),),
+                  Expanded(
+                    child: Center(
+                      child: Text(DC.selectedItem['nom'],
+                        style: TextStyle(
+                          fontSize: 30,
+                        ),),
+                    ),
                   ),
-                  ElevatedButton(onPressed: (){
-                    print(DC.selectedItem.value);
-                    CC.addItem(DC.selectedItem.value);
-                  },
-                  child: Text("Change",
-                    style: TextStyle(
-                    fontSize: 30,
-                  ),))
+                  ElevatedButton(
+                    onPressed: () {
+                      CC.addItem(DC.selectedItem.value);
+                    },
+                    style: ElevatedButton.styleFrom(
+                      minimumSize: Size(double.infinity, 60.0),
+                      shape: ContinuousRectangleBorder(),
+                    ),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Icon(
+                          Icons.add,
+                          size: 30,
+                        ),
+                        SizedBox(width: 10.0),
+                        Text(
+                          "Add to cart",
+                          style: TextStyle(
+                            fontSize: 30,
+                          ),
+                        ),
+                      ],
+                    ),
+                  )
+
+
                 ],
               ),
             ),

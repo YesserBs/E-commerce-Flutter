@@ -15,11 +15,46 @@ class CartPage extends StatelessWidget {
     return SafeArea(
       child: Scaffold(
         body: Padding(
-          padding: EdgeInsets.symmetric(vertical: 15.0, horizontal: 0.0),
+          padding: EdgeInsets.only(top: 15.0),
           child: Column(
+            crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
-              // AlertDialog(),
               _ListItems(),
+              Container(
+                color: Colors.white,
+                height: 70.0,
+                child: Padding(
+                  padding: const EdgeInsets.symmetric(vertical: 0.0, horizontal: 25.0),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Expanded(
+                        child: Container(
+                          padding: EdgeInsets.all(10.0),
+                          child: Text("Total: 1000 dts",
+                            style: TextStyle(fontSize: 25.0,
+                                fontFamily: 'OstrichSans',
+                                color: Colors.grey[800]),),
+
+                        ),
+                      ),
+                      TextButton(
+                        onPressed: () {
+                          // Action to perform when the button is pressed
+                        },
+                        style: ElevatedButton.styleFrom(
+                          minimumSize: Size(100, 60),
+                        ),
+                        child: Text("Purchase",
+                          style: TextStyle(fontSize: 25.0,
+                              fontFamily: 'OstrichSans',
+                              color: Colors.grey[800]),),
+                      ),
+                    ],
+                  ),
+                ),
+              )
+
             ],
           ),
         ),
@@ -81,7 +116,7 @@ class CartPage extends StatelessWidget {
                                       },
                                       child: Icon(
                                         FontAwesomeIcons.minus,
-                                        color: Colors.grey[700],
+                                        color: Colors.grey[800],
                                         size: 15.0,
                                       ),
                                     ),
@@ -127,7 +162,7 @@ class CartPage extends StatelessWidget {
                                         style: TextStyle(
                                             fontSize: 18,
                                             fontFamily: 'OstrichSans',
-                                            color: Colors.grey[700]
+                                            color: Colors.grey[800]
                                         ),
                                       ),
                                       ),),
@@ -141,7 +176,7 @@ class CartPage extends StatelessWidget {
                                       },
                                       child: Icon(
                                         FontAwesomeIcons.plus,
-                                        color: Colors.grey[700],
+                                        color: Colors.grey[800],
                                         size: 15.0,
                                       ),
                                     ),

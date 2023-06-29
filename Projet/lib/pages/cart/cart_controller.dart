@@ -4,14 +4,17 @@ import 'package:get/get.dart';
 
 class CartController extends GetxController {
   TextEditingController textController = TextEditingController();
-  RxInt Quantity = 0.obs;
+  RxInt Quantity = 1.obs;
   RxInt TheIndex = 0.obs;
   List<Map<String, dynamic>> addedItems = <Map<String, dynamic>>[
   ].obs;
 
   void addItem(Map<String, dynamic> selectedItem) {
-    addedItems.add(selectedItem);
-    update();
+    if (selectedItem['added'] == 0){
+      selectedItem['added'] = 1;
+      addedItems.add(selectedItem);
+      update();
+    }
   }
 
   void increment(int index){

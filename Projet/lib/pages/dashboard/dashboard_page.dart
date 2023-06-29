@@ -13,7 +13,7 @@ class DashboardPage extends StatelessWidget {
     return GetBuilder<DashboardController>(
       builder: (controller) {
         return Scaffold(
-          appBar: AppBar(backgroundColor: Colors.black87,),
+          appBar: AppBar(backgroundColor: Colors.grey[900],),
           drawer: Drawer(),
           body: SafeArea(
             child: IndexedStack(
@@ -27,7 +27,7 @@ class DashboardPage extends StatelessWidget {
           ),
           bottomNavigationBar: BottomNavigationBar(
             unselectedItemColor: Colors.grey[500],
-            selectedItemColor: Colors.grey[900],
+            selectedItemColor: Colors.grey[800],
             onTap: controller.changeTabIndex,
             currentIndex: controller.tabIndex,
             showSelectedLabels: false,
