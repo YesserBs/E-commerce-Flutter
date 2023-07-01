@@ -15,6 +15,9 @@ class CartController extends GetxController {
       addedItems.add(selectedItem);
       update();
     }
+    else{
+      deleteItem(selectedItem);
+    }
   }
 
   void increment(int index){
@@ -28,7 +31,6 @@ class CartController extends GetxController {
     print(index);
     print(addedItems[index]['added']);
     if (addedItems[index]['added'] > 1) {
-      print("ENTERED!");
       addedItems[index]['added']--;
       Quantity.value = addedItems[index]['added'];
     }
@@ -52,6 +54,11 @@ class CartController extends GetxController {
     else{
       return addedItems[index]['added'].toString();
     }
+  }
 
+  void deleteItem(Map<String, dynamic> item){
+    item['added'] = 0;
+    addedItems.removeWhere((map) => map['id'] == item['id']);
+    print(addedItems);
   }
 }

@@ -68,6 +68,7 @@ class DetailsPage extends StatelessWidget {
                   ElevatedButton(
                     onPressed: () {
                       CC.addItem(DC.selectedItem.value);
+                      DC.updateButton();
                     },
                     style: ElevatedButton.styleFrom(
                       minimumSize: Size(double.infinity, 60.0),
@@ -81,11 +82,12 @@ class DetailsPage extends StatelessWidget {
                           size: 30,
                         ),
                         SizedBox(width: 10.0),
-                        Text(
-                          "Add to cart",
+                        Obx(() => Text(
+                          DC.txt.value,
                           style: TextStyle(
                             fontSize: 30,
                           ),
+                        ),
                         ),
                       ],
                     ),
