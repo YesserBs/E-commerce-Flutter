@@ -25,14 +25,21 @@ class CartController extends GetxController {
   }
   void decrement(int index){
     TheIndex.value = index;
+    print(index);
+    print(addedItems[index]['added']);
     if (addedItems[index]['added'] > 1) {
+      print("ENTERED!");
       addedItems[index]['added']--;
       Quantity.value = addedItems[index]['added'];
-      update();
     }
+    else{
+      Quantity.value = addedItems[index]['added'];
+    }
+    update();
   }
   void changeValue(int index, int value){
     TheIndex.value = index;
+    print("HERE?");
     addedItems[index]['added'] = value;
     Quantity.value = addedItems[index]['added'];
     update();
