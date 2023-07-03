@@ -46,18 +46,18 @@ class CartController extends GetxController {
     update();
   }
 
-  String TheText(int index){
-    print("Test: $index, ${TheIndex.value}, ${Quantity.value}, ${addedItems[index]['added']}");
-    if (index == TheIndex.value){
+  String TheText(int index) {
+    if (index == TheIndex.value && index < addedItems.length) {
       return Quantity.value.toString();
-    }
-    else{
+    } else if (index < addedItems.length) {
       return addedItems[index]['added'].toString();
+    } else {
+      return ''; // Ou renvoyer un texte par défaut approprié
     }
   }
 
+
   void deleteItem(Map<String, dynamic> item){
-    print(item);
     item['added'] = 0;
     //int x = item['id'];
     //print(x);
