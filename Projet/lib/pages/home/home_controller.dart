@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 class HomeController extends GetxController {
   List<Map<String, dynamic>> items = [
     {
+      'id': 0,
       'nom': 'iPhone 12',
       'image': 'assets/images/IPhone.jpg',
       'marque': 'Apple',
@@ -10,6 +11,7 @@ class HomeController extends GetxController {
       'added': 0
     },
     {
+      'id': 1,
       'nom': 'iPhone SE',
       'image': 'assets/images/IPH5.webp',
       'marque': 'Apple',
@@ -17,6 +19,7 @@ class HomeController extends GetxController {
       'added': 0
     },
     {
+      'id': 2,
       'nom': 'iPhone 13 Pro',
       'image': 'assets/images/IPH4.webp',
       'marque': 'Apple',

@@ -41,13 +41,13 @@ class CartController extends GetxController {
   }
   void changeValue(int index, int value){
     TheIndex.value = index;
-    print("HERE?");
     addedItems[index]['added'] = value;
     Quantity.value = addedItems[index]['added'];
     update();
   }
 
   String TheText(int index){
+    print("Test: $index, ${TheIndex.value}, ${Quantity.value}, ${addedItems[index]['added']}");
     if (index == TheIndex.value){
       return Quantity.value.toString();
     }
@@ -57,7 +57,10 @@ class CartController extends GetxController {
   }
 
   void deleteItem(Map<String, dynamic> item){
+    print(item);
     item['added'] = 0;
+    //int x = item['id'];
+    //print(x);
     addedItems.removeWhere((map) => map['id'] == item['id']);
     print(addedItems);
   }

@@ -40,7 +40,9 @@ class CartPage extends StatelessWidget {
                       ),
                       TextButton(
                         onPressed: () {
-                          // Action to perform when the button is pressed
+                          print(CC.addedItems);
+                          CC.addedItems.removeWhere((map) => map['id'] == DC.selectedItem['id']);
+                          print(CC.addedItems);
                         },
                         style: ElevatedButton.styleFrom(
                           minimumSize: Size(100, 60),
