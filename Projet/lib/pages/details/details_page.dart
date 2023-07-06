@@ -68,7 +68,7 @@ class DetailsPage extends StatelessWidget {
                   ElevatedButton(
                     onPressed: () {
                       CC.addItem(DC.selectedItem.value);
-                      DC.updateButton();
+                      DC.changeButton();
                     },
                     style: ElevatedButton.styleFrom(
                       minimumSize: Size(double.infinity, 60.0),
@@ -77,23 +77,20 @@ class DetailsPage extends StatelessWidget {
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        Icon(
-                          Icons.add,
+                        Obx(() => Icon(
+                          DC.icn.value,
                           size: 30,
-                        ),
+                        ),),
                         SizedBox(width: 10.0),
                         Obx(() => Text(
                           DC.txt.value,
                           style: TextStyle(
                             fontSize: 30,
                           ),
-                        ),
-                        ),
+                        ),)
                       ],
                     ),
                   )
-
-
                 ],
               ),
             ),

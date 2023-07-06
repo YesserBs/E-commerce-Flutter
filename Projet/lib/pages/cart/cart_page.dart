@@ -31,18 +31,16 @@ class CartPage extends StatelessWidget {
                       Expanded(
                         child: Container(
                           padding: EdgeInsets.all(10.0),
-                          child: Text("Total: 1000 dts",
+                          child: Obx(()=>Text("Total: ${CC.Total.value} dts",
                             style: TextStyle(fontSize: 25.0,
                                 fontFamily: 'OstrichSans',
-                                color: Colors.grey[800]),),
+                                color: Colors.grey[800]),),),
 
                         ),
                       ),
                       TextButton(
                         onPressed: () {
-                          print(CC.addedItems);
-                          CC.addedItems.removeWhere((map) => map['id'] == DC.selectedItem['id']);
-                          print(CC.addedItems);
+                          // Action to perform when the button is pressed
                         },
                         style: ElevatedButton.styleFrom(
                           minimumSize: Size(100, 60),

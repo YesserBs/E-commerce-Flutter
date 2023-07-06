@@ -6,6 +6,7 @@ class CartController extends GetxController {
   TextEditingController textController = TextEditingController();
   RxInt Quantity = 1.obs;
   RxInt TheIndex = 0.obs;
+  RxInt Total = 0.obs;
   List<Map<String, dynamic>> addedItems = <Map<String, dynamic>>[
   ].obs;
 
@@ -13,10 +14,8 @@ class CartController extends GetxController {
     if (selectedItem['added'] == 0){
       selectedItem['added'] = 1;
       addedItems.add(selectedItem);
+      sum();
       update();
-    }
-    else{
-      deleteItem(selectedItem);
     }
   }
 
@@ -24,6 +23,7 @@ class CartController extends GetxController {
     TheIndex.value = index;
     addedItems[index]['added']++;
     Quantity.value = addedItems[index]['added'];
+    sum();
     update();
   }
   void decrement(int index){
@@ -31,37 +31,47 @@ class CartController extends GetxController {
     print(index);
     print(addedItems[index]['added']);
     if (addedItems[index]['added'] > 1) {
+      print("ENTERED!");
       addedItems[index]['added']--;
       Quantity.value = addedItems[index]['added'];
     }
     else{
       Quantity.value = addedItems[index]['added'];
     }
+    sum();
     update();
   }
   void changeValue(int index, int value){
     TheIndex.value = index;
     addedItems[index]['added'] = value;
     Quantity.value = addedItems[index]['added'];
+    sum();
     update();
   }
 
-  String TheText(int index) {
-    if (index == TheIndex.value && index < addedItems.length) {
+  String TheText(int index){
+    if (index == TheIndex.value){
       return Quantity.value.toString();
-    } else if (index < addedItems.length) {
+    }
+    else{
       return addedItems[index]['added'].toString();
-    } else {
-      return ''; // Ou renvoyer un texte par défaut approprié
     }
   }
 
+  void sum() {
+    var totalPrice = 0;
 
-  void deleteItem(Map<String, dynamic> item){
-    item['added'] = 0;
-    //int x = item['id'];
-    //print(x);
-    addedItems.removeWhere((map) => map['id'] == item['id']);
-    print(addedItems);
+    for (var item in addedItems) {
+      final added = item['added'] as int?;
+      final prix = item['prix'] as int?;
+
+      if (added != null && prix != null) {
+        totalPrice += added * prix;
+      }
+    }
+    Total.value = totalPrice;
+    print('Total Price: $totalPrice');
   }
+
+
 }
