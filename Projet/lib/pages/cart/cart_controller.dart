@@ -9,6 +9,8 @@ class CartController extends GetxController {
   RxInt Total = 0.obs;
   List<Map<String, dynamic>> addedItems = <Map<String, dynamic>>[
   ].obs;
+  RxMap<String, dynamic> swipedItem = RxMap<String, dynamic>();
+
 
   void addItem(Map<String, dynamic> selectedItem) {
     if (selectedItem['added'] == 0){
@@ -73,5 +75,18 @@ class CartController extends GetxController {
     print('Total Price: $totalPrice');
   }
 
+  void swipeItem(int index) {
+    swipedItem.value = addedItems[index];
+    print(addedItems);
+    update();
+  }
+
+  void removeItem(int index) {
+    addedItems[index]['added'] = 0;
+    addedItems.removeAt(index);
+    print(addedItems);
+    sum();
+    update();
+  }
 
 }

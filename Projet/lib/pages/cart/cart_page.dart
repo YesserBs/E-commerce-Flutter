@@ -67,7 +67,7 @@ class CartPage extends StatelessWidget {
     if (CC.addedItems.length == 0){
       return Expanded(child: Container(
         child: Center(child: const Text("No items added",
-        style: TextStyle(fontSize: 20.0),),),
+          style: TextStyle(fontSize: 20.0),),),
       ));
     }
     else{
@@ -75,13 +75,23 @@ class CartPage extends StatelessWidget {
         child: ListView.builder(
           itemCount: CC.addedItems.length,
           itemBuilder: (context, index) {
-            return Container(
+            return Dismissible(
+                key: Key(CC.addedItems[index]['nom']), // Use a unique key for each item
+              onDismissed: (direction) {
+                CC.removeItem(index);
+              },
+
+
+              child: Container(
               child: Column(
                 children: [
                   GestureDetector(
                     onTap: (){
+                      CC.swipeItem(index);
                       Get.to(DetailsPage());
                       DC.GetItem(CC.addedItems[index]);
+                      print("added items: ${CC.addedItems}");
+
                     },
                     child: Card(
                       child: Padding(
@@ -201,11 +211,11 @@ class CartPage extends StatelessWidget {
                   ),
                 ],
               ),
+            ),
             );
           },
         ),
       );
     }
-
   }
 }
