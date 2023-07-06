@@ -6,8 +6,7 @@ import 'package:myproj/pages/cart/cart_controller.dart';
 import 'package:myproj/pages/details/details_controller.dart';
 import 'package:myproj/pages/details/details_page.dart';
 
-class CartPage extends StatelessWidget {
-  CartController CC = Get.find();
+class CartPage extends GetView<CartController> {
   DetailsController DC = Get.find();
 
   @override
@@ -31,7 +30,7 @@ class CartPage extends StatelessWidget {
                       Expanded(
                         child: Container(
                           padding: EdgeInsets.all(10.0),
-                          child: Obx(()=>Text("Total: ${CC.Total.value} dts",
+                          child: Obx(()=>Text("Total: ${controller.Total.value} dts",
                             style: TextStyle(fontSize: 25.0,
                                 fontFamily: 'OstrichSans',
                                 color: Colors.grey[800]),),),
@@ -40,7 +39,9 @@ class CartPage extends StatelessWidget {
                       ),
                       TextButton(
                         onPressed: () {
-                          // Action to perform when the button is pressed
+                          print(controller.addedItems);
+                          controller.addedItems.removeWhere((map) => map['id'] == DC.selectedItem['id']);
+                          print(controller.addedItems);
                         },
                         style: ElevatedButton.styleFrom(
                           minimumSize: Size(100, 60),
@@ -63,11 +64,12 @@ class CartPage extends StatelessWidget {
   }
 
   Widget _ListItems() {
+    CartController CC = Get.find();
 
     if (CC.addedItems.length == 0){
       return Expanded(child: Container(
         child: Center(child: const Text("No items added",
-          style: TextStyle(fontSize: 20.0),),),
+        style: TextStyle(fontSize: 20.0),),),
       ));
     }
     else{
@@ -75,23 +77,13 @@ class CartPage extends StatelessWidget {
         child: ListView.builder(
           itemCount: CC.addedItems.length,
           itemBuilder: (context, index) {
-            return Dismissible(
-                key: Key(CC.addedItems[index]['nom']), // Use a unique key for each item
-              onDismissed: (direction) {
-                CC.removeItem(index);
-              },
-
-
-              child: Container(
+            return Container(
               child: Column(
                 children: [
                   GestureDetector(
                     onTap: (){
-                      CC.swipeItem(index);
                       Get.to(DetailsPage());
-                      DC.GetItem(CC.addedItems[index]);
-                      print("added items: ${CC.addedItems}");
-
+                      DC.GetItem(controller.addedItems[index]);
                     },
                     child: Card(
                       child: Padding(
@@ -169,14 +161,14 @@ class CartPage extends StatelessWidget {
                                               Get.back();
                                             },
                                             onConfirm: () {
-                                              String value = CC.textController.text;
-                                              CC.changeValue(index, int.parse(value));
+                                              String value = controller.textController.text;
+                                              controller.changeValue(index, int.parse(value));
                                               Get.back();
                                             },
                                           );
                                         },
                                         child: Obx(()=>Text(
-                                          CC.TheText(index),
+                                          controller.TheText(index),
                                           style: TextStyle(
                                               fontSize: 18,
                                               fontFamily: 'OstrichSans',
@@ -190,7 +182,7 @@ class CartPage extends StatelessWidget {
                                           backgroundColor: Colors.white,
                                         ),
                                         onPressed: () {
-                                          CC.increment(index);
+                                          controller.increment(index);
                                         },
                                         child: Icon(
                                           FontAwesomeIcons.plus,
@@ -211,11 +203,11 @@ class CartPage extends StatelessWidget {
                   ),
                 ],
               ),
-            ),
             );
           },
         ),
       );
     }
+
   }
 }
