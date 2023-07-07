@@ -2,7 +2,10 @@
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:get/get_core/src/get_main.dart';
 import 'package:get/get_state_manager/src/simple/get_view.dart';
+import 'package:myproj/pages/logging/sign_up/signup_page.dart';
 
 import '../../../custom/custom_textForm.dart';
 
@@ -35,7 +38,7 @@ class LoginPage extends StatelessWidget{
                     ),
                     GestureDetector(
                       onTap: (){
-                        //Get.to(ConnexionScreen());
+                        Get.to(SignupPage());
                       },
                       child: Text("Sign up?",
                         style: TextStyle(
@@ -58,7 +61,7 @@ class LoginPage extends StatelessWidget{
                   ],
                 ),
                 SizedBox(height: 60.0,),
-                CustomTextFormField(hint: "My user name", text: "User name"),
+                CustomTextFormField(hint: "My e-mail", text: "User name"),
                 CustomTextFormField(hint: "**********", text: "Password"),
                 Container(
                     margin: EdgeInsets.fromLTRB(0.0, 40.0, 40.0, 0.0),
@@ -88,7 +91,6 @@ class LoginPage extends StatelessWidget{
                       style: TextStyle(
                         color: Colors.white,
                         fontSize: 18.0,
-
                       ),
                     ),
                   ),

@@ -1,4 +1,5 @@
 import 'package:get/get.dart';
+import 'package:myproj/pages/logging/log_in/login_binding.dart';
 
 import '../pages/dashboard/dashboard_binding.dart';
 import '../pages/dashboard/dashboard_page.dart';
@@ -15,7 +16,7 @@ class AppPages {
     GetPage(
       name: AppRoutes.LOGIN,
       page: () => LoginPage(),
-      binding: DashboardBinding(),
+      binding: LoginBinding(),
     ),
   ];
 }
