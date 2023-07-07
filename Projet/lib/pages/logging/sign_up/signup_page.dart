@@ -51,8 +51,8 @@ class SignupPage extends GetWidget<SignupController> {
                   ],
                 ),
                 SizedBox(height: 20.0,),
-                CustomTextFormField(text: "E-mail", hint: "Mail@gmail.com"),
-                CustomTextFormField(text: "Password", hint: "**********"),
+                //CustomTextFormField(text: "E-mail", hint: "Mail@gmail.com"),
+                //CustomTextFormField(text: "Password", hint: "**********"),
                 SizedBox(height: 40.0,),
                 Container(
                   width: double.infinity,

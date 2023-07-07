@@ -18,8 +18,8 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GetMaterialApp(
-      initialRoute: AppRoutes.LOGIN,
-      initialBinding: DashboardBinding(),
+      initialRoute: AppRoutes.AUTH,
+      //initialBinding: DashboardBinding(),
       theme: ThemeData(colorScheme: ColorScheme.fromSwatch().copyWith(
           primary: Colors.grey[900]),
       ),
