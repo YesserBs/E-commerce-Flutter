@@ -1,64 +1,14 @@
-Certainly! Here's an example that demonstrates how to use a controller in GetX for managing state and performing actions using `GetBuilder`:
+FireBase:
 
-Define the Controller:
-```dart
-class CounterController extends GetxController {
-  RxInt counter = 0.obs;
+1) Creation d'un compte/ Connexion sur le site de FireBAse
+2) Creation d'un projet (Saisir un nom de projet)
+3) Ajouter FB a mon application Flutter -> il faut installer CLI Firebase
+4) Pour installer CLI FB ( Réferance:
 
-  void increment() {
-    counter.value++;
-  }
-}
-```
+ "https://firebase.google.com/docs/cli?hl=fr&authuser=0&_gl=1*tc30jp*_ga*MjEyMDgxNDM1Mi4xNjg4NDc3MTc3*_ga_CW55HF8NVT*MTY4ODcxNjkxNC40LjEuMTY4ODcxODI2My4wLjAuMA..#windows-npm") 
 
-In this example, we have a `CounterController` that extends `GetxController`. It contains a reactive variable `counter` of type `RxInt` that tracks the counter value. The `increment()` method is used to increment the counter value by 1.
-
-Register the Controller in the Binding Class:
-```dart
-class MyScreenBinding extends Bindings {
-  @override
-  void dependencies() {
-    Get.put(CounterController());
-  }
-}
-```
-
-In the binding class `MyScreenBinding`, we register the `CounterController` as a dependency using `Get.put(CounterController())`. This ensures that the controller is properly initialized and available for injection when needed.
-
-Use the Controller in a Screen:
-```dart
-class MyScreen extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text('Counter App'),
-      ),
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            GetBuilder<CounterController>(
-              builder: (controller) => Text('Counter Value: ${controller.counter.value}'),
-            ),
-            ElevatedButton(
-              onPressed: () => Get.find<CounterController>().increment(),
-              child: Text('Increment'),
-            ),
-          ],
-        ),
-      ),
-    );
-  }
-}
-```
-
-In the `MyScreen` widget, we use `GetBuilder<CounterController>` to observe changes in the `CounterController`. The builder function provides the current instance of the controller, which we can access as `controller`.
-
-Inside the builder function, we display the current counter value using `Text('Counter Value: ${controller.counter.value}')`. The UI will be rebuilt whenever the `counter` value changes.
-
-We also have an `ElevatedButton` that calls the `increment()` method of the controller when pressed. This is done using `Get.find<CounterController>().increment()` to access the controller instance and invoke the method.
-
-By using `GetBuilder`, we ensure that only the relevant part of the UI associated with the `CounterController` is updated when the state changes. This provides more fine-grained control and can help optimize performance in larger applications.
-
-The key difference from the previous example using `Obx` is that we use `GetBuilder` instead, and the builder function provides the controller instance explicitly.
+On installe Node.js qui va automatiquement installer quelques outils
+5) On execute la commande suivante "npm install -g firebase-tools" dans un terminal 
+6) Une fois CLI installé, on passe a l'etape suivante 'Installer et exécuter la CLI FlutterFire' executer cette commande depuis nimporte quel repertoire par example dans le terminal du projet dans android studio "dart pub global activate flutterfire_cli"
+On nous demande d'ajouter flutterfire au PATH, on copie le chemin d'access donné dans la console 'C:\Users\Yesser\AppData\Local\Pub\Cache\bin' puis on ouvre Changer les variables ... (Il y a des chances qu'on ne puisse pas modifier les variables systeme par précaution et sécurité, pour les changer on ouvre panneau de configuration puis systeme et sécurité -> systeme -> parametres avancées du systeme) PAth -> Modifier -> coller le chemin ... OK
+ 
