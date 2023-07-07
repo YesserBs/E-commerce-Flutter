@@ -10,5 +10,33 @@ FireBase:
 On installe Node.js qui va automatiquement installer quelques outils
 5) On execute la commande suivante "npm install -g firebase-tools" dans un terminal 
 6) Une fois CLI installé, on passe a l'etape suivante 'Installer et exécuter la CLI FlutterFire' executer cette commande depuis nimporte quel repertoire par example dans le terminal du projet dans android studio "dart pub global activate flutterfire_cli"
-On nous demande d'ajouter flutterfire au PATH, on copie le chemin d'access donné dans la console 'C:\Users\Yesser\AppData\Local\Pub\Cache\bin' puis on ouvre Changer les variables ... (Il y a des chances qu'on ne puisse pas modifier les variables systeme par précaution et sécurité, pour les changer on ouvre panneau de configuration puis systeme et sécurité -> systeme -> parametres avancées du systeme) PAth -> Modifier -> coller le chemin ... OK
+On nous demande d'ajouter flutterfire au PATH, on copie le chemin d'access donné dans la console 'C:\Users\Yesser\AppData\Local\Pub\Cache\bin' puis on ouvre Changer les variables ... (Il y a des chances qu'on ne puisse pas modifier les variables systeme par précaution et sécurité, pour les changer on ouvre panneau de configuration puis systeme et sécurité -> systeme -> parametres avancées du systeme) Path -> Modifier -> coller le chemin ... OK
+
+On execute 'firebase login' mais
+on pourait rencontrer un autre probleme: 
+
+"firebase : Impossible de charger le fichier C:\Users\Yesser\AppData\Roaming\npm\firebase.ps1, car l’exécution de scripts est désactivée sur ce système. Pour 
+plus d’informations, consultez about_Execution_Policies à l’adresse https://go.microsoft.com/fwlink/?LinkID=135170.
+Au caractère Ligne:1 : 1
++ firebase login
++ ~~~~~~~~
+    + CategoryInfo          : Erreur de sécurité : (:) [], PSSecurityException
+    + FullyQualifiedErrorId : UnauthorizedAccess"
+
+L'erreur indique que l'exécution de scripts PowerShell est désactivée sur le système, ce qui empêche le chargement du script nécessaire pour exécuter la commande firebase login.
+Pour résoudre ce problème, On peut modifier la politique d'exécution de PowerShell pour autoriser l'exécution de scripts
+1) On ouvre une fentre powershell en tant que administrateur
+2) On peut voir la politique déja en tapent la commande "Get-ExecutionPolicy"
+Restricted: restreinte et pas possible d'executer les scripts
+RemoteSigned: On peut executer les scripts 
+Maintenant pour changer l'etat:
+"Set-ExecutionPolicy RemoteSigned" comme son nom l'indique change en RemoteSigned
+"Set-ExecutionPolicy Restricted" Sets restricted
+Cbon.
+
+III) Maintenant 3eme commande a executer:
+'flutterfire configure --project=myflutproject'
+Toujours 'y' pour yes, enfin on nous donne les ids et c bon.
+
+
  
