@@ -38,5 +38,34 @@ III) Maintenant 3eme commande a executer:
 'flutterfire configure --project=myflutproject'
 Toujours 'y' pour yes, enfin on nous donne les ids et c bon.
 
+Explication en détails des deux commandes:
+
+((((
+Pas de souci, je vais vous expliquer en détail ce que vous avez fait avec les commandes que vous avez exécutées.
+
+dart pub global activate flutterfire_cli : Cette commande utilise le gestionnaire de paquets de Dart (dart pub) pour installer le package flutterfire_cli de manière globale sur votre système. Le package flutterfire_cli est un outil en ligne de commande qui facilite l'intégration de Firebase dans vos projets Flutter. Lorsque vous exécutez cette commande, elle télécharge et installe le package flutterfire_cli, rendant ainsi l'outil disponible globalement dans votre environnement.
+
+flutterfire configure --project=myflutproject : Cette commande utilise l'outil flutterfire_cli pour configurer Firebase dans votre projet Flutter nommé "myflutproject". Lorsque vous exécutez cette commande, elle vous guidera à travers un processus interactif pour configurer Firebase. Elle vous demandera les informations nécessaires, telles que le nom du projet Firebase, les services Firebase que vous souhaitez activer, les identifiants d'authentification, etc. Ces informations sont utilisées pour générer et mettre à jour les fichiers de configuration Firebase dans votre projet Flutter.
+
+En résumé, en exécutant les commandes dart pub global activate flutterfire_cli et flutterfire configure --project=myflutproject, vous avez installé l'outil flutterfire_cli et configuré Firebase dans votre projet Flutter "myflutproject". Cela vous permettra d'utiliser les services Firebase tels que l'authentification, la base de données en temps réel, le stockage de fichiers, etc., dans votre projet Flutter.
+))))
+
+Fin explications.
+
+
+Maintenant on ajoute ces deux lignes d'importation (normalment toujours import ds main)
+"import 'package:firebase_core/firebase_core.dart';
+import 'firebase_options.dart';"
+
+puis on change la fonction main pour que ca se connecte a firebase:
+"void main() async{
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
+  runApp(MyApp());
+}"
+
+
 
  
