@@ -1,19 +1,11 @@
 import 'package:get/get.dart';
-import 'package:myproj/auth.dart';
-import 'package:myproj/pages/logging/log_in/login_binding.dart';
-
+import 'package:myproj/main.dart';
 import '../pages/dashboard/dashboard_binding.dart';
 import '../pages/dashboard/dashboard_page.dart';
-import '../pages/logging/log_in/login_page.dart';
 import 'app_routes.dart';
 
 class AppPages {
   static var list = [
-    GetPage(
-      name: AppRoutes.AUTH,
-      page: () => AuthPage(),
-      binding: LoginBinding(),
-    ),
     GetPage(
       name: AppRoutes.DASHBOARD,
       page: () => DashboardPage(),
@@ -21,8 +13,8 @@ class AppPages {
     ),
     GetPage(
       name: AppRoutes.LOGIN,
-      page: () => LoginPage(),
-      binding: LoginBinding(),
+      page: () => LoginForm(),
+      binding: DashboardBinding(),
     ),
   ];
 }

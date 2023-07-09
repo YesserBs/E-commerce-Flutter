@@ -2,11 +2,31 @@ import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:get/get.dart';
+import 'package:myproj/pages/cart/cart_page.dart';
+import 'package:myproj/pages/dashboard/dashboard_binding.dart';
+import 'package:myproj/pages/dashboard/dashboard_page.dart';
+import 'package:myproj/routes/app_pages.dart';
+import 'package:myproj/routes/app_routes.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
-  runApp(GetMaterialApp(home: LoginForm()));
+  runApp(MyApp());
+}
+
+class MyApp extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return GetMaterialApp(
+      initialRoute: AppRoutes.LOGIN,
+      initialBinding: DashboardBinding(),
+      theme: ThemeData(colorScheme: ColorScheme.fromSwatch().copyWith(
+          primary: Colors.grey[900]),
+      ),
+      getPages: AppPages.list,
+      debugShowCheckedModeBanner: false,
+    );
+  }
 }
 
 class LoginForm extends StatelessWidget {
@@ -108,7 +128,7 @@ class LoginController extends GetxController {
           password: password,
         );
         if (userCredential.user != null) {
-          Get.offAll(HomeScreen()); // Navigate to HomeScreen
+          Get.offAll(DashboardPage()); // Navigate to HomeScreen
         }
       }
     } on FirebaseAuthException catch (e) {

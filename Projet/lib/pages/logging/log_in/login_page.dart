@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:myproj/pages/logging/log_in/login_controller.dart';
@@ -7,9 +6,7 @@ import 'package:myproj/pages/logging/sign_up/signup_page.dart';
 import '../../../custom/custom_textForm.dart';
 
 class LoginPage extends StatelessWidget {
-  LoginController LC = Get.find(); // Use Get.put to initialize the LoginController
-  final TextEditingController emailController = TextEditingController();
-  final TextEditingController passwordController = TextEditingController();
+  final LoginController LC = Get.find(); // Use Get.put to initialize the LoginController
 
   @override
   Widget build(BuildContext context) {
@@ -77,12 +74,12 @@ class LoginPage extends StatelessWidget {
                 CustomTextFormField(
                   hint: "My e-mail",
                   text: "User name",
-                  controller: emailController, // Assign controller to capture text
+                  controller: LC.emailController, // Assign controller to capture text
                 ),
                 CustomTextFormField(
                   hint: "**********",
                   text: "Password",
-                  controller: passwordController, // Assign controller to capture text
+                  controller: LC.passwordController, // Assign controller to capture text
                 ),
                 Container(
                   margin: EdgeInsets.fromLTRB(0.0, 40.0, 40.0, 0.0),
@@ -102,10 +99,10 @@ class LoginPage extends StatelessWidget {
                   width: double.infinity,
                   child: TextButton(
                     onPressed: () {
-                      String email = emailController.text; // Retrieve text from email controller
-                      String password = passwordController.text; // Retrieve text from password controller
+                      String email = LC.emailController.text; // Retrieve text from email controller
+                      String password = LC.passwordController.text; // Retrieve text from password controller
                       print("Email: $email, Password: $password"); // Print the entered texts
-                      LC.signInUser(email, password); // Call the signInUser method in LoginController
+                      //LC.login(); // Call the login method in LoginController
                     },
                     style: TextButton.styleFrom(
                       backgroundColor: Colors.grey[900],
@@ -122,7 +119,20 @@ class LoginPage extends StatelessWidget {
                       ),
                     ),
                   ),
-                )
+                ),
+                SizedBox(height: 16.0),
+                TextButton(
+                  onPressed: () {
+                    Get.to(SignupPage());
+                  },
+                  child: Text(
+                    "Create an account",
+                    style: TextStyle(
+                      color: Colors.grey[700],
+                      fontSize: 16.0,
+                    ),
+                  ),
+                ),
               ],
             ),
           ),
