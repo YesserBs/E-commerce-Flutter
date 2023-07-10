@@ -1,12 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:myproj/pages/logging/log_in/login_controller.dart';
-import 'package:myproj/pages/logging/sign_up/signup_page.dart';
-
-import '../../../custom/custom_textForm.dart';
+import '../../../main.dart';
+import '../sign_up/signup_page.dart';
+import 'login_controller.dart';
 
 class LoginPage extends StatelessWidget {
-  final LoginController LC = Get.find(); // Use Get.put to initialize the LoginController
+  final _controller = Get.put(LoginController());
 
   @override
   Widget build(BuildContext context) {
@@ -71,15 +70,40 @@ class LoginPage extends StatelessWidget {
                 SizedBox(
                   height: 60.0,
                 ),
-                CustomTextFormField(
-                  hint: "My e-mail",
-                  text: "User name",
-                  controller: LC.emailController, // Assign controller to capture text
-                ),
-                CustomTextFormField(
-                  hint: "**********",
-                  text: "Password",
-                  controller: LC.passwordController, // Assign controller to capture text
+                Form(
+                  key: _controller.formKey,
+                  child: Column(
+                    children: [
+                      TextFormField(
+                        controller: _controller.emailController,
+                        decoration: InputDecoration(labelText: 'Email'),
+                        validator: (value) {
+                          if (value == null || value.isEmpty) {
+                            return 'Please enter your email';
+                          }
+                          return null;
+                        },
+                      ),
+                      TextFormField(
+                        controller: _controller.passwordController,
+                        decoration: InputDecoration(labelText: 'Password'),
+                        obscureText: true,
+                        validator: (value) {
+                          if (value == null || value.isEmpty) {
+                            return 'Please enter your password';
+                          }
+                          return null;
+                        },
+                      ),
+                      SizedBox(height: 16.0),
+                      Obx(
+                            () => Text(
+                          _controller.errorMessage.value,
+                          style: TextStyle(color: Colors.red),
+                        ),
+                      ),
+                    ],
+                  ),
                 ),
                 Container(
                   margin: EdgeInsets.fromLTRB(0.0, 40.0, 40.0, 0.0),
@@ -99,10 +123,7 @@ class LoginPage extends StatelessWidget {
                   width: double.infinity,
                   child: TextButton(
                     onPressed: () {
-                      String email = LC.emailController.text; // Retrieve text from email controller
-                      String password = LC.passwordController.text; // Retrieve text from password controller
-                      print("Email: $email, Password: $password"); // Print the entered texts
-                      //LC.login(); // Call the login method in LoginController
+                      _controller.login();
                     },
                     style: TextButton.styleFrom(
                       backgroundColor: Colors.grey[900],
@@ -123,7 +144,7 @@ class LoginPage extends StatelessWidget {
                 SizedBox(height: 16.0),
                 TextButton(
                   onPressed: () {
-                    Get.to(SignupPage());
+                    Get.to(SignupForm());
                   },
                   child: Text(
                     "Create an account",

@@ -1,8 +1,10 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
+import 'package:get/get_core/src/get_main.dart';
 import 'package:get/get_state_manager/src/simple/get_controllers.dart';
-import 'package:myproj/pages/dashboard/dashboard_page.dart';
+
+import '../../dashboard/dashboard_page.dart';
 
 class LoginController extends GetxController {
   final formKey = GlobalKey<FormState>();

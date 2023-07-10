@@ -2,7 +2,6 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:myproj/pages/logging/sign_up/signup_controller.dart';
-import '../../../custom/custom_textForm.dart';
 import '../log_in/login_page.dart';
 
 class SignupPage extends GetWidget<SignupController> {
