@@ -1,10 +1,13 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:get/get_core/src/get_main.dart';
 import 'package:myproj/pages/logging/sign_up/signup_controller.dart';
+
 import '../log_in/login_page.dart';
 
-class SignupPage extends StatelessWidget {
+
+class SignupForm extends GetWidget<SignupController> {
   final _controller = Get.put(SignupController());
 
   @override
@@ -17,7 +20,7 @@ class SignupPage extends StatelessWidget {
           elevation: .0,
           leading: GestureDetector(
               onTap: (){
-                Get.off(LoginPage());
+                Get.back();
               },
               child: Icon(Icons.arrow_back, color: Colors.black,)),
         ),
@@ -68,6 +71,7 @@ class SignupPage extends StatelessWidget {
                           return null;
                         },
                       ),
+                      SizedBox(height: 16.0,),
                       TextFormField(
                         controller: _controller.passwordController,
                         decoration: InputDecoration(labelText: 'Password'),
@@ -79,12 +83,30 @@ class SignupPage extends StatelessWidget {
                           return null;
                         },
                       ),
-                      SizedBox(height: 16.0),
-                      ElevatedButton(
-                        onPressed: _controller.signup,
-                        child: Text('Sign Up'),
+                      SizedBox(height: 40.0),
+                      Container(
+                        width: double.infinity,
+                        child: TextButton(
+                          onPressed: () {
+                            _controller.signup();
+                          },
+                          style: TextButton.styleFrom(
+                              backgroundColor: Colors.grey[900],
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(10), // Adjust the radius value as desired
+                              ),
+                              padding: EdgeInsets.all(12)
+                          ),
+                          child: Text("SIGN UP",
+                            style: TextStyle(
+                              color: Colors.white,
+                              fontSize: 18.0,
+
+                            ),
+                          ),
+                        ),
                       ),
-                      SizedBox(height: 16.0),
+                      SizedBox(height: 30.0),
                       Obx(
                             () => Text(
                           _controller.errorMessage.value,
@@ -94,29 +116,7 @@ class SignupPage extends StatelessWidget {
                     ],
                   ),
                 ),
-                SizedBox(height: 40.0,),
-                Container(
-                  width: double.infinity,
-                  child: TextButton(
-                    onPressed: () {
-                      print("pressed");
-                    },
-                    style: TextButton.styleFrom(
-                        backgroundColor: Colors.grey[900],
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(10), // Adjust the radius value as desired
-                        ),
-                        padding: EdgeInsets.all(12)
-                    ),
-                    child: Text("SIGN UP",
-                      style: TextStyle(
-                        color: Colors.white,
-                        fontSize: 18.0,
 
-                      ),
-                    ),
-                  ),
-                )
               ],
             ),
           ),
@@ -125,3 +125,4 @@ class SignupPage extends StatelessWidget {
     );
   }
 }
+

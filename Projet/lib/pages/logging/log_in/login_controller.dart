@@ -7,14 +7,14 @@ import 'package:get/get_state_manager/src/simple/get_controllers.dart';
 import '../../dashboard/dashboard_page.dart';
 
 class LoginController extends GetxController {
-  final formKey = GlobalKey<FormState>();
+  final LoginformKey = GlobalKey<FormState>();
   final emailController = TextEditingController();
   final passwordController = TextEditingController();
   var errorMessage = ''.obs;
 
   void login() async {
     try {
-      if (formKey.currentState!.validate()) {
+      if (LoginformKey.currentState!.validate()) {
         final String email = emailController.text.trim();
         final String password = passwordController.text.trim();
         UserCredential userCredential = await FirebaseAuth.instance.signInWithEmailAndPassword(

@@ -38,7 +38,7 @@ class LoginPage extends StatelessWidget {
                     ),
                     GestureDetector(
                       onTap: () {
-                        Get.to(SignupPage());
+                        Get.to(SignupForm());
                       },
                       child: Text(
                         "Sign up?",
@@ -71,7 +71,7 @@ class LoginPage extends StatelessWidget {
                   height: 60.0,
                 ),
                 Form(
-                  key: _controller.formKey,
+                  key: _controller.LoginformKey,
                   child: Column(
                     children: [
                       TextFormField(
@@ -84,6 +84,7 @@ class LoginPage extends StatelessWidget {
                           return null;
                         },
                       ),
+                      SizedBox(height: 16.0,),
                       TextFormField(
                         controller: _controller.passwordController,
                         decoration: InputDecoration(labelText: 'Password'),
@@ -106,7 +107,7 @@ class LoginPage extends StatelessWidget {
                   ),
                 ),
                 Container(
-                  margin: EdgeInsets.fromLTRB(0.0, 40.0, 40.0, 0.0),
+                  margin: EdgeInsets.fromLTRB(0.0, 30.0, 40.0, 0.0),
                   alignment: Alignment.topRight,
                   child: Text(
                     "-Forgot password?-",
@@ -144,7 +145,7 @@ class LoginPage extends StatelessWidget {
                 SizedBox(height: 16.0),
                 TextButton(
                   onPressed: () {
-                    Get.to(SignupPage());
+                    Get.to(SignupForm());
                   },
                   child: Text(
                     "Create an account",

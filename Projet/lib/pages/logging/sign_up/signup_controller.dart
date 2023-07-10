@@ -1,7 +1,8 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
-import '../../dashboard/dashboard_page.dart';
+import 'package:get/get_core/src/get_main.dart';
+import 'package:myproj/pages/dashboard/dashboard_page.dart';
 
 class SignupController extends GetxController {
   final formKey = GlobalKey<FormState>();
@@ -34,5 +35,3 @@ class SignupController extends GetxController {
     super.dispose();
   }
 }
-
-
