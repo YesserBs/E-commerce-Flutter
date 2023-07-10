@@ -5,6 +5,7 @@ import 'package:myproj/pages/details/details_controller.dart';
 
 import '../account/account_controller.dart';
 import '../home/home_controller.dart';
+import '../logging/sign_up/signup_controller.dart';
 import 'dashboard_controller.dart';
 
 class DashboardBinding extends Bindings {
@@ -14,6 +15,5 @@ class DashboardBinding extends Bindings {
     Get.lazyPut<HomeController>(() => HomeController());
     Get.lazyPut<AccountController>(() => AccountController());
     Get.put<CartController>(CartController());
-    Get.lazyPut<DetailsController>(() => DetailsController());
-  }
+    Get.lazyPut<DetailsController>(() => DetailsController());}
 }

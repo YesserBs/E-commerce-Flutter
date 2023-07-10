@@ -144,7 +144,7 @@ class LoginPage extends StatelessWidget {
                 SizedBox(height: 16.0),
                 TextButton(
                   onPressed: () {
-                    Get.to(SignupForm());
+                    Get.to(SignupPage());
                   },
                   child: Text(
                     "Create an account",

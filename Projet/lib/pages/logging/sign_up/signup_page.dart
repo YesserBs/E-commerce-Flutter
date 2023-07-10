@@ -4,7 +4,8 @@ import 'package:get/get.dart';
 import 'package:myproj/pages/logging/sign_up/signup_controller.dart';
 import '../log_in/login_page.dart';
 
-class SignupPage extends GetWidget<SignupController> {
+class SignupPage extends StatelessWidget {
+  final _controller = Get.put(SignupController());
 
   @override
   Widget build(BuildContext context) {
@@ -53,11 +54,52 @@ class SignupPage extends GetWidget<SignupController> {
                 //CustomTextFormField(text: "E-mail", hint: "Mail@gmail.com"),
                 //CustomTextFormField(text: "Password", hint: "**********"),
                 SizedBox(height: 40.0,),
+                Form(
+                  key: _controller.formKey,
+                  child: Column(
+                    children: [
+                      TextFormField(
+                        controller: _controller.emailController,
+                        decoration: InputDecoration(labelText: 'Email'),
+                        validator: (value) {
+                          if (value == null || value.isEmpty) {
+                            return 'Please enter your email';
+                          }
+                          return null;
+                        },
+                      ),
+                      TextFormField(
+                        controller: _controller.passwordController,
+                        decoration: InputDecoration(labelText: 'Password'),
+                        obscureText: true,
+                        validator: (value) {
+                          if (value == null || value.isEmpty) {
+                            return 'Please enter your password';
+                          }
+                          return null;
+                        },
+                      ),
+                      SizedBox(height: 16.0),
+                      ElevatedButton(
+                        onPressed: _controller.signup,
+                        child: Text('Sign Up'),
+                      ),
+                      SizedBox(height: 16.0),
+                      Obx(
+                            () => Text(
+                          _controller.errorMessage.value,
+                          style: TextStyle(color: Colors.red),
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+                SizedBox(height: 40.0,),
                 Container(
                   width: double.infinity,
                   child: TextButton(
                     onPressed: () {
-                      Get.off(LoginPage());
+                      print("pressed");
                     },
                     style: TextButton.styleFrom(
                         backgroundColor: Colors.grey[900],
