@@ -62,6 +62,16 @@ class SignupForm extends GetWidget<SignupController> {
                   child: Column(
                     children: [
                       TextFormField(
+                        decoration: InputDecoration(labelText: 'User name'),
+                        validator: (value) {
+                          if (value == null || value.isEmpty) {
+                            return 'Please enter your email';
+                          }
+                          return null;
+                        },
+                      ),
+                      SizedBox(height: 16.0),
+                      TextFormField(
                         controller: _controller.emailController,
                         decoration: InputDecoration(labelText: 'Email'),
                         validator: (value) {

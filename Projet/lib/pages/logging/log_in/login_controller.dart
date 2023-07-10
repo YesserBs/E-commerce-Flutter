@@ -4,10 +4,8 @@ import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:get/get_state_manager/src/simple/get_controllers.dart';
 import 'package:get_storage/get_storage.dart';
-import 'package:myproj/routes/app_pages.dart';
 
 import '../../../routes/app_routes.dart';
-import '../../dashboard/dashboard_page.dart';
 
 class LoginController extends GetxController {
   final LoginformKey = GlobalKey<FormState>();
@@ -30,7 +28,7 @@ class LoginController extends GetxController {
           password: password,
         );
         if (userCredential.user != null) {
-          Get.offAndToNamed(AppRoutes.DASHBOARD); // Navigate to HomeScreen
+          Get.offAndToNamed(AppRoutes.DASHBOARD);// Navigate to HomeScreen
         }
       }
     } on FirebaseAuthException catch (e) {

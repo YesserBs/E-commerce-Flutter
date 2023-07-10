@@ -3,6 +3,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:myproj/pages/dashboard/dashboard_page.dart';
+import 'package:myproj/routes/app_routes.dart';
 
 class SignupController extends GetxController {
   final formKey = GlobalKey<FormState>();
@@ -20,7 +21,7 @@ class SignupController extends GetxController {
           password: password,
         );
         if (userCredential.user != null) {
-          Get.offAll(DashboardPage()); // Navigate to HomeScreen
+          Get.offAndToNamed(AppRoutes.DASHBOARD); // Navigate to HomeScreen
         }
       }
     } on FirebaseAuthException catch (e) {
