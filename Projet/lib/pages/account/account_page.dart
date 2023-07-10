@@ -53,7 +53,7 @@ class AccountPage extends GetView<AccountController> {
                   onTap: (){
                       final box = GetStorage();
                       box.write('isAuthenticated', false);
-                      Get.off(LoginPage());
+                      Get.off(() => LoginPage());
                   },
                   child: Column(
                     children: [
