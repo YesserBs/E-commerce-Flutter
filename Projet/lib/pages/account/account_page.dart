@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
+import 'package:get_storage/get_storage.dart';
+import 'package:myproj/pages/logging/log_in/login_page.dart';
+import 'package:myproj/routes/app_pages.dart';
 
 import 'account_controller.dart';
 
@@ -46,7 +49,44 @@ class AccountPage extends GetView<AccountController> {
                 ActionButton(Icons.edit, "Edit profile"),
                 ActionButton(Icons.reorder, "Orders list"),
                 ActionButton(Icons.settings, "Settings"),
-                ActionButton(Icons.logout, "Log out"),
+                GestureDetector(
+                  onTap: (){
+                      final box = GetStorage();
+                      box.write('isAuthenticated', false);
+                      Get.off(LoginPage());
+                  },
+                  child: Column(
+                    children: [
+                      GestureDetector(
+                        child: Container(
+                          padding: EdgeInsets.symmetric(horizontal: 16.0),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Row(
+                                children: [
+                                  Icon(Icons.logout, size: 20.0),
+                                  SizedBox(width: 15.0),
+                                  Text(
+                                    "Log out",
+                                    style: TextStyle(
+                                      fontSize: 18,
+                                      fontFamily: 'OstrichSans',
+                                      color: Colors.grey[900],
+                                    ),
+                                  ),
+                                ],
+                              ),
+                              Icon(FontAwesomeIcons.chevronRight, size: 15.0),
+                            ],
+                          ),
+                        ),
+                      ),
+                      SizedBox(height: 35.0),
+                    ],
+                  ),
+                ),
+
                 MyDevider()
 
               ],

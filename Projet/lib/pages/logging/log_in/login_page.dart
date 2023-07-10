@@ -39,6 +39,7 @@ class LoginPage extends StatelessWidget {
                     GestureDetector(
                       onTap: () {
                         Get.to(SignupForm());
+                        print("Here: ${_controller.box.read('isAuthenticated')}");
                       },
                       child: Text(
                         "Sign up?",

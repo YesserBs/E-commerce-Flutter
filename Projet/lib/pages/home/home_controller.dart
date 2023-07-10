@@ -15,7 +15,7 @@ class HomeController extends GetxController {
       'nom': 'iPhone SE',
       'image': 'assets/images/IPH5.webp',
       'marque': 'Apple',
-      'prix': 499,
+      'prix': 500,
       'added': 0
     },
     {
