@@ -1,44 +1,46 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:get/get.dart';
 
+import '../../custom/article.dart';
+
 class HomeController extends GetxController {
-  List<Map<String, dynamic>> items = [
-    {
-      'id': 0,
-      'nom': 'iPhone 12',
-      'image': 'assets/images/IPhone.jpg',
-      'marque': 'Apple',
-      'prix': 1099,
-      'added': 0
-    },
-    {
-      'id': 1,
-      'nom': 'iPhone SE',
-      'image': 'assets/images/IPH5.webp',
-      'marque': 'Apple',
-      'prix': 500,
-      'added': 0
-    },
-    {
-      'id': 2,
-      'nom': 'iPhone 13 Pro',
-      'image': 'assets/images/IPH4.webp',
-      'marque': 'Apple',
-      'prix': 1299,
-      'added': 0
-    },
-  ].obs;
+  final articles = <Article>[].obs;
+  final filteredArticles = <Article>[].obs;
 
-  final filteredItems = <Map<String, dynamic>>[].obs;
+  @override
+  void onInit() {
+    super.onInit();
+    fetchArticles();
+  }
 
-  HomeController() {
-    filteredItems.assignAll(items);
+  void fetchArticles() async {
+    try {
+      final QuerySnapshot snapshot = await FirebaseFirestore.instance.collection('items').get();
+      final List<Article> fetchedArticles = snapshot.docs.map((doc) {
+        final data = doc.data() as Map<String, dynamic>?;
+        print("Data: $data");
+        return Article(
+          nom: data?['nom'] as String? ?? '',
+          image: data?['image'] as String? ?? '',
+          marque: data?['marque'] as String? ?? '',
+          prix: data?['prix'] as int? ?? 0,
+          added: data?['added'] as int? ?? 0,
+        );
+      }).toList();
+      articles.value = fetchedArticles;
+      filteredArticles.value = fetchedArticles;
+    } catch (e) {
+      print('Error fetching articles: $e');
+    }
   }
 
   void filterList(String value) {
     if (value.isEmpty) {
-      filteredItems.assignAll(items);
+      filteredArticles.value = articles;
     } else {
-      filteredItems.assignAll(items.where((item) => item['nom'].toLowerCase().contains(value.toLowerCase())));
+      filteredArticles.value = articles
+          .where((article) => article.nom.toLowerCase().contains(value.toLowerCase()))
+          .toList();
     }
   }
 }

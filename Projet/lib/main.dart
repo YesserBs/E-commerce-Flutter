@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
-import 'package:myproj/auth.dart';
+import 'package:myproj/services/auth.dart';
 import 'package:myproj/pages/dashboard/dashboard_binding.dart';
 import 'package:myproj/routes/app_pages.dart';
 

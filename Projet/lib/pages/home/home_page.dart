@@ -6,8 +6,8 @@ import 'package:myproj/pages/details/details_page.dart';
 import 'package:myproj/pages/home/home_controller.dart';
 
 class HomePage extends StatelessWidget {
-  HomeController HC = Get.find();
-  DetailsController DC = Get.find();
+  final HomeController homeController = Get.find();
+  final DetailsController detailsController = Get.put(DetailsController());
 
   @override
   Widget build(BuildContext context) {
@@ -29,22 +29,22 @@ class HomePage extends StatelessWidget {
     return Expanded(
       child: Obx(
             () => ListView.builder(
-          itemCount: HC.filteredItems.length,
+          itemCount: homeController.filteredArticles.length,
           itemBuilder: (context, index) {
-            final item = HC.filteredItems[index];
+            final item = homeController.filteredArticles[index];
             return Container(
               height: 100,
               child: Card(
                 child: ListTile(
                   onTap: () {
-                      Get.to(DetailsPage());
-                      DC.GetItem(item);
+                    detailsController.getItem(item);
+                    Get.to(DetailsPage());
                   },
-                  leading: Image.asset(item['image']),
+                  leading: Image.asset(item.image),
                   title: Padding(
                     padding: EdgeInsets.fromLTRB(0.0, 15.0, 0.0, 0.0),
                     child: Text(
-                      item['nom'],
+                      item.nom,
                       style: TextStyle(
                         fontSize: 18,
                         fontFamily: 'OstrichSans',
@@ -55,9 +55,9 @@ class HomePage extends StatelessWidget {
                   subtitle: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Text(item['marque']),
+                      Text(item.marque),
                       SizedBox(height: 2.0),
-                      Text("${item['prix'].toString()} dts"),
+                      Text("${item.prix.toString()} dts"),
                     ],
                   ),
                 ),
@@ -93,7 +93,7 @@ class HomePage extends StatelessWidget {
         borderRadius: BorderRadius.circular(40),
       ),
       child: TextFormField(
-        onChanged: HC.filterList,
+        onChanged: homeController.filterList,
         decoration: InputDecoration(
           border: InputBorder.none,
           prefixIcon: Icon(
