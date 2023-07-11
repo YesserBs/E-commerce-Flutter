@@ -1,71 +1,26 @@
-FireBase:
+Pour activer storage:
 
-1) Creation d'un compte/ Connexion sur le site de FireBAse
-2) Creation d'un projet (Saisir un nom de projet)
-3) Ajouter FB a mon application Flutter -> il faut installer CLI Firebase
-4) Pour installer CLI FB ( Réferance:
+Tout d'abbord dans le terminal:
+flutter pub add firebase_storage
 
- "https://firebase.google.com/docs/cli?hl=fr&authuser=0&_gl=1*tc30jp*_ga*MjEyMDgxNDM1Mi4xNjg4NDc3MTc3*_ga_CW55HF8NVT*MTY4ODcxNjkxNC40LjEuMTY4ODcxODI2My4wLjAuMA..#windows-npm") 
+dans android [...] / app / src / build.gradle on chnage minSDKversion ...
+en minSdkVersion 19 puis on ajoute une ligne multiDexEnabled true
 
-On installe Node.js qui va automatiquement installer quelques outils
-5) On execute la commande suivante "npm install -g firebase-tools" dans un terminal 
-6) Une fois CLI installé, on passe a l'etape suivante 'Installer et exécuter la CLI FlutterFire' executer cette commande depuis nimporte quel repertoire par example dans le terminal du projet dans android studio "dart pub global activate flutterfire_cli"
-On nous demande d'ajouter flutterfire au PATH, on copie le chemin d'access donné dans la console 'C:\Users\Yesser\AppData\Local\Pub\Cache\bin' puis on ouvre Changer les variables ... (Il y a des chances qu'on ne puisse pas modifier les variables systeme par précaution et sécurité, pour les changer on ouvre panneau de configuration puis systeme et sécurité -> systeme -> parametres avancées du systeme) Path -> Modifier -> coller le chemin ... OK
+Recap:
+Dans build.gradle:
 
-On execute 'firebase login' mais
-on pourait rencontrer un autre probleme: 
+        minSdkVersion 19
+        targetSdkVersion flutter.targetSdkVersion
+        versionCode flutterVersionCode.toInteger()
+        versionName flutterVersionName
+        multiDexEnabled true
 
-"firebase : Impossible de charger le fichier C:\Users\Yesser\AppData\Roaming\npm\firebase.ps1, car l’exécution de scripts est désactivée sur ce système. Pour 
-plus d’informations, consultez about_Execution_Policies à l’adresse https://go.microsoft.com/fwlink/?LinkID=135170.
-Au caractère Ligne:1 : 1
-+ firebase login
-+ ~~~~~~~~
-    + CategoryInfo          : Erreur de sécurité : (:) [], PSSecurityException
-    + FullyQualifiedErrorId : UnauthorizedAccess"
+Dans pubspec.yaml:
 
-L'erreur indique que l'exécution de scripts PowerShell est désactivée sur le système, ce qui empêche le chargement du script nécessaire pour exécuter la commande firebase login.
-Pour résoudre ce problème, On peut modifier la politique d'exécution de PowerShell pour autoriser l'exécution de scripts
-1) On ouvre une fentre powershell en tant que administrateur
-2) On peut voir la politique déja en tapent la commande "Get-ExecutionPolicy"
-Restricted: restreinte et pas possible d'executer les scripts
-RemoteSigned: On peut executer les scripts 
-Maintenant pour changer l'etat:
-"Set-ExecutionPolicy RemoteSigned" comme son nom l'indique change en RemoteSigned
-"Set-ExecutionPolicy Restricted" Sets restricted
-Cbon.
-
-III) Maintenant 3eme commande a executer:
-'flutterfire configure --project=myflutproject'
-Toujours 'y' pour yes, enfin on nous donne les ids et c bon.
-
-Explication en détails des deux commandes:
-
-((((
-Pas de souci, je vais vous expliquer en détail ce que vous avez fait avec les commandes que vous avez exécutées.
-
-dart pub global activate flutterfire_cli : Cette commande utilise le gestionnaire de paquets de Dart (dart pub) pour installer le package flutterfire_cli de manière globale sur votre système. Le package flutterfire_cli est un outil en ligne de commande qui facilite l'intégration de Firebase dans vos projets Flutter. Lorsque vous exécutez cette commande, elle télécharge et installe le package flutterfire_cli, rendant ainsi l'outil disponible globalement dans votre environnement.
-
-flutterfire configure --project=myflutproject : Cette commande utilise l'outil flutterfire_cli pour configurer Firebase dans votre projet Flutter nommé "myflutproject". Lorsque vous exécutez cette commande, elle vous guidera à travers un processus interactif pour configurer Firebase. Elle vous demandera les informations nécessaires, telles que le nom du projet Firebase, les services Firebase que vous souhaitez activer, les identifiants d'authentification, etc. Ces informations sont utilisées pour générer et mettre à jour les fichiers de configuration Firebase dans votre projet Flutter.
-
-En résumé, en exécutant les commandes dart pub global activate flutterfire_cli et flutterfire configure --project=myflutproject, vous avez installé l'outil flutterfire_cli et configuré Firebase dans votre projet Flutter "myflutproject". Cela vous permettra d'utiliser les services Firebase tels que l'authentification, la base de données en temps réel, le stockage de fichiers, etc., dans votre projet Flutter.
-))))
-
-Fin explications.
-
-
-Maintenant on ajoute ces deux lignes d'importation (normalment toujours import ds main)
-"import 'package:firebase_core/firebase_core.dart';
-import 'firebase_options.dart';"
-
-puis on change la fonction main pour que ca se connecte a firebase:
-"void main() async{
-  WidgetsFlutterBinding.ensureInitialized();
-  await Firebase.initializeApp(
-    options: DefaultFirebaseOptions.currentPlatform,
-  );
-  runApp(MyApp());
-}"
-
-
-
- 
+dependencies:
+  flutter:
+    sdk: flutter
+  get: ^4.1.4
+  flutter_svg: ^0.22.0
+  font_awesome_flutter: ^10.4.0
+  get_storage: ^2.0.3
