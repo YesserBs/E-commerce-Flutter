@@ -26,7 +26,7 @@ class LoginPage extends StatelessWidget {
                     Row(
                       children: [
                         cText(text: "Welcome", changeFont: true,
-                            style: TextStyle(fontSize: config.FontSizeBigTitle)),
+                        size: config.FontSizeBigTitle,),
                         SizedBox(
                           width: 5.0,
                         ),
@@ -38,8 +38,7 @@ class LoginPage extends StatelessWidget {
                       },
                       child: cText(
                         text: "Sign up?",
-                        style: TextStyle(
-                        ),
+                        size: config.FontSizeNormal,
                       ),
                     ),
                   ],
@@ -50,11 +49,12 @@ class LoginPage extends StatelessWidget {
                 Row(
                   children: [
                     SizedBox(
-                      width: 19.0,
+                      width: 10.0,
                     ),
                     cText(text: "Log in to continue",
                       style: TextStyle(
                         fontSize: config.FontSizeSmall,
+                        color: Colors.black
                       ),
                     ),
                   ],
@@ -122,9 +122,6 @@ class LoginPage extends StatelessWidget {
                     //Get.to(SignupForm());
                   },
                   child: cText(text: "Create an account",
-                    style: TextStyle(
-                      fontSize: 16.0,
-                    ),
                   ),
                 ),
               ],
