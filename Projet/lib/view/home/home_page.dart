@@ -9,7 +9,7 @@ class HomePage extends StatelessWidget {
         body: Padding(
           padding: EdgeInsets.all(20.0),
           child: Center(
-            child: Text("Hello world",
+            child: Text("Home Page",
               style: TextStyle(fontSize: 25.0, fontFamily: 'OstrichSans'),),
           ),
         ),
