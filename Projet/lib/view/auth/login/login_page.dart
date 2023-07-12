@@ -116,13 +116,26 @@ class LoginPage extends StatelessWidget {
                     ),
                   ),
                 ),
-                SizedBox(height: 16.0),
-                TextButton(
-                  onPressed: () {
-                    //Get.to(SignupForm());
-                  },
-                  child: cText(text: "Create an account",
-                  ),
+                SizedBox(height: 30.0),
+                Center(child: cText(text: "-OR-")),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Container(height: 40.0,
+                        child: Image.asset('assets/images/login/google.webp')),
+                    SizedBox(width: 20.0,),
+                    cText(text: "Log in with google", size: config.FontSizeNormal, style: TextStyle(fontWeight: FontWeight.bold),)
+                  ],
+                ),
+                SizedBox(height: 30.0,),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Container(height: 40.0,
+                        child: Image.asset('assets/images/login/facebook.png')),
+                    SizedBox(width: 20.0,),
+                    cText(text: "Log in with facebook", size: config.FontSizeNormal, style: TextStyle(fontWeight: FontWeight.bold),)
+                  ],
                 ),
               ],
             ),
