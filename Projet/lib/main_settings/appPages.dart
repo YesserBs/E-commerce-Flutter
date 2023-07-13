@@ -1,4 +1,5 @@
 import 'package:get/get_navigation/src/routes/get_route.dart';
+import 'package:myproj/view/dashboard/dashboard_page.dart';
 import '../view/auth/login/login_page.dart';
 import '../view/home/home_page.dart';
 import 'binding.dart';
@@ -10,7 +11,7 @@ class AppPages {
   static var list = [
     GetPage(
       name: DASHBOARD,
-      page: () => HomePage(),
+      page: () => DashboardPage(),
       binding: Binding(),
     ),
     GetPage(

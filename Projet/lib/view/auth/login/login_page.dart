@@ -20,6 +20,7 @@ class LoginPage extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.start,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
+                SizedBox(height: 10.0,),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
@@ -60,7 +61,7 @@ class LoginPage extends StatelessWidget {
                   ],
                 ),
                 SizedBox(
-                  height: 60.0,
+                  height: 110.0,
                 ),
                 Form(
                   key: _controller.LoginformKey,
@@ -71,24 +72,26 @@ class LoginPage extends StatelessWidget {
                       SizedBox(height: 16.0,),
                       cTextFormField(controller: _controller.passwordController,
                           labelText: "password",
-                          obscureText: true),                      SizedBox(height: 16.0),
+                          obscureText: true),
+                      //SizedBox(height: 16.0),
+                      Container(
+                        margin: EdgeInsets.fromLTRB(0.0, 25.0, 20.0, 45.0),
+                        alignment: Alignment.topRight,
+                        child: Text(
+                          "-Forgot password?-",
+                          style: TextStyle(
+                            fontSize: 14.0,
+                          ),
+                        ),
+                      ),
                       Obx(
                             () => Text(
                           _controller.errorMessage.value,
-                          style: TextStyle(color: config.primaryColor),
+                          textAlign: TextAlign.center,
+                          style: TextStyle(fontWeight: FontWeight.bold, fontSize: config.FontSizeSmall),
                         ),
                       ),
                     ],
-                  ),
-                ),
-                Container(
-                  margin: EdgeInsets.fromLTRB(0.0, 30.0, 40.0, 0.0),
-                  alignment: Alignment.topRight,
-                  child: Text(
-                    "-Forgot password?-",
-                    style: TextStyle(
-                      fontSize: 14.0,
-                    ),
                   ),
                 ),
                 SizedBox(
@@ -116,23 +119,24 @@ class LoginPage extends StatelessWidget {
                     ),
                   ),
                 ),
-                SizedBox(height: 30.0),
+                SizedBox(height: 35.0),
                 Center(child: cText(text: "-OR-")),
+                SizedBox(height: 30.0),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    Container(height: 40.0,
-                        child: Image.asset('assets/images/login/google.webp')),
+                    Container(height: 30.0,
+                        child: Image.asset('assets/images/google.webp')),
                     SizedBox(width: 20.0,),
                     cText(text: "Log in with google", size: config.FontSizeNormal, style: TextStyle(fontWeight: FontWeight.bold),)
                   ],
                 ),
-                SizedBox(height: 30.0,),
+                SizedBox(height: 35.0,),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    Container(height: 40.0,
-                        child: Image.asset('assets/images/login/facebook.png')),
+                    Container(height: 30.0,
+                        child: Image.asset('assets/images/facebook.png'),),
                     SizedBox(width: 20.0,),
                     cText(text: "Log in with facebook", size: config.FontSizeNormal, style: TextStyle(fontWeight: FontWeight.bold),)
                   ],
