@@ -6,7 +6,6 @@ import 'package:get/get_navigation/src/root/get_material_app.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:myproj/config/configuration.dart';
 import 'package:myproj/main_settings/appPages.dart';
-import 'package:myproj/view/auth/auth.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -19,7 +18,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GetMaterialApp(
-      initialRoute: auth(),//auth(),
+      initialRoute: AppPages.DASHBOARD,
       //initialBinding: Binding(),
       theme: ThemeData(colorScheme: ColorScheme.fromSwatch().copyWith(
           primary: config.secondaryColor),

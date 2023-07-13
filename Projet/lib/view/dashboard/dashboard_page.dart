@@ -1,10 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:get_storage/get_storage.dart';
 import 'package:myproj/config/configuration.dart';
 import 'package:myproj/view/dashboard/dashboard_controller.dart';
-
-import '../../main_settings/appPages.dart';
 import '../auth/auth.dart';
 
 class DashboardPage extends StatelessWidget {
@@ -22,9 +19,7 @@ class DashboardPage extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.start,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [ElevatedButton(onPressed: (){
-                final box = GetStorage();
-                box.write('isAuthenticated', false);
-                Get.offAllNamed(AppPages.LOGIN);
+                logOut();
               },
                   child: Text("Log out"))],
             ),

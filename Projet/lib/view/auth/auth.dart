@@ -15,6 +15,12 @@ String auth() {
   }
 }
 
+void logOut() {
+  final box = GetStorage();
+  box.write('isAuthenticated', false);
+  Get.offAllNamed(AppPages.LOGIN);
+}
+
 
 // In case i need to delete a getStorage variable
 void deleteVariable() {
