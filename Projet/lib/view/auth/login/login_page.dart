@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:myproj/config/configuration.dart';
 import 'package:myproj/custom/cText.dart';
@@ -7,7 +8,7 @@ import 'login_controller.dart';
 
 class LoginPage extends StatelessWidget {
   LoginController _controller = Get.find();
-
+///
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -20,7 +21,7 @@ class LoginPage extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.start,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                SizedBox(height: 10.0,),
+                100.h.verticalSpace,
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
@@ -28,9 +29,7 @@ class LoginPage extends StatelessWidget {
                       children: [
                         cText(text: "Welcome", changeFont: true,
                         size: config.FontSizeBigTitle,),
-                        SizedBox(
-                          width: 5.0,
-                        ),
+                        50.h.verticalSpace
                       ],
                     ),
                     GestureDetector(
@@ -39,19 +38,15 @@ class LoginPage extends StatelessWidget {
                       },
                       child: cText(
                         text: "Sign up?",
-                        size: config.FontSizeNormal,
+                        size: config.FontSizeNormal.sp,
                       ),
                     ),
                   ],
                 ),
-                SizedBox(
-                  height: 5.0,
-                ),
+                10.h.verticalSpace,
                 Row(
                   children: [
-                    SizedBox(
-                      width: 10.0,
-                    ),
+                    110.w.horizontalSpace,
                     cText(text: "Log in to continue",
                       style: TextStyle(
                         fontSize: config.FontSizeSmall,
@@ -60,20 +55,17 @@ class LoginPage extends StatelessWidget {
                     ),
                   ],
                 ),
-                SizedBox(
-                  height: 110.0,
-                ),
+                500.h.verticalSpace,
                 Form(
                   key: _controller.LoginformKey,
                   child: Column(
                     children: [
                       cTextFormField(controller: _controller.emailController,
                           labelText: "email"),
-                      SizedBox(height: 16.0,),
+                      250.h.verticalSpace,
                       cTextFormField(controller: _controller.passwordController,
                           labelText: "password",
                           obscureText: true),
-                      //SizedBox(height: 16.0),
                       Container(
                         margin: EdgeInsets.fromLTRB(0.0, 25.0, 20.0, 45.0),
                         alignment: Alignment.topRight,
@@ -88,15 +80,13 @@ class LoginPage extends StatelessWidget {
                             () => Text(
                           _controller.errorMessage.value,
                           textAlign: TextAlign.center,
-                          style: TextStyle(fontWeight: FontWeight.bold, fontSize: config.FontSizeSmall),
+                          style: TextStyle(fontWeight: FontWeight.bold, fontSize: config.FontSizeSmall.sp),
                         ),
                       ),
                     ],
                   ),
                 ),
-                SizedBox(
-                  height: 25.0,
-                ),
+                150.h.verticalSpace,
                 Container(
                   width: double.infinity,
                   child: TextButton(
@@ -119,26 +109,26 @@ class LoginPage extends StatelessWidget {
                     ),
                   ),
                 ),
-                SizedBox(height: 35.0),
+                220.h.verticalSpace,
                 Center(child: cText(text: "-OR-")),
-                SizedBox(height: 30.0),
+                190.h.verticalSpace,
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Container(height: 30.0,
                         child: Image.asset('assets/images/google.webp')),
-                    SizedBox(width: 20.0,),
-                    cText(text: "Log in with google", size: config.FontSizeNormal, style: TextStyle(fontWeight: FontWeight.bold),)
+                    110.w.horizontalSpace,
+                    cText(text: "Log in with google", size: config.FontSizeNormal.sp, style: TextStyle(fontWeight: FontWeight.bold),)
                   ],
                 ),
-                SizedBox(height: 35.0,),
+                220.h.verticalSpace,
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Container(height: 30.0,
                         child: Image.asset('assets/images/facebook.png'),),
-                    SizedBox(width: 20.0,),
-                    cText(text: "Log in with facebook", size: config.FontSizeNormal, style: TextStyle(fontWeight: FontWeight.bold),)
+                    110.w.horizontalSpace,
+                    cText(text: "Log in with facebook", size: config.FontSizeNormal.sp, style: TextStyle(fontWeight: FontWeight.bold),)
                   ],
                 ),
               ],

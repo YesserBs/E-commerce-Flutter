@@ -1,6 +1,7 @@
 
 //class UserModel {
-//   String userId, email, name, pic;
+//   String userId,
+//   email, name, pic;
 //
 //   UserModel({this.userId, this.email, this.name, this.pic});
 //

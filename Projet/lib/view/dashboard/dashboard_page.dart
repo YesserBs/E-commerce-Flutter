@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:myproj/config/configuration.dart';
 import 'package:myproj/view/dashboard/dashboard_controller.dart';
@@ -14,7 +15,7 @@ class DashboardPage extends StatelessWidget {
       body: SafeArea(
         child: SingleChildScrollView(
           child: Padding(
-            padding: EdgeInsets.fromLTRB(10.0, 10.0, 10.0, 20.0),
+            padding: EdgeInsets.fromLTRB(100.h, 100.h, 0, 0),
             child: Column(
               mainAxisAlignment: MainAxisAlignment.start,
               crossAxisAlignment: CrossAxisAlignment.start,
