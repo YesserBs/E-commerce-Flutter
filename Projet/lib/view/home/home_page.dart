@@ -54,33 +54,34 @@ Widget _SearchFormField() {
 
 Widget _ListItems() {
   HomeController _controller = Get.find();
+
   return Expanded(
     child: Obx(
-          () => ListView.builder(
-        itemCount: _controller.filteredArticles.length,
-        itemBuilder: (context, index) {
+          () => GridView.count(
+        crossAxisCount: 2, // Display two cards in each row
+        childAspectRatio: 0.7, // Adjust the desired aspect ratio here
+        children: List.generate(_controller.filteredArticles.length, (index) {
           final item = _controller.filteredArticles[index];
-          return Container(
-            height: 100,
-            child: Card(
-              child: ListTile(
-                onTap: () {
-                },
-                leading: Image.asset(item.image),
-                title: Padding(
-                  padding: EdgeInsets.fromLTRB(0.0, 15.0, 0.0, 0.0),
-                  child: Text(
-                    item.nom,
-                    style: TextStyle(
-                      fontSize: 18,
-                      fontFamily: 'OstrichSans',
-                      color: Colors.grey[900],
-                    ),
-                  ),
-                ),
-                subtitle: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
+          return Card(
+            child: ListTile(
+              onTap: () {
+                // Handle onTap event
+              },
+              title: Padding(
+                padding: EdgeInsets.fromLTRB(0.0, 15.0, 0.0, 0.0),
+                child: Column(
                   children: [
+                    Container(
+                        height: 150.0,
+                        child: Image.asset(item.image)),
+                    Text(
+                      item.nom,
+                      style: TextStyle(
+                        fontSize: 18,
+                        fontFamily: 'OstrichSans',
+                        color: Colors.grey[900],
+                      ),
+                    ),
                     Text(item.marque),
                     SizedBox(height: 2.0),
                     Text("${item.prix.toString()} dts"),
@@ -89,7 +90,7 @@ Widget _ListItems() {
               ),
             ),
           );
-        },
+        }),
       ),
     ),
   );
