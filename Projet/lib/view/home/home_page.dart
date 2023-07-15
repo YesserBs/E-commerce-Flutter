@@ -46,6 +46,7 @@ Widget _SearchFormField() {
         border: InputBorder.none,
         prefixIcon: Icon(
           Icons.search,
+          color: config.secondaryColor,
         ),
       ),
     ),
@@ -74,16 +75,11 @@ Widget _ListItems() {
                     Container(
                         height: 150.0,
                         child: Image.asset(item.image)),
-                    Text(
-                      item.nom,
-                      style: TextStyle(
-                        fontSize: 18,
-                        fontFamily: 'OstrichSans',
-                        color: Colors.grey[900],
-                      ),
-                    ),
+                    50.h.verticalSpace,
+                    cText(text:
+                      item.nom, changeFont: true,),
                     Text(item.marque),
-                    SizedBox(height: 2.0),
+                    10.h.verticalSpace,
                     Text("${item.prix.toString()} dts"),
                   ],
                 ),
