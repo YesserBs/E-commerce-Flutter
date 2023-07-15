@@ -38,7 +38,6 @@ class LoginPage extends StatelessWidget {
                       },
                       child: cText(
                         text: "Sign up?",
-                        size: config.FontSizeNormal.sp,
                       ),
                     ),
                   ],
@@ -47,12 +46,7 @@ class LoginPage extends StatelessWidget {
                 Row(
                   children: [
                     110.w.horizontalSpace,
-                    cText(text: "Log in to continue",
-                      style: TextStyle(
-                        fontSize: config.FontSizeSmall,
-                        color: Colors.black
-                      ),
-                    ),
+                    cText(text: "Log in to continue", size: config.FontSizeSmall,),
                   ],
                 ),
                 500.h.verticalSpace,
@@ -80,7 +74,7 @@ class LoginPage extends StatelessWidget {
                             () => Text(
                           _controller.errorMessage.value,
                           textAlign: TextAlign.center,
-                          style: TextStyle(fontWeight: FontWeight.bold, fontSize: config.FontSizeSmall.sp),
+                          style: TextStyle(fontWeight: FontWeight.bold, fontSize: config.FontSizeSmall),
                         ),
                       ),
                     ],
@@ -110,7 +104,7 @@ class LoginPage extends StatelessWidget {
                   ),
                 ),
                 220.h.verticalSpace,
-                Center(child: cText(text: "-OR-")),
+                Center(child: cText(text: "-OR-", size: config.FontSizeSmall,)),
                 190.h.verticalSpace,
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
@@ -118,7 +112,7 @@ class LoginPage extends StatelessWidget {
                     Container(height: 30.0,
                         child: Image.asset('assets/images/google.webp')),
                     110.w.horizontalSpace,
-                    cText(text: "Log in with google", size: config.FontSizeNormal.sp, style: TextStyle(fontWeight: FontWeight.bold),)
+                    Text("Log in with Google", style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18),)
                   ],
                 ),
                 220.h.verticalSpace,
@@ -128,7 +122,7 @@ class LoginPage extends StatelessWidget {
                     Container(height: 30.0,
                         child: Image.asset('assets/images/facebook.png'),),
                     110.w.horizontalSpace,
-                    cText(text: "Log in with facebook", size: config.FontSizeNormal.sp, style: TextStyle(fontWeight: FontWeight.bold),)
+                    Text("Log in with Facebook", style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18),)
                   ],
                 ),
               ],

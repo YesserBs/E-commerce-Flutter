@@ -18,7 +18,7 @@ class LoginController extends GetxController {
         final String email = emailController.text.trim();
         final String password = passwordController.text.trim();
         box.write('isAuthenticated', true);
-        final isAuthenticated = box.read('isAuthenticated') ?? false;
+        //final isAuthenticated = box.read('isAuthenticated') ?? false;
         UserCredential userCredential =
         await FirebaseAuth.instance.signInWithEmailAndPassword(
           email: email,
