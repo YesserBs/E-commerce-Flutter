@@ -6,8 +6,8 @@ import 'package:get/get.dart';
 import 'package:myproj/config/configuration.dart';
 import 'package:myproj/custom/cText.dart';
 import 'package:myproj/view/auth/auth.dart';
-import 'package:myproj/view/auth/signup/signup_page.dart';
 import '../../custom/cButton.dart';
+import '../cart/cart_page.dart';
 import '../home/home_page.dart';
 import 'dashboard_controller.dart';
 
@@ -39,11 +39,12 @@ class DashboardPage extends StatelessWidget {
             ],
           )),
           body: SafeArea(
+            // The page that will be displayed from stack depending on the index from bottomNavBar index returned
             child: IndexedStack(
               index: controller.tabIndex,
               children: [
                 HomePage(),
-                SignupPage(),
+                CartPage(),
               ],
             ),
           ),

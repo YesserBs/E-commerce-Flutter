@@ -4,11 +4,12 @@ import 'package:get/get.dart';
 import 'package:myproj/config/configuration.dart';
 import 'package:myproj/custom/cText.dart';
 import 'package:myproj/custom/cTextFormField.dart';
+import 'package:myproj/view/auth/signup/signup_page.dart';
 import 'login_controller.dart';
 
 class LoginPage extends StatelessWidget {
   LoginController _controller = Get.find();
-///
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -16,9 +17,9 @@ class LoginPage extends StatelessWidget {
       body: SafeArea(
         child: SingleChildScrollView(
           child: Padding(
-            padding: EdgeInsets.fromLTRB(10.0, 10.0, 10.0, 20.0),
+            padding: EdgeInsets.symmetric(vertical: 30.h, horizontal: 60.w),
             child: Column(
-              mainAxisAlignment: MainAxisAlignment.start,
+             mainAxisAlignment: MainAxisAlignment.start,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 100.h.verticalSpace,
@@ -34,7 +35,7 @@ class LoginPage extends StatelessWidget {
                     ),
                     GestureDetector(
                       onTap: () {
-                        //Get.to(SignupForm());
+                        Get.to(SignupPage());
                       },
                       child: cText(
                         text: "Sign up?",
@@ -45,7 +46,7 @@ class LoginPage extends StatelessWidget {
                 10.h.verticalSpace,
                 Row(
                   children: [
-                    110.w.horizontalSpace,
+                    150.w.horizontalSpace,
                     cText(text: "Log in to continue", size: config.FontSizeSmall,),
                   ],
                 ),
@@ -61,22 +62,24 @@ class LoginPage extends StatelessWidget {
                           labelText: "password",
                           obscureText: true),
                       Container(
-                        margin: EdgeInsets.fromLTRB(0.0, 25.0, 20.0, 45.0),
+                        margin: EdgeInsets.fromLTRB(0.0.w, 60.0.h, 20.0.w, 45.0.h),
                         alignment: Alignment.topRight,
                         child: Text(
                           "-Forgot password?-",
                           style: TextStyle(
-                            fontSize: 14.0,
+                            fontSize: 40.0.sp,
                           ),
                         ),
                       ),
+                      150.h.verticalSpace,
                       Obx(
                             () => Text(
                           _controller.errorMessage.value,
                           textAlign: TextAlign.center,
-                          style: TextStyle(fontWeight: FontWeight.bold, fontSize: config.FontSizeSmall),
+                          style: TextStyle(fontWeight: FontWeight.bold, fontSize: config.FontSizeSmall.sp),
                         ),
                       ),
+                      50.h.verticalSpace,
                     ],
                   ),
                 ),
@@ -90,15 +93,15 @@ class LoginPage extends StatelessWidget {
                     style: TextButton.styleFrom(
                       backgroundColor: config.primaryColor,
                       shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(10), // Adjust the radius value as desired
+                        borderRadius: BorderRadius.circular(40.h), // Adjust the radius value as desired
                       ),
-                      padding: EdgeInsets.all(12),
+                      padding: EdgeInsets.all(40.h),
                     ),
                     child: Text(
                       "LOG IN",
                       style: TextStyle(
                         color: Colors.white,
-                        fontSize: 18.0,
+                        fontSize: 40.0.sp,
                       ),
                     ),
                   ),
@@ -109,20 +112,20 @@ class LoginPage extends StatelessWidget {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    Container(height: 30.0,
+                    Container(height: 120.0.h,
                         child: Image.asset('assets/images/google.webp')),
                     110.w.horizontalSpace,
-                    Text("Log in with Google", style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18),)
+                    Text("Log in with Google", style: TextStyle(fontWeight: FontWeight.bold, fontSize: config.FontSizeNormal.sp),)
                   ],
                 ),
                 220.h.verticalSpace,
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    Container(height: 30.0,
+                    Container(height: 120.0.h,
                         child: Image.asset('assets/images/facebook.png'),),
                     110.w.horizontalSpace,
-                    Text("Log in with Facebook", style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18),)
+                    Text("Log in with Facebook", style: TextStyle(fontWeight: FontWeight.bold, fontSize: config.FontSizeNormal.sp),)
                   ],
                 ),
               ],

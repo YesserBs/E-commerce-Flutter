@@ -17,13 +17,10 @@ class HomePage extends StatelessWidget {
           padding: EdgeInsets.all(20.0),
           child: Column(
             children: [
-              cText(text: "Home page", size: config.FontSizeTitle, changeFont: true),
-
+              cText(text: "Search", size: config.FontSizeTitle, changeFont: true),
               _SearchFormField(),
               100.h.verticalSpace,
               _ListItems()
-
-
             ],
           ),
         ),
@@ -60,7 +57,7 @@ Widget _ListItems() {
     child: Obx(
           () => GridView.count(
         crossAxisCount: 2, // Display two cards in each row
-        childAspectRatio: 0.7, // Adjust the desired aspect ratio here
+        childAspectRatio: 1.8.h, // to change the size of each card vertically
         children: List.generate(_controller.filteredArticles.length, (index) {
           final item = _controller.filteredArticles[index];
           return Card(
@@ -73,7 +70,7 @@ Widget _ListItems() {
                 child: Column(
                   children: [
                     Container(
-                        height: 150.0,
+                        height: 400.0.w,
                         child: Image.asset(item.image)),
                     50.h.verticalSpace,
                     cText(text:
