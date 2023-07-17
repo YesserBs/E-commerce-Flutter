@@ -62,7 +62,6 @@ class _ListItems extends StatefulWidget {
 
 class _ListItemsState extends State<_ListItems> {
   late ScrollController _scrollController;
-  bool _scrolled = false;
 
   @override
   void initState() {
@@ -79,25 +78,12 @@ class _ListItemsState extends State<_ListItems> {
   }
 
   void _handleScroll() {
-    if (_scrollController.position.userScrollDirection == ScrollDirection.forward) {
-      if (!_scrolled) {
-        setState(() {
-          _scrolled = true;
-        });
-        FocusScope.of(context).unfocus();
-      }
-    } else if (_scrollController.position.userScrollDirection == ScrollDirection.reverse) {
-      if (_scrolled) {
-        setState(() {
-          _scrolled = false;
-        });
-      }
-    }
+    FocusScope.of(context).unfocus();
   }
 
   @override
   Widget build(BuildContext context) {
-    HomeController controller = Get.find();
+    HomeController _controller = Get.find();
 
     return NotificationListener<ScrollNotification>(
       onNotification: (scrollNotification) {
@@ -110,8 +96,8 @@ class _ListItemsState extends State<_ListItems> {
         controller: _scrollController,
         crossAxisCount: 2,
         childAspectRatio: 1.8.h,
-        children: List.generate(controller.filteredArticles.length, (index) {
-          final item = controller.filteredArticles[index];
+        children: List.generate(_controller.filteredArticles.length, (index) {
+          final item = _controller.filteredArticles[index];
           return Card(
             child: ListTile(
               onTap: () {
