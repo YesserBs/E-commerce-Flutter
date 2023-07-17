@@ -52,7 +52,7 @@ class SignupPage extends StatelessWidget {
                   key: _controller.SignupformKey,
                   child: Column(
                     children: [
-                      cTextFormField(controller: _controller.emailController,
+                      cTextFormField(controller: _controller.usernameController,
                           labelText: "User name"),
                       250.h.verticalSpace,
                       cTextFormField(controller: _controller.emailController,

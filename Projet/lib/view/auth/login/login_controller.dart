@@ -15,9 +15,9 @@ class LoginController extends GetxController {
   void login() async {
     try {
       if (LoginformKey.currentState?.validate() ?? false) {
+        print("Entered");
         final String email = emailController.text.trim();
         final String password = passwordController.text.trim();
-        box.write('isAuthenticated', true);
         //final isAuthenticated = box.read('isAuthenticated') ?? false;
         UserCredential userCredential =
         await FirebaseAuth.instance.signInWithEmailAndPassword(
@@ -25,6 +25,7 @@ class LoginController extends GetxController {
           password: password,
         );
         if (userCredential.user != null) {
+          box.write('isAuthenticated', true);
           Get.offAndToNamed(AppPages.DASHBOARD);// Navigate to HomeScreen
         }
       }

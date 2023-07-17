@@ -1,27 +1,16 @@
 
-//class UserModel {
-//   String userId,
-//   email, name, pic;
-//
-//   UserModel({this.userId, this.email, this.name, this.pic});
-//
-//   UserModel.fromJson(Map<dynamic, dynamic> map) {
-//     if (map == null) {
-//       return;
-//     }
-//
-//     userId = map['userId'];
-//     email = map['email'];
-//     name = map['name'];
-//     pic = map['pic'];
-//   }
-//
-//   toJson() {
-//     return {
-//       'userId': userId,
-//       'email': email,
-//       'name': name,
-//       'pic': pic,
-//     };
-//   }
-// }
+import 'package:firebase_auth/firebase_auth.dart';
+
+class TheUser {
+  String? email;
+  String? uid;
+  String? username;
+
+  TheUser({required this.email, required this.uid});
+
+  factory TheUser.fromFirebaseUser(User user) {
+    return TheUser(email: user.email, uid: user.uid);
+  }
+}
+
+

@@ -4,10 +4,12 @@ import 'package:get_storage/get_storage.dart';
 import 'package:myproj/main_settings/appPages.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
+import '../../objects/user.dart';
+
 // Here will be set the first screen when we open the app
 // depending on isAuthenticated
 String auth() {
-  printUser();
+  retriveUserInfos();
   final box = GetStorage();
   final isAuthenticated = box.read('isAuthenticated') ?? false;
   print("$isAuthenticated");
@@ -32,6 +34,7 @@ void deleteVariable() {
   box.remove('isConnected');
 }
 
+
 void printUser(){
   FirebaseAuth auth = FirebaseAuth.instance;
   User? user = auth.currentUser;
@@ -45,3 +48,15 @@ void printUser(){
     print("No user check printUser");
   }
 }
+
+void retriveUserInfos(){
+  FirebaseAuth auth = FirebaseAuth.instance;
+  User? user = auth.currentUser;
+  TheUser? currentUser;
+
+  if (user != null) {
+    currentUser = TheUser.fromFirebaseUser(user);
+    print("email: ${currentUser.email} | uid: ${currentUser.uid}");
+  }
+}
+

@@ -7,16 +7,20 @@ import 'package:myproj/main_settings/appPages.dart';
 
 class SignupController extends GetxController {
   final SignupformKey = GlobalKey<FormState>();
+  final usernameController = TextEditingController();
   final emailController = TextEditingController();
   final passwordController = TextEditingController();
   var errorMessage = ''.obs;
+  var username = ''.obs;
   final box = GetStorage();
 
   void Signup() async {
     try {
       if (SignupformKey.currentState?.validate() ?? false) {
+        final String usrname = usernameController.text.trim();
         final String email = emailController.text.trim();
         final String password = passwordController.text.trim();
+        GetUsername(usrname);
         box.write('isAuthenticated', true);
         //final isAuthenticated = box.read('isAuthenticated') ?? false;
         UserCredential userCredential =
@@ -33,8 +37,13 @@ class SignupController extends GetxController {
     }
   }
 
+  void GetUsername(String usrname){
+    print(usrname);
+  }
+
   @override
   void dispose() {
+    usernameController.dispose();
     emailController.dispose();
     passwordController.dispose();
     super.dispose();
