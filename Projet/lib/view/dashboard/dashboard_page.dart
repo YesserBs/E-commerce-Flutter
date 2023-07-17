@@ -6,12 +6,14 @@ import 'package:get/get.dart';
 import 'package:myproj/config/configuration.dart';
 import 'package:myproj/custom/cText.dart';
 import 'package:myproj/view/auth/auth.dart';
+import 'package:myproj/view/auth/signup/signup_controller.dart';
 import '../../custom/cButton.dart';
 import '../cart/cart_page.dart';
 import '../home/home_page.dart';
 import 'dashboard_controller.dart';
 
 class DashboardPage extends StatelessWidget {
+  SignupController SC = Get.find();
 
   @override
   Widget build(BuildContext context) {
@@ -32,7 +34,7 @@ class DashboardPage extends StatelessWidget {
                 ),
               ),
               150.h.verticalSpace,
-              cText(text: "User name", changeFont: true, size: config.FontSizeTitle-20,),
+              Obx(() => cText(text: SC.username.value, changeFont: true, size: config.FontSizeTitle-20,),),
               150.h.verticalSpace,
               cButton(text: "Log out", icon: FontAwesomeIcons.signOut, onPressed: (){logOut();}
               )

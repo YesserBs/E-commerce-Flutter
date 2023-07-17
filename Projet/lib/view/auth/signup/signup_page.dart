@@ -78,6 +78,7 @@ class SignupPage extends StatelessWidget {
                   width: double.infinity,
                   child: TextButton(
                     onPressed: () {
+                      _controller.Signup();
                     },
                     style: TextButton.styleFrom(
                       backgroundColor: config.primaryColor,

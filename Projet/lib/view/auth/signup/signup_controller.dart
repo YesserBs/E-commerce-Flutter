@@ -11,7 +11,7 @@ class SignupController extends GetxController {
   final emailController = TextEditingController();
   final passwordController = TextEditingController();
   var errorMessage = ''.obs;
-  var username = ''.obs;
+  var username = '_'.obs;
   final box = GetStorage();
 
   void Signup() async {
@@ -21,14 +21,13 @@ class SignupController extends GetxController {
         final String email = emailController.text.trim();
         final String password = passwordController.text.trim();
         GetUsername(usrname);
-        box.write('isAuthenticated', true);
-        //final isAuthenticated = box.read('isAuthenticated') ?? false;
         UserCredential userCredential =
-        await FirebaseAuth.instance.signInWithEmailAndPassword(
+        await FirebaseAuth.instance.createUserWithEmailAndPassword(
           email: email,
           password: password,
         );
         if (userCredential.user != null) {
+          box.write('isAuthenticated', true);
           Get.offAndToNamed(AppPages.DASHBOARD);// Navigate to HomeScreen
         }
       }
@@ -38,7 +37,7 @@ class SignupController extends GetxController {
   }
 
   void GetUsername(String usrname){
-    print(usrname);
+    username.value = usrname;
   }
 
   @override

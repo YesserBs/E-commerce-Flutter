@@ -6,8 +6,8 @@ import 'package:firebase_auth/firebase_auth.dart';
 
 import '../../objects/user.dart';
 
-// Here will be set the first screen when we open the app
-// depending on isAuthenticated
+/* Here will be set the first screen when we open the app
+   depending on isAuthenticated */
 String auth() {
   retriveUserInfos();
   final box = GetStorage();
