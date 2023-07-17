@@ -1,4 +1,4 @@
-
+import 'package:get/get.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
 class TheUser {
@@ -12,5 +12,6 @@ class TheUser {
     return TheUser(email: user.email, uid: user.uid);
   }
 }
+
 
 
