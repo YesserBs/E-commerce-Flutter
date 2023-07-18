@@ -56,7 +56,7 @@ void retriveUserInfos(){
 
   if (user != null) {
     currentUser = TheUser.fromFirebaseUser(user);
-    print("email: ${currentUser.email} | uid: ${currentUser.uid} | username: ${currentUser.username}");
+    print("email: ${currentUser.email} | uid: ${currentUser.uid}");
   }
 }
 
