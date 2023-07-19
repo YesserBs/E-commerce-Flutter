@@ -5,7 +5,10 @@ import 'package:get/get_state_manager/src/simple/get_controllers.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:myproj/main_settings/appPages.dart';
 
+import '../../../objects/user.dart';
+
 class LoginController extends GetxController {
+  UserController userController = UserController();
   final LoginformKey = GlobalKey<FormState>();
   final emailController = TextEditingController();
   final passwordController = TextEditingController();
@@ -25,6 +28,7 @@ class LoginController extends GetxController {
           password: password,
         );
         if (userCredential.user != null) {
+          userController.retrieveUserInfos("");
           box.write('isAuthenticated', true);
           Get.offAndToNamed(AppPages.DASHBOARD);// Navigate to HomeScreen
 

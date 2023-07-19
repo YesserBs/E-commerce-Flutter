@@ -1,4 +1,5 @@
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 
 class TheUser {
   String? email;
@@ -15,6 +16,7 @@ class TheUser {
 class UserController {
   static TheUser? currentUser;
   FirebaseAuth _auth = FirebaseAuth.instance;
+  FirebaseFirestore _firestore = FirebaseFirestore.instance;
 
   Future<void> retrieveUserInfos(String username) async {
     User? user = _auth.currentUser;
@@ -24,11 +26,41 @@ class UserController {
       currentUser = TheUser.fromFirebaseUser(user);
 
       if (username.isEmpty) {
-        print("Username will be retrived from database");
+        // Retrieve username from Firestore
+        DocumentSnapshot<Map<String, dynamic>> snapshot = await _firestore
+            .collection('users')
+            .doc(currentUser!.uid)
+            .get();
+
+        if (snapshot.exists) {
+          // Username exists in Firestore, retrieve it
+          currentUser!.username = snapshot.get('username');
+          print("Username retrieved from the database: ${currentUser!.username}");
+        } else {
+          print("Username does not exist in the database");
+        }
       } else {
+        // Store username in Firestore
         currentUser!.username = username;
-        print("Username will be stored in database");
+        var uid = currentUser!.uid;
+        addUserToFirestore(username, uid!);
+        print("Username stored in the database: ${currentUser!.username}");
       }
     }
   }
 }
+
+void addUserToFirestore(String username, String uid) {
+  FirebaseFirestore firestore = FirebaseFirestore.instance;
+
+  // Create a new document with the UID as the document ID
+  DocumentReference userRef = firestore.collection('users').doc(uid);
+
+  // Set the username field in the document
+  userRef.set({'username': username, 'uid': uid,}).then((_) {
+    print('User added to Firestore!');
+  }).catchError((error) {
+    print('Failed to add user: $error');
+  });
+}
+

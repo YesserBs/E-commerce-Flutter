@@ -85,7 +85,7 @@ Widget _ListItems() {
                       item.nom, changeFont: true,),
                     Text(item.marque),
                     10.h.verticalSpace,
-                    Text("${item.prix.toString()} dts"),
+                    Text("${item.prix.toString()} Dts"),
                   ],
                 ),
               ),
