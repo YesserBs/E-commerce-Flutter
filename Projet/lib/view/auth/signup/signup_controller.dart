@@ -5,7 +5,10 @@ import 'package:get/get_state_manager/src/simple/get_controllers.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:myproj/main_settings/appPages.dart';
 
+import '../../../objects/user.dart';
+
 class SignupController extends GetxController {
+  UserController userController = UserController();
   final SignupformKey = GlobalKey<FormState>();
   final usernameController = TextEditingController();
   final emailController = TextEditingController();
@@ -20,13 +23,15 @@ class SignupController extends GetxController {
         final String usrname = usernameController.text.trim();
         final String email = emailController.text.trim();
         final String password = passwordController.text.trim();
-        GetUsername(usrname);
+        GetUsername(usrname); // will be removed as we will make a user class
         UserCredential userCredential =
         await FirebaseAuth.instance.createUserWithEmailAndPassword(
           email: email,
           password: password,
         );
         if (userCredential.user != null) {
+          // Pass username as a parameter to the user profile class
+          userController.retrieveUserInfos(username.value);
           box.write('isAuthenticated', true);
           Get.offAndToNamed(AppPages.DASHBOARD);// Navigate to HomeScreen
         }
@@ -38,6 +43,7 @@ class SignupController extends GetxController {
 
   void GetUsername(String usrname){
     username.value = usrname;
+    update();
   }
 
   @override

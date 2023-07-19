@@ -27,6 +27,7 @@ class LoginController extends GetxController {
         if (userCredential.user != null) {
           box.write('isAuthenticated', true);
           Get.offAndToNamed(AppPages.DASHBOARD);// Navigate to HomeScreen
+
         }
       }
     } on FirebaseAuthException catch (e) {

@@ -9,7 +9,6 @@ import '../../objects/user.dart';
 /* Here will be set the first screen when we open the app
    depending on isAuthenticated */
 String auth() {
-  retriveUserInfos();
   final box = GetStorage();
   final isAuthenticated = box.read('isAuthenticated') ?? false;
   print("$isAuthenticated");
@@ -49,6 +48,8 @@ void printUser(){
   }
 }
 
+
+// Will be deleted later on as i will make the same function in the user class
 void retriveUserInfos(){
   FirebaseAuth auth = FirebaseAuth.instance;
   User? user = auth.currentUser;

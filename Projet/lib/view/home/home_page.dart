@@ -7,8 +7,11 @@ import 'package:get/get_core/src/get_main.dart';
 import 'package:myproj/config/configuration.dart';
 import 'package:myproj/view/home/home_controller.dart';
 import '../../custom/cText.dart';
+import '../../objects/user.dart';
 
 class HomePage extends StatelessWidget {
+  UserController userController = UserController();
+
 
   @override
   Widget build(BuildContext context) {
@@ -20,6 +23,7 @@ class HomePage extends StatelessWidget {
             padding: EdgeInsets.all(20.0),
             child: Column(
               children: [
+                cText(text: "Username ${UserController.currentUser?.username}"),
                 cText(text: "Search", size: config.FontSizeTitle, changeFont: true),
                 _SearchFormField(),
                 100.h.verticalSpace,
