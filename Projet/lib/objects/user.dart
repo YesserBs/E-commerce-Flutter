@@ -62,12 +62,12 @@ class UserController {
 void addUserToFirestore(String username, String uid) {
   FirebaseFirestore firestore = FirebaseFirestore.instance;
 
-  // Create a new document with the UID as the document ID
-  DocumentReference userRef = firestore.collection('users').doc(uid);
+  // Create a new document with an auto-generated ID
+  DocumentReference userRef = firestore.collection('users').doc();
 
   // Set the username field in the document
-  userRef.set({'username': username, 'uid': uid}).then((_) {
-    print('User added to Firestore with UID: $uid');
+  userRef.set({'username': username}).then((_) {
+    print('User added to Firestore with username: $username');
   }).catchError((error) {
     print('Failed to add user: $error');
   });
