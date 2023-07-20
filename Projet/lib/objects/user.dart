@@ -14,9 +14,10 @@ class TheUser {
 }
 
 class UserController {
+  String? uid = '';
   static TheUser? currentUser;
   FirebaseAuth _auth = FirebaseAuth.instance;
-  FirebaseFirestore _firestore = FirebaseFirestore.instance;
+  FirebaseFirestore firestore = FirebaseFirestore.instance;
 
   Future<void> retrieveUserInfos(String username) async {
     User? user = _auth.currentUser;
@@ -26,26 +27,34 @@ class UserController {
       currentUser = TheUser.fromFirebaseUser(user);
 
       if (username.isEmpty) {
-        // Retrieve username from Firestore
-        DocumentSnapshot<Map<String, dynamic>> snapshot = await _firestore
-            .collection('users')
-            .doc(currentUser!.uid)
-            .get();
-
-        if (snapshot.exists) {
-          // Username exists in Firestore, retrieve it
-          currentUser!.username = snapshot.get('username');
-          print("Username retrieved from the database: ${currentUser!.username}");
-        } else {
-          print("Username does not exist in the database");
-        }
+        // Username is empty so we will bring it from Firestore
+        currentUser!.username = await getUsernameByUid(currentUser!.uid!);
+        print("Username fetched from the database: ${currentUser!.username}");
       } else {
-        // Store username in Firestore
+        print("Username is not empty. Storing in Firestore...");
         currentUser!.username = username;
-        var uid = currentUser!.uid;
+        uid = currentUser!.uid;
         addUserToFirestore(username, uid!);
         print("Username stored in the database: ${currentUser!.username}");
       }
+    }
+  }
+
+  Future<String> getUsernameByUid(String uid) async {
+    try {
+      DocumentSnapshot snapshot =
+      await firestore.collection('users').doc(uid).get();
+
+      if (snapshot.exists) {
+        Map<String, dynamic> data = snapshot.data() as Map<String, dynamic>;
+        return data['username'];
+      } else {
+        // Document with the given UID does not exist
+        return '';
+      }
+    } catch (e) {
+      print('Error fetching username: $e');
+      return '';
     }
   }
 }
@@ -57,10 +66,9 @@ void addUserToFirestore(String username, String uid) {
   DocumentReference userRef = firestore.collection('users').doc(uid);
 
   // Set the username field in the document
-  userRef.set({'username': username, 'uid': uid,}).then((_) {
-    print('User added to Firestore!');
+  userRef.set({'username': username, 'uid': uid}).then((_) {
+    print('User added to Firestore with UID: $uid');
   }).catchError((error) {
     print('Failed to add user: $error');
   });
 }
-
