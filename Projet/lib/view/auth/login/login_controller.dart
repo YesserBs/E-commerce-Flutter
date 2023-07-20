@@ -4,6 +4,7 @@ import 'package:get/get.dart';
 import 'package:get/get_state_manager/src/simple/get_controllers.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:myproj/main_settings/appPages.dart';
+import 'package:myproj/view/auth/signup/signup_controller.dart';
 
 import '../../../objects/user.dart';
 
@@ -18,10 +19,8 @@ class LoginController extends GetxController {
   void login() async {
     try {
       if (LoginformKey.currentState?.validate() ?? false) {
-        print("Entered");
         final String email = emailController.text.trim();
         final String password = passwordController.text.trim();
-        //final isAuthenticated = box.read('isAuthenticated') ?? false;
         UserCredential userCredential =
         await FirebaseAuth.instance.signInWithEmailAndPassword(
           email: email,

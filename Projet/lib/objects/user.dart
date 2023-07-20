@@ -1,5 +1,8 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:get/get.dart';
+import 'package:get/get_core/src/get_main.dart';
+import 'package:myproj/view/auth/signup/signup_controller.dart';
 
 class TheUser {
   String? email;
@@ -30,6 +33,10 @@ class UserController {
         // Username is empty so we will bring it from Firestore
         currentUser!.username = await getUsernameByUid(currentUser!.uid!);
         print("Username fetched from the database: ${currentUser!.username}");
+        String? ok = currentUser!.username;
+        Get.find<SignupController>().GetUsername(ok!);
+
+
       } else {
         print("Username is not empty. Storing in Firestore...");
         currentUser!.username = username;
@@ -62,12 +69,12 @@ class UserController {
 void addUserToFirestore(String username, String uid) {
   FirebaseFirestore firestore = FirebaseFirestore.instance;
 
-  // Create a new document with an auto-generated ID
-  DocumentReference userRef = firestore.collection('users').doc();
+  // Create a new document with the UID as the document ID
+  DocumentReference userRef = firestore.collection('users').doc(uid);
 
   // Set the username field in the document
   userRef.set({'username': username}).then((_) {
-    print('User added to Firestore with username: $username');
+    print('User added to Firestore with UID: $uid');
   }).catchError((error) {
     print('Failed to add user: $error');
   });
