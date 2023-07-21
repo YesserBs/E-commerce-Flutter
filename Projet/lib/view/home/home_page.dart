@@ -5,6 +5,8 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:myproj/config/configuration.dart';
+import 'package:myproj/view/dashboard/dashboard_controller.dart';
+import 'package:myproj/view/details/details_page.dart';
 import 'package:myproj/view/home/home_controller.dart';
 import '../../custom/cText.dart';
 import '../../objects/user.dart';
@@ -64,6 +66,7 @@ Widget _SearchFormField() {
 
 Widget _ListItems() {
   HomeController _controller = Get.find();
+  DashboardController DC = Get.find();
 
   return Expanded(
     child: Obx(
@@ -75,7 +78,7 @@ Widget _ListItems() {
           return Card(
             child: ListTile(
               onTap: () {
-                // Handle onTap event
+                Get.to(DetailsPage());
               },
               title: Padding(
                 padding: EdgeInsets.fromLTRB(0.0, 15.0, 0.0, 0.0),
