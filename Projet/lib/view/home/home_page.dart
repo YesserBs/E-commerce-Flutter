@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_keyboard_visibility/flutter_keyboard_visibility.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:myproj/config/configuration.dart';
@@ -68,11 +69,23 @@ Widget _ListItems() {
   HomeController _controller = Get.find();
   DashboardController DC = Get.find();
 
+  void _showSnackBar(String item) {
+    Get.snackbar(
+      'Added to Cart', // Title of the snackbar
+      item, // Message of the snackbar
+      animationDuration: Duration(milliseconds: 700),
+      duration: Duration(milliseconds: 1200), // Set the duration to 1 second (adjust as needed)
+      snackPosition: SnackPosition.TOP, // Show the snackbar from the top
+      // You can add more options for the snackbar here if needed
+    );
+  }
+
+
   return Expanded(
     child: Obx(
           () => GridView.count(
-        crossAxisCount: 2, // Display two cards in each row
-        childAspectRatio: 1.8.h, // to change the size of each card vertically
+        crossAxisCount: 2,
+        childAspectRatio: 1.7.h,
         children: List.generate(_controller.filteredArticles.length, (index) {
           final item = _controller.filteredArticles[index];
           return Card(
@@ -85,14 +98,43 @@ Widget _ListItems() {
                 child: Column(
                   children: [
                     Container(
-                        height: 400.0.w,
-                        child: Image.asset(item.image)),
+                      height: 400.0.w,
+                      child: Image.asset(item.image),
+                    ),
                     50.h.verticalSpace,
-                    cText(text:
-                      item.nom, changeFont: true,),
+                    cText(
+                      text: item.nom,
+                      changeFont: true,
+                    ),
                     Text(item.marque),
                     10.h.verticalSpace,
-                    Text("${item.prix.toString()} Dts"),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Text(
+                          "${item.prix.toString()} Dts",
+                          style: TextStyle(fontWeight: FontWeight.bold),
+                        ),
+                        Container(
+                          child: ElevatedButton(
+                            onPressed: () {
+                              _showSnackBar("ok"); // Show snackbar on button press
+                            },
+                            style: ElevatedButton.styleFrom(
+                              padding:
+                              EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0),
+                              primary: config.backgroundColor,
+                              elevation: 0.0.sp,
+                            ),
+                            child: Icon(
+                              FontAwesomeIcons.plus,
+                              size: 18,
+                              color: Colors.black,
+                            ),
+                          ),
+                        )
+                      ],
+                    ),
                   ],
                 ),
               ),
