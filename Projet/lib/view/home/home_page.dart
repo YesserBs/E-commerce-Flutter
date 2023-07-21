@@ -6,6 +6,7 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:myproj/config/configuration.dart';
+import 'package:myproj/custom/cButton.dart';
 import 'package:myproj/view/dashboard/dashboard_controller.dart';
 import 'package:myproj/view/details/details_page.dart';
 import 'package:myproj/view/home/home_controller.dart';
@@ -30,10 +31,17 @@ class HomePage extends StatelessWidget {
             padding: EdgeInsets.all(20.0),
             child: Column(
               children: [
-                Obx(() => cText(text: SC.username.value, size: config.FontSizeTitle, changeFont: true),),
-                cText(text: "Search", size: config.FontSizeTitle, changeFont: true),
                 _SearchFormField(),
                 100.h.verticalSpace,
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    DropdownButtonWidget(),
+                    createBorderedButton(Icon(Icons.filter_alt, color: Colors.black, size: 20,), (){})
+                  ],
+                ),
+                100.h.verticalSpace,
+                Divider(thickness: 2.5, color: config.backgroundColor, height: 0),
                 _ListItems()
               ],
             ),
@@ -106,7 +114,7 @@ Widget _ListItems() {
                       text: item.nom,
                       changeFont: true,
                     ),
-                    Text(item.marque),
+                    cText(text: item.marque, size: 35,),
                     10.h.verticalSpace,
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -118,7 +126,7 @@ Widget _ListItems() {
                         Container(
                           child: ElevatedButton(
                             onPressed: () {
-                              _showSnackBar("ok"); // Show snackbar on button press
+                              _showSnackBar("Item added"); // Show snackbar on button press
                             },
                             style: ElevatedButton.styleFrom(
                               padding:
@@ -144,5 +152,49 @@ Widget _ListItems() {
       ),
     ),
   );
+}
+
+
+OutlinedButton createBorderedButton(Widget child, VoidCallback onPressed) {
+  return OutlinedButton(
+    onPressed: onPressed,
+    style: OutlinedButton.styleFrom(
+      backgroundColor: config.backgroundColor,
+      //side: BorderSide(width: 1, color: Colors.black),
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
+    ),
+    child: child,
+  );
+}
+
+class DropdownButtonWidget extends StatefulWidget {
+  @override
+  _DropdownButtonWidgetState createState() => _DropdownButtonWidgetState();
+}
+
+class _DropdownButtonWidgetState extends State<DropdownButtonWidget> {
+  // List of items for the dropdown menu
+  List<String> _items = ['All', 'Gadgets', 'Clothes', 'Others'];
+
+  // The currently selected item
+  String _selectedItem = 'All';
+
+  @override
+  Widget build(BuildContext context) {
+    return DropdownButton<String>(
+      value: _selectedItem,
+      onChanged: (String? newValue) {
+        setState(() {
+          _selectedItem = newValue!;
+        });
+      },
+      items: _items.map((String item) {
+        return DropdownMenuItem<String>(
+          value: item,
+          child: Text(item),
+        );
+      }).toList(),
+    );
+  }
 }
 

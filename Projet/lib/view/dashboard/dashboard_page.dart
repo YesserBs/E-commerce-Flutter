@@ -20,7 +20,16 @@ class DashboardPage extends StatelessWidget {
     return GetBuilder<DashboardController>(
       builder: (controller) {
         return Scaffold(
-          appBar: AppBar(backgroundColor: config.backgroundColor, elevation: 5, foregroundColor: config.secondaryColor),
+          appBar: AppBar(backgroundColor: config.backgroundColor, elevation: 5, foregroundColor: config.secondaryColor,
+            actions: [
+              IconButton(
+                icon: Icon(CupertinoIcons.person, color: Colors.black,),
+                onPressed: () {
+                  // Handle the search button press here
+                },
+              ),
+            ],
+          ),
           drawer: Drawer(backgroundColor: config.backgroundColor,
           child: Column(
             children: [
