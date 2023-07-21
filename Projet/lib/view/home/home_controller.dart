@@ -45,4 +45,8 @@ class HomeController extends GetxController {
           .toList();
     }
   }
+
+  int toggleIndex(int currentIndex) {
+    return currentIndex == 0 ? 1 : 0;
+  }
 }
