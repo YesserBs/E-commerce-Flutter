@@ -7,6 +7,8 @@ import 'package:myproj/config/configuration.dart';
 import 'package:myproj/custom/cText.dart';
 import 'package:myproj/view/auth/auth.dart';
 import 'package:myproj/view/auth/signup/signup_controller.dart';
+import 'package:myproj/view/details/details_page.dart';
+import 'package:myproj/view/profile/profile_page.dart';
 import '../../custom/cButton.dart';
 import '../cart/cart_page.dart';
 import '../home/home_page.dart';
@@ -25,7 +27,7 @@ class DashboardPage extends StatelessWidget {
               IconButton(
                 icon: Icon(CupertinoIcons.person, color: Colors.black,),
                 onPressed: () {
-                  // Handle the search button press here
+                  Get.to(ProfilePage());
                 },
               ),
             ],
