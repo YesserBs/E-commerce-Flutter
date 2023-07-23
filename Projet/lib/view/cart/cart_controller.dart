@@ -32,6 +32,7 @@ class CartController extends GetxController {
   }
 
 
+
   Future<Article?> fetchArticleByUID(String uid) async {
     try {
       final DocumentSnapshot snapshot =
@@ -55,6 +56,10 @@ class CartController extends GetxController {
       print('Error fetching article: $e');
       return null;
     }
+  }
+
+  void removeCartItem(String item) {
+    addedArticles.remove(item);
   }
 
 
