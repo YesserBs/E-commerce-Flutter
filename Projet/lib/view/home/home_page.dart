@@ -75,7 +75,6 @@ Widget _SearchFormField() {
 
 Widget _ListItems() {
   HomeController _controller = Get.find();
-  DashboardController DC = Get.find();
 
   void _showSnackBar(String item) {
     Get.snackbar(
@@ -87,7 +86,6 @@ Widget _ListItems() {
       // You can add more options for the snackbar here if needed
     );
   }
-
 
   return Expanded(
     child: Obx(
@@ -126,7 +124,7 @@ Widget _ListItems() {
                         Container(
                           child: ElevatedButton(
                             onPressed: () {
-                              _showSnackBar("Item added"); // Show snackbar on button press
+                              _showSnackBar(item.nom); // Show snackbar on button press
                             },
                             style: ElevatedButton.styleFrom(
                               padding:

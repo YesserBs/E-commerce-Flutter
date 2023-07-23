@@ -21,6 +21,7 @@ class HomeController extends GetxController {
         final data = doc.data() as Map<String, dynamic>?;
         print("Data: $data");
         return Article(
+          uid: doc.id, // Add the UID property using doc.id
           nom: data?['nom'] as String? ?? '',
           image: data?['image'] as String? ?? '',
           marque: data?['marque'] as String? ?? '',
