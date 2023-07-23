@@ -7,6 +7,7 @@ import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:myproj/config/configuration.dart';
 import 'package:myproj/custom/cButton.dart';
+import 'package:myproj/view/cart/cart_controller.dart';
 import 'package:myproj/view/dashboard/dashboard_controller.dart';
 import 'package:myproj/view/details/details_page.dart';
 import 'package:myproj/view/home/home_controller.dart';
@@ -75,17 +76,9 @@ Widget _SearchFormField() {
 
 Widget _ListItems() {
   HomeController _controller = Get.find();
+  CartController CC = Get.find();
 
-  void _showSnackBar(String item) {
-    Get.snackbar(
-      'Added to Cart', // Title of the snackbar
-      item, // Message of the snackbar
-      animationDuration: Duration(milliseconds: 700),
-      duration: Duration(milliseconds: 1200), // Set the duration to 1 second (adjust as needed)
-      snackPosition: SnackPosition.TOP, // Show the snackbar from the top
-      // You can add more options for the snackbar here if needed
-    );
-  }
+
 
   return Expanded(
     child: Obx(
@@ -124,7 +117,8 @@ Widget _ListItems() {
                         Container(
                           child: ElevatedButton(
                             onPressed: () {
-                              _showSnackBar(item.nom); // Show snackbar on button press
+                              CC.showSnackBar(item.nom, item.uid); // Show snackbar on button press
+                              CC.addUidToCart(item.nom, item.uid);
                             },
                             style: ElevatedButton.styleFrom(
                               padding:
