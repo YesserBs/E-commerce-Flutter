@@ -117,7 +117,6 @@ Widget _ListItems() {
                         Container(
                           child: ElevatedButton(
                             onPressed: () {
-                              CC.showSnackBar(item.nom, item.uid); // Show snackbar on button press
                               CC.addUidToCart(item.nom, item.uid);
                             },
                             style: ElevatedButton.styleFrom(

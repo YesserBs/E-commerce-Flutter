@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:get/get.dart';
 
 import '../../objects/article.dart';
@@ -5,13 +6,17 @@ import '../../objects/article.dart';
 class CartController extends GetxController {
   final addedArticles = <String>[].obs;
 
-  void addUidToCart(String name, String uid) {
+  Future<void> addUidToCart(String name, String uid) async {
     if (!addedArticles.contains(uid)) {
       addedArticles.add(uid);
       print("Added articles: $addedArticles");
-      // You can also show a snackbar or toast here to indicate successful addition to the cart
+      showSnackBar(name, uid);
     } else {
       print("Item already in cart");
+    }
+    if (addedArticles.length > 0){
+      Article? article = await fetchArticleByUID(addedArticles[0]);
+      print(article?.nom);
     }
   }
 
@@ -24,8 +29,34 @@ class CartController extends GetxController {
       snackPosition: SnackPosition.TOP, // Show the snackbar from the top
       // You can add more options for the snackbar here if needed
     );
-    //CC.addedArticles.addItemWhereUid = uid
   }
+
+
+  Future<Article?> fetchArticleByUID(String uid) async {
+    try {
+      final DocumentSnapshot snapshot =
+      await FirebaseFirestore.instance.collection('items').doc(uid).get();
+
+      if (snapshot.exists) {
+        final data = snapshot.data() as Map<String, dynamic>?;
+        if (data != null) {
+          return Article(
+            uid: snapshot.id, // Use the UID as the ID for the Article object
+            nom: data['nom'] as String? ?? '',
+            image: data['image'] as String? ?? '',
+            marque: data['marque'] as String? ?? '',
+            prix: data['prix'] as int? ?? 0,
+            added: data['added'] as int? ?? 0,
+          );
+        }
+      }
+      return null; // Return null if the document doesn't exist or data is null
+    } catch (e) {
+      print('Error fetching article: $e');
+      return null;
+    }
+  }
+
 
 
 }
