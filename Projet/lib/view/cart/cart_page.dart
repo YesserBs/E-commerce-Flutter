@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:myproj/config/configuration.dart';
 import 'package:myproj/custom/cText.dart';
+import '../details/details_page.dart';
 import 'cart_controller.dart';
 
 class CartPage extends StatelessWidget {
@@ -44,6 +45,9 @@ class CartPage extends StatelessWidget {
                           },
                           child: Card(
                             child: ListTile(
+                              onTap: (){
+                                Get.to(DetailsPage(), arguments: item);
+                              },
                               title: cText(text: item),
                               // Add any other information you want to display for each item
                             ),

@@ -6,9 +6,7 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:myproj/config/configuration.dart';
-import 'package:myproj/custom/cButton.dart';
 import 'package:myproj/view/cart/cart_controller.dart';
-import 'package:myproj/view/dashboard/dashboard_controller.dart';
 import 'package:myproj/view/details/details_page.dart';
 import 'package:myproj/view/home/home_controller.dart';
 import '../../custom/cText.dart';
@@ -78,8 +76,6 @@ Widget _ListItems() {
   HomeController _controller = Get.find();
   CartController CC = Get.find();
 
-
-
   return Expanded(
     child: Obx(
           () => GridView.count(
@@ -90,7 +86,7 @@ Widget _ListItems() {
           return Card(
             child: ListTile(
               onTap: () {
-                Get.to(DetailsPage());
+                Get.to(DetailsPage(), arguments: item.uid);
               },
               title: Padding(
                 padding: EdgeInsets.fromLTRB(0.0, 15.0, 0.0, 0.0),
