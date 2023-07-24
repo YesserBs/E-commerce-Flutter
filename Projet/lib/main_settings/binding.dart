@@ -6,6 +6,7 @@ import 'package:myproj/view/cart/cart_controller.dart';
 import 'package:myproj/view/dashboard/dashboard_controller.dart';
 import 'package:myproj/view/details/details_controller.dart';
 import 'package:myproj/view/profile/profile_controller.dart';
+import 'package:myproj/view/save/save_controller.dart';
 import '../view/auth/login/login_controller.dart';
 import '../view/home/home_controller.dart';
 
@@ -19,5 +20,6 @@ class Binding extends Bindings {
     Get.lazyPut<ProfileController>(() => ProfileController());
     Get.lazyPut<CartController>(() => CartController());
     Get.lazyPut<DetailsController>(() => DetailsController());
+    Get.lazyPut<SaveController>(() => SaveController());
   }
 }

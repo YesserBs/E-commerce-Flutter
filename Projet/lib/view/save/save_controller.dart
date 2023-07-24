@@ -3,26 +3,22 @@ import 'package:get/get.dart';
 
 import '../../objects/article.dart';
 
-class CartController extends GetxController {
-  final addedArticles = <String>[].obs;
+class SaveController extends GetxController {
+  final SavedArticles = <String>[].obs;
 
-  Future<void> addUidToCart(String name, String uid) async {
-    if (!addedArticles.contains(uid)) {
-      addedArticles.add(uid);
-      print("Added articles: $addedArticles");
+  Future<void> addUidToSave(String name, String uid) async {
+    if (!SavedArticles.contains(uid)) {
+      SavedArticles.add(uid);
+      print("Added articles: $SavedArticles");
       showSnackBar(name, uid);
     } else {
       print("Item already in cart");
-    }
-    if (addedArticles.length > 0){
-      Article? article = await fetchArticleByUID(addedArticles[0]);
-      print(article?.nom);
     }
   }
 
   void showSnackBar(String name, String uid) {
     Get.snackbar(
-      'Item added to Cart', // Title of the snackbar
+      'Item saved', // Title of the snackbar
       name, // Message of the snackbar
       animationDuration: Duration(milliseconds: 700),
       duration: Duration(milliseconds: 1200), // Set the duration to 1 second (adjust as needed)
@@ -59,9 +55,6 @@ class CartController extends GetxController {
   }
 
   void removeCartItem(String item) {
-    addedArticles.remove(item);
+    SavedArticles.remove(item);
   }
-
-
-
 }

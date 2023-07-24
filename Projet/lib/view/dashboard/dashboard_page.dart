@@ -12,6 +12,7 @@ import 'package:myproj/view/profile/profile_page.dart';
 import '../../custom/cButton.dart';
 import '../cart/cart_page.dart';
 import '../home/home_page.dart';
+import '../save/save_page.dart';
 import 'dashboard_controller.dart';
 
 class DashboardPage extends StatelessWidget {
@@ -58,7 +59,7 @@ class DashboardPage extends StatelessWidget {
               children: [
                 HomePage(),
                 CartPage(),
-                CartPage(),
+                SavePage(),
               ],
             ),
           ),

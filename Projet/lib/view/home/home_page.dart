@@ -9,6 +9,7 @@ import 'package:myproj/config/configuration.dart';
 import 'package:myproj/view/cart/cart_controller.dart';
 import 'package:myproj/view/details/details_page.dart';
 import 'package:myproj/view/home/home_controller.dart';
+import 'package:myproj/view/save/save_controller.dart';
 import '../../custom/cText.dart';
 import '../../objects/user.dart';
 import '../auth/signup/signup_controller.dart';
@@ -75,6 +76,7 @@ Widget _SearchFormField() {
 Widget _ListItems() {
   HomeController _controller = Get.find();
   CartController CC = Get.find();
+  SaveController SC = Get.find();
 
   return Expanded(
     child: Obx(
@@ -116,7 +118,7 @@ Widget _ListItems() {
                               child: ElevatedButton(
                                 onPressed: () {
                                   CC.addUidToCart(item.nom, item.uid);
-                                },
+                                  },
                                 style: ElevatedButton.styleFrom(
                                   padding:
                                   EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0),
@@ -147,7 +149,7 @@ Widget _ListItems() {
                 right: 12,
                 child: GestureDetector(
                   onTap: () {
-                    print('Icon was tapped!');
+                    SC.addUidToSave(item.nom, item.uid);
                   },
                   child: Icon(CupertinoIcons.star, size: 22, color: config.secondaryColor),
                 ),
