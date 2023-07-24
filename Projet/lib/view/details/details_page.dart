@@ -4,7 +4,6 @@ import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:get/get_state_manager/src/rx_flutter/rx_obx_widget.dart';
 import 'package:myproj/config/configuration.dart';
-
 import '../../custom/cText.dart';
 import 'details_controller.dart';
 
@@ -22,10 +21,10 @@ class DetailsPage extends StatelessWidget {
         // Show an endless loading indicator while fetching the data
         return Center(
           child: CircularProgressIndicator(
-            valueColor: AlwaysStoppedAnimation<Color>(Colors.blue), // Customize the color if needed
+            strokeWidth: 0, // set the size of the circle
+            //valueColor: AlwaysStoppedAnimation<Color>(config.backgroundColor), // Change the color to your desired color
           ),
-        );
-      } else {
+        );      } else {
         // Show the details when data is fetched
         return SafeArea(
           child: Scaffold(

@@ -31,12 +31,12 @@ class CartPage extends StatelessWidget {
                           direction: DismissDirection.endToStart,
                           background: Container(
                             alignment: Alignment.centerRight,
-                            color: Colors.red,
+                            color: config.backgroundColor,
                             child: Padding(
                               padding: EdgeInsets.symmetric(horizontal: 16),
                               child: Icon(
                                 Icons.delete,
-                                color: Colors.white,
+                                color: config.secondaryColor,
                               ),
                             ),
                           ),

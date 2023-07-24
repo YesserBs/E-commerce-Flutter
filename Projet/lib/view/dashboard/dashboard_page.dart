@@ -58,6 +58,7 @@ class DashboardPage extends StatelessWidget {
               children: [
                 HomePage(),
                 CartPage(),
+                CartPage(),
               ],
             ),
           ),
@@ -79,6 +80,10 @@ class DashboardPage extends StatelessWidget {
               _bottomNavigationBarItem(
                 icon: CupertinoIcons.cart,
                 label: 'Cart',
+              ),
+              _bottomNavigationBarItem(
+                icon: CupertinoIcons.star,
+                label: 'Saved',
               ),
             ],
           ),

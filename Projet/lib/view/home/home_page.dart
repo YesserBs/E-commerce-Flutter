@@ -83,57 +83,76 @@ Widget _ListItems() {
         childAspectRatio: 1.7.h,
         children: List.generate(_controller.filteredArticles.length, (index) {
           final item = _controller.filteredArticles[index];
-          return Card(
-            child: ListTile(
-              onTap: () {
-                Get.to(DetailsPage(), arguments: item.uid);
-              },
-              title: Padding(
-                padding: EdgeInsets.fromLTRB(0.0, 15.0, 0.0, 0.0),
-                child: Column(
-                  children: [
-                    Container(
-                      height: 400.0.w,
-                      child: Image.asset(item.image),
-                    ),
-                    50.h.verticalSpace,
-                    cText(
-                      text: item.nom,
-                      changeFont: true,
-                    ),
-                    cText(text: item.marque, size: 35,),
-                    10.h.verticalSpace,
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          return Stack(
+            children: [
+              Card(
+                child: ListTile(
+                  onTap: () {
+                    Get.to(DetailsPage(), arguments: item.uid);
+                  },
+                  title: Padding(
+                    padding: EdgeInsets.fromLTRB(0.0, 15.0, 0.0, 0.0),
+                    child: Column(
                       children: [
-                        Text(
-                          "${item.prix.toString()} Dts",
-                          style: TextStyle(fontWeight: FontWeight.bold),
-                        ),
                         Container(
-                          child: ElevatedButton(
-                            onPressed: () {
-                              CC.addUidToCart(item.nom, item.uid);
-                            },
-                            style: ElevatedButton.styleFrom(
-                              padding:
-                              EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0),
-                              primary: config.backgroundColor,
-                              elevation: 0.0.sp,
+                          height: 400.0.w,
+                          child: Image.asset(item.image),
+                        ),
+                        50.h.verticalSpace,
+                        cText(
+                          text: item.nom,
+                          changeFont: true,
+                        ),
+                        cText(text: item.marque, size: 35,),
+                        10.h.verticalSpace,
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Text(
+                              "${item.prix.toString()} Dts",
+                              style: TextStyle(fontWeight: FontWeight.bold),
                             ),
-                            child: Icon(
-                              FontAwesomeIcons.plus,
-                              size: 18,
-                              color: Colors.black,
-                            ),
-                          ),
-                        )
+                            Container(
+                              child: ElevatedButton(
+                                onPressed: () {
+                                  CC.addUidToCart(item.nom, item.uid);
+                                },
+                                style: ElevatedButton.styleFrom(
+                                  padding:
+                                  EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0),
+                                  primary: config.backgroundColor,
+                                  elevation: 0.0.sp,
+                                ),
+                                child: Icon(
+                                  FontAwesomeIcons.plus,
+                                  size: 18,
+                                  color: Colors.black,
+                                ),
+                              ),
+                            )
+                          ],
+                        ),
                       ],
                     ),
-                  ],
+                  ),
                 ),
               ),
-            ),
+              Positioned(
+                top: 15,
+                right: 12,
+                child: Icon(CupertinoIcons.star_fill, size: 22, color: config.backgroundColor),
+              ),
+              Positioned(
+                top: 15,
+                right: 12,
+                child: GestureDetector(
+                  onTap: () {
+                    print('Icon was tapped!');
+                  },
+                  child: Icon(CupertinoIcons.star, size: 22, color: config.secondaryColor),
+                ),
+              ),
+            ],
           );
         }),
       ),
