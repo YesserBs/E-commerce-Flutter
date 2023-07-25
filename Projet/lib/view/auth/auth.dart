@@ -11,8 +11,6 @@ import '../../objects/user.dart';
 String auth() {
   final box = GetStorage();
   final isAuthenticated = box.read('isAuthenticated') ?? false;
-  print("$isAuthenticated");
-  deleteVariable();
   if (isAuthenticated) {
     return AppPages.DASHBOARD;
   } else{
@@ -45,19 +43,6 @@ void printUser(){
   }
   else{
     print("No user check printUser");
-  }
-}
-
-
-// Will be deleted later on as i will make the same function in the user class
-void retriveUserInfos(){
-  FirebaseAuth auth = FirebaseAuth.instance;
-  User? user = auth.currentUser;
-  TheUser? currentUser;
-
-  if (user != null) {
-    currentUser = TheUser.fromFirebaseUser(user);
-    print("email: ${currentUser.email} | uid: ${currentUser.uid}");
   }
 }
 

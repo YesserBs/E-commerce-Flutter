@@ -2,7 +2,6 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_keyboard_visibility/flutter_keyboard_visibility.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:myproj/config/configuration.dart';
@@ -112,7 +111,8 @@ Widget _ListItems() {
                           children: [
                             Text(
                               "${item.prix.toString()} Dts",
-                              style: TextStyle(fontWeight: FontWeight.bold),
+                              style: TextStyle(fontWeight: FontWeight.bold,
+                                fontSize: 16,),
                             ),
                             Container(
                               child: ElevatedButton(
@@ -126,8 +126,8 @@ Widget _ListItems() {
                                   elevation: 0.0.sp,
                                 ),
                                 child: Icon(
-                                  FontAwesomeIcons.plus,
-                                  size: 18,
+                                  CupertinoIcons.cart,
+                                  size: 22,
                                   color: Colors.black,
                                 ),
                               ),
