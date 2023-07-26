@@ -42,7 +42,7 @@ void printUser(){
     print("email: $email | uid: $uid");
   }
   else{
-    print("No user check printUser");
+    print("No user check printUser in auth");
   }
 }
 

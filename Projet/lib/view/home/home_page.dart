@@ -10,15 +10,8 @@ import 'package:myproj/view/details/details_page.dart';
 import 'package:myproj/view/home/home_controller.dart';
 import 'package:myproj/view/save/save_controller.dart';
 import '../../custom/cText.dart';
-import '../../objects/user.dart';
-import '../auth/signup/signup_controller.dart';
-
-
-
 
 class HomePage extends StatelessWidget {
-  UserController userController = UserController();
-  SignupController SC = Get.find();
 
   @override
   Widget build(BuildContext context) {
@@ -89,7 +82,7 @@ Widget _ListItems() {
               Card(
                 child: ListTile(
                   onTap: () {
-                    Get.to(DetailsPage(), arguments: item.uid);
+                    Get.to(DetailsPage(), arguments: item);
                   },
                   title: Padding(
                     padding: EdgeInsets.fromLTRB(0.0, 15.0, 0.0, 0.0),
@@ -117,7 +110,7 @@ Widget _ListItems() {
                             Container(
                               child: ElevatedButton(
                                 onPressed: () {
-                                  CC.addUidToCart(item.nom, item.uid);
+                                  CC.addUidToCart(item);
                                   },
                                 style: ElevatedButton.styleFrom(
                                   padding:

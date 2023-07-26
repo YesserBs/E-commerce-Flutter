@@ -4,23 +4,19 @@ import 'package:get/get.dart';
 import '../../objects/article.dart';
 
 class CartController extends GetxController {
-  final addedArticles = <String>[].obs;
+  final addedArticles = <Article>[].obs;
 
-  Future<void> addUidToCart(String name, String uid) async {
-    if (!addedArticles.contains(uid)) {
-      addedArticles.add(uid);
+  Future<void> addUidToCart(Article item) async {
+    if (!addedArticles.contains(item)) {
+      addedArticles.add(item);
       print("Added articles: $addedArticles");
-      showSnackBar(name, uid);
+      showSnackBar(item.nom);
     } else {
       print("Item already in cart");
     }
-    if (addedArticles.length > 0){
-      Article? article = await fetchArticleByUID(addedArticles[0]);
-      print(article?.nom);
-    }
   }
 
-  void showSnackBar(String name, String uid) {
+  void showSnackBar(String name) {
     Get.snackbar(
       'Item added to Cart', // Title of the snackbar
       name, // Message of the snackbar

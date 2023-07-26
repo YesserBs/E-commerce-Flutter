@@ -20,7 +20,6 @@ class CartPage extends StatelessWidget {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                cCard(),
                 cText(text: "Cart page", size: config.FontSizeTitle, changeFont: true),
                 SizedBox(height: 20),
                 Expanded(
@@ -30,7 +29,7 @@ class CartPage extends StatelessWidget {
                       itemBuilder: (context, index) {
                         final item = cartController.addedArticles[index];
                         return Dismissible(
-                          key: Key(item),
+                          key: Key(item.uid),
                           direction: DismissDirection.endToStart,
                           background: Container(
                             alignment: Alignment.centerRight,
@@ -44,16 +43,21 @@ class CartPage extends StatelessWidget {
                             ),
                           ),
                           onDismissed: (_) {
-                            cartController.removeCartItem(item);
+                            cartController.removeCartItem(item.uid);
                           },
-                          child: Card(
-                            child: ListTile(
-                              onTap: (){
-                                Get.to(DetailsPage(), arguments: item);
-                              },
-                              title: cText(text: item),
-                              // Add any other information you want to display for each item
-                            ),
+                          child: Column(
+                            children: [
+                              cCard(),
+                              Card(
+                                child: ListTile(
+                                  onTap: (){
+                                    Get.to(DetailsPage(), arguments: item);
+                                  },
+                                  title: cText(text: item.uid),
+                                  // Add any other information you want to display for each item
+                                ),
+                              ),
+                            ],
                           ),
                         );
                       },
