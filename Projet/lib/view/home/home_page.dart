@@ -87,7 +87,7 @@ Widget _ListItems() {
               Card(
                 child: ListTile(
                   onTap: () {
-                    Get.to(DetailsPage(), arguments: item.uid);
+                    Get.to(DetailsPage(), arguments: item);
                   },
                   title: Padding(
                     padding: EdgeInsets.fromLTRB(0.0, 15.0, 0.0, 0.0),

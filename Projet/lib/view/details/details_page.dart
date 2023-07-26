@@ -4,6 +4,7 @@ import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:get/get_state_manager/src/rx_flutter/rx_obx_widget.dart';
 import 'package:myproj/config/configuration.dart';
+import 'package:myproj/objects/article.dart';
 import '../../custom/cText.dart';
 import 'details_controller.dart';
 
@@ -12,35 +13,21 @@ class DetailsPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final arguments = Get.arguments;
-    _controller.fetchArticleByUid(arguments);
+    Article arguments = Get.arguments;
 
-    return Obx(() {
-      // Observe the article property in the controller
-      if (_controller.isLoading.value) {
-        // Show an endless loading indicator while fetching the data
-        return Center(
-          child: CircularProgressIndicator(
-            strokeWidth: 0, // set the size of the circle
-            //valueColor: AlwaysStoppedAnimation<Color>(config.backgroundColor), // Change the color to your desired color
-          ),
-        );      } else {
-        // Show the details when data is fetched
-        return SafeArea(
-          child: Scaffold(
-            body: Padding(
-              padding: EdgeInsets.all(20.0),
-              child: Center(
-                child: cText(
-                  text: _controller.article.value.nom,
-                  size: config.FontSizeTitle,
-                  changeFont: true,
-                ),
-              ),
+    return SafeArea(
+      child: Scaffold(
+        body: Padding(
+          padding: EdgeInsets.all(20.0),
+          child: Center(
+            child: cText(
+              text: arguments.nom,
+              size: config.FontSizeTitle,
+              changeFont: true,
             ),
           ),
-        );
-      }
-    });
+        ),
+      ),
+    );
   }
 }
