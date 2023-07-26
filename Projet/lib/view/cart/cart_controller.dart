@@ -5,22 +5,26 @@ import '../../objects/article.dart';
 
 class CartController extends GetxController {
   final addedArticles = <Article>[].obs;
+  final quantityList = <int>[].obs;
   var added = 1.obs;
 
 
   Future<void> addToCart(Article item) async {
     if (!addedArticles.contains(item)) {
+      item.added = 1;
       addedArticles.add(item);
-      print("Added articles: $addedArticles");
+      quantityList.add(item.added);
+      print("Added articles: $addedArticles Quantity list: $quantityList");
       showSnackBar(item.nom);
     } else {
       print("Item already in cart");
     }
   }
 
-  void increaseAdded(Article item)
+  void increaseAdded(Article item, int index)
   {
     item.added++;
+    quantityList[index]++;
     added.value = item.added;
     update();
   }
@@ -44,7 +48,9 @@ class CartController extends GetxController {
     );
   }
 
-  void removeCartItem(Article item) {
+  void removeCartItem(Article item, int index) {
     addedArticles.remove(item);
+    quantityList.removeAt(index);
+    update();
   }
 }

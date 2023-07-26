@@ -43,7 +43,7 @@ class CartPage extends StatelessWidget {
                             ),
                           ),
                           onDismissed: (_) {
-                            cartController.removeCartItem(item);
+                            cartController.removeCartItem(item, index);
                           },
                           child:
                           GestureDetector(
@@ -92,10 +92,10 @@ class CartPage extends StatelessWidget {
                                           },
                                           icon: Icon(CupertinoIcons.minus_rectangle, size: 20,),
                                         ),
-                                        Obx(() => Text(cartController.added.value.toString(), style: TextStyle(fontSize: 18))),
+                                        Obx(() => Text(cartController.quantityList.value[index]!.toString(), style: TextStyle(fontSize: 18))),
                                         IconButton(
                                           onPressed: () {
-                                            cartController.increaseAdded(item);
+                                            cartController.increaseAdded(item, index);
                                           },
                                           icon: Icon(CupertinoIcons.plus_rectangle, size: 20,),
                                         ),
