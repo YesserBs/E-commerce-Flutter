@@ -20,7 +20,6 @@ class CartPage extends StatelessWidget {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                cText(text: "Cart page", size: config.FontSizeTitle, changeFont: true),
                 SizedBox(height: 20),
                 Expanded(
                   child: Obx(
@@ -85,21 +84,29 @@ class CartPage extends StatelessWidget {
                                     // Right Section
                                     Row(
                                       children: [
-                                        IconButton(
-                                          onPressed: () {
-                                            if (item.added > 1)
-                                            cartController.decreaseAdded(item);
-                                          },
-                                          icon: Icon(CupertinoIcons.minus_rectangle, size: 20,),
+                                        GestureDetector(
+                                          child: Container(
+                                              height: 50,
+                                              child: Icon(CupertinoIcons.minus_rectangle, size: 20,)),
+                                          onTap: (){
+                                            if (item.added > 1){
+                                              cartController.decreaseAdded(item, index);
+                                            }
+                                          }
                                         ),
-                                        Obx(() => Text(cartController.quantityList.value[index]!.toString(), style: TextStyle(fontSize: 18))),
-                                        IconButton(
-                                          onPressed: () {
-                                            cartController.increaseAdded(item, index);
-                                          },
-                                          icon: Icon(CupertinoIcons.plus_rectangle, size: 20,),
+                                        Container(
+                                            height: 150.h,
+                                            width: 90.w,
+                                            child: Center(child: Obx(() => Text(cartController.quantityList.value[index]!.toString(), style: TextStyle(fontSize: 18))))),
+                                        GestureDetector(
+                                          child: Container(
+                                              height: 50,
+                                              child: Icon(CupertinoIcons.plus_rectangle, size: 20,)),
+                                            onTap: (){
+                                              cartController.increaseAdded(item, index);
+                                            }
                                         ),
-                                        20.w.horizontalSpace,
+                                        120.w.horizontalSpace,
                                         Stack(
                                           children: [
                                             Icon(Icons.star, color: config.backgroundColor,),

@@ -29,9 +29,10 @@ class CartController extends GetxController {
     update();
   }
 
-  void decreaseAdded(Article item)
+  void decreaseAdded(Article item, int index)
   {
     item.added--;
+    quantityList[index]--;
     added.value = item.added;
     update();
   }

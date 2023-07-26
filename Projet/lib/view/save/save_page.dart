@@ -21,7 +21,6 @@ class SavePage extends StatelessWidget {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                cText(text: "Save page", size: config.FontSizeTitle, changeFont: true),
                 SizedBox(height: 20),
                 Expanded(
                   child: Obx(
