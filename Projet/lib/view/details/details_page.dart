@@ -13,7 +13,7 @@ class DetailsPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final arguments = Get.arguments;
-    _controller.TheArticle = arguments;
+    _controller.fetchArticleByUid(arguments);
 
     return Obx(() {
       // Observe the article property in the controller
@@ -31,25 +31,10 @@ class DetailsPage extends StatelessWidget {
             body: Padding(
               padding: EdgeInsets.all(20.0),
               child: Center(
-                child: Column(
-                  children: [
-                    cText(
-                      text: _controller.TheArticle.nom,
-                      size: config.FontSizeTitle,
-                      changeFont: true,
-                    ),
-                    cText(
-                      text: "${_controller.TheArticle.prix.toString()} dts"
-                      ,
-                      size: config.FontSizeTitle,
-                      changeFont: true,
-                    ),
-                    cText(
-                      text: _controller.TheArticle.marque,
-                      size: config.FontSizeTitle,
-                      changeFont: true,
-                    ),
-                  ],
+                child: cText(
+                  text: _controller.article.value.nom,
+                  size: config.FontSizeTitle,
+                  changeFont: true,
                 ),
               ),
             ),

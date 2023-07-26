@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_keyboard_visibility/flutter_keyboard_visibility.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:myproj/config/configuration.dart';
@@ -10,8 +11,12 @@ import 'package:myproj/view/details/details_page.dart';
 import 'package:myproj/view/home/home_controller.dart';
 import 'package:myproj/view/save/save_controller.dart';
 import '../../custom/cText.dart';
+import '../../objects/user.dart';
+import '../auth/signup/signup_controller.dart';
+
 
 class HomePage extends StatelessWidget {
+  UserController userController = UserController();
 
   @override
   Widget build(BuildContext context) {
@@ -82,7 +87,7 @@ Widget _ListItems() {
               Card(
                 child: ListTile(
                   onTap: () {
-                    Get.to(DetailsPage(), arguments: item);
+                    Get.to(DetailsPage(), arguments: item.uid);
                   },
                   title: Padding(
                     padding: EdgeInsets.fromLTRB(0.0, 15.0, 0.0, 0.0),
@@ -104,13 +109,12 @@ Widget _ListItems() {
                           children: [
                             Text(
                               "${item.prix.toString()} Dts",
-                              style: TextStyle(fontWeight: FontWeight.bold,
-                                fontSize: 16,),
+                              style: TextStyle(fontWeight: FontWeight.bold),
                             ),
                             Container(
                               child: ElevatedButton(
                                 onPressed: () {
-                                  CC.addUidToCart(item);
+                                  CC.addToCart(item);
                                   },
                                 style: ElevatedButton.styleFrom(
                                   padding:
@@ -119,8 +123,8 @@ Widget _ListItems() {
                                   elevation: 0.0.sp,
                                 ),
                                 child: Icon(
-                                  CupertinoIcons.cart,
-                                  size: 22,
+                                  FontAwesomeIcons.plus,
+                                  size: 18,
                                   color: Colors.black,
                                 ),
                               ),
@@ -142,7 +146,7 @@ Widget _ListItems() {
                 right: 12,
                 child: GestureDetector(
                   onTap: () {
-                    SC.addUidToSave(item.nom, item.uid);
+                    SC.addToSave(item);
                   },
                   child: Icon(CupertinoIcons.star, size: 22, color: config.secondaryColor),
                 ),

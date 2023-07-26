@@ -52,13 +52,16 @@ class DashboardPage extends StatelessWidget {
               )
             ],
           )),
-          body: IndexedStack(
-            index: controller.tabIndex,
-            children: [
-              HomePage(),
-              CartPage(),
-              SavePage(),
-            ],
+          body: SafeArea(
+            // The page that will be displayed from stack depending on the index from bottomNavBar index returned
+            child: IndexedStack(
+              index: controller.tabIndex,
+              children: [
+                HomePage(),
+                CartPage(),
+                SavePage(),
+              ],
+            ),
           ),
           bottomNavigationBar: BottomNavigationBar(
             unselectedItemColor: Colors.grey,

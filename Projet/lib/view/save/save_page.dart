@@ -28,7 +28,7 @@ class SavePage extends StatelessWidget {
                       itemBuilder: (context, index) {
                         final item = controller.SavedArticles[index];
                         return Dismissible(
-                          key: Key(item),
+                          key: Key(item.uid),
                           direction: DismissDirection.endToStart,
                           background: Container(
                             alignment: Alignment.centerRight,
@@ -49,7 +49,7 @@ class SavePage extends StatelessWidget {
                               onTap: (){
                                 Get.to(DetailsPage(), arguments: item);
                               },
-                              title: cText(text: item),
+                              title: cText(text: item.nom),
                               // Add any other information you want to display for each item
                             ),
                           ),
