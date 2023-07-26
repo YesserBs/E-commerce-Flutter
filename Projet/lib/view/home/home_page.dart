@@ -108,7 +108,7 @@ Widget _ListItems() {
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
                             Text(
-                              "${item.prix.toString()} Dts",
+                              "${item.prix.toString()}\$",
                               style: TextStyle(fontWeight: FontWeight.bold),
                             ),
                             Container(

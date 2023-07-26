@@ -1,4 +1,6 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:myproj/config/configuration.dart';
 import 'package:myproj/custom/cText.dart';
@@ -43,13 +45,77 @@ class CartPage extends StatelessWidget {
                           onDismissed: (_) {
                             cartController.removeCartItem(item);
                           },
-                          child: Card(
-                            child: ListTile(
-                              onTap: (){
-                                Get.to(DetailsPage(), arguments: item);
-                              },
-                              title: cText(text: item.nom),
-                              // Add any other information you want to display for each item
+                          child:
+                          GestureDetector(
+                            onTap: (){
+                              Get.to(DetailsPage(), arguments: item);
+                            },
+                            child: Card(
+                              child: Padding(
+                                padding: const EdgeInsets.all(7),
+                                child: Row(
+                                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                  children: [
+                                    // Left Section
+                                    Row(
+                                      children: [
+                                        Image.asset(
+                                          item.image,
+                                          width: 100,
+                                          height: 100,
+                                        ),
+                                        35.w.horizontalSpace,
+                                        Column(
+                                          crossAxisAlignment: CrossAxisAlignment.start,
+                                          children: [
+                                            cText(text: item.nom, changeFont: true,),
+                                            cText(text: item.marque, size: 35,),
+                                            Text(
+                                              '${item.prix}\$',
+                                              style: TextStyle(
+                                                fontSize: 16,
+                                                fontWeight: FontWeight.bold,
+                                              ),
+                                            ),
+                                          ],
+                                        ),
+                                      ],
+                                    ),
+
+                                    // Right Section
+                                    Row(
+                                      children: [
+                                        IconButton(
+                                          onPressed: () {
+                                            if (item.added > 1)
+                                            cartController.decreaseAdded(item);
+                                          },
+                                          icon: Icon(CupertinoIcons.minus_rectangle, size: 20,),
+                                        ),
+                                        Obx(() => Text(cartController.added.value.toString(), style: TextStyle(fontSize: 18))),
+                                        IconButton(
+                                          onPressed: () {
+                                            cartController.increaseAdded(item);
+                                          },
+                                          icon: Icon(CupertinoIcons.plus_rectangle, size: 20,),
+                                        ),
+                                        20.w.horizontalSpace,
+                                        Stack(
+                                          children: [
+                                            Icon(Icons.star, color: config.backgroundColor,),
+                                            Positioned(
+                                              top: 0,
+                                              right: 0,
+                                              child: Icon(CupertinoIcons.star, size: 22),
+                                            ),
+                                          ],
+                                        ),
+                                        15.w.horizontalSpace
+                                      ],
+                                    ),
+                                  ],
+                                ),
+                              ),
                             ),
                           ),
                         );

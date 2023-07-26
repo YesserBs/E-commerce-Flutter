@@ -5,6 +5,8 @@ import '../../objects/article.dart';
 
 class CartController extends GetxController {
   final addedArticles = <Article>[].obs;
+  var added = 1.obs;
+
 
   Future<void> addToCart(Article item) async {
     if (!addedArticles.contains(item)) {
@@ -15,6 +17,21 @@ class CartController extends GetxController {
       print("Item already in cart");
     }
   }
+
+  void increaseAdded(Article item)
+  {
+    item.added++;
+    added.value = item.added;
+    update();
+  }
+
+  void decreaseAdded(Article item)
+  {
+    item.added--;
+    added.value = item.added;
+    update();
+  }
+
 
   void showSnackBar(String name) {
     Get.snackbar(

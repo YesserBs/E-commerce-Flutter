@@ -9,7 +9,6 @@ import '../../custom/cText.dart';
 import 'details_controller.dart';
 
 class DetailsPage extends StatelessWidget {
-  DetailsController _controller = Get.find();
 
   @override
   Widget build(BuildContext context) {
@@ -20,10 +19,25 @@ class DetailsPage extends StatelessWidget {
         body: Padding(
           padding: EdgeInsets.all(20.0),
           child: Center(
-            child: cText(
-              text: arguments.nom,
-              size: config.FontSizeTitle,
-              changeFont: true,
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                cText(
+                  text: arguments.nom,
+                  size: config.FontSizeTitle,
+                  changeFont: true,
+                ),
+                cText(
+                  text: arguments.marque,
+                  size: config.FontSizeTitle,
+                  changeFont: true,
+                ),
+                cText(
+                  text: arguments.prix.toString(),
+                  size: config.FontSizeTitle,
+                  changeFont: true,
+                ),
+              ],
             ),
           ),
         ),

@@ -1,4 +1,6 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:myproj/config/configuration.dart';
 import 'package:myproj/custom/cText.dart';
@@ -45,12 +47,56 @@ class SavePage extends StatelessWidget {
                             controller.removeCartItem(item);
                           },
                           child: Card(
-                            child: ListTile(
-                              onTap: (){
-                                Get.to(DetailsPage(), arguments: item);
-                              },
-                              title: cText(text: item.nom),
-                              // Add any other information you want to display for each item
+                            child: Padding(
+                              padding: const EdgeInsets.all(7),
+                              child: Row(
+                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                children: [
+                                  // Left Section
+                                  Row(
+                                    children: [
+                                      Image.asset(
+                                        item.image,
+                                        width: 100,
+                                        height: 100,
+                                      ),
+                                      35.w.horizontalSpace,
+                                      Column(
+                                        crossAxisAlignment: CrossAxisAlignment.start,
+                                        children: [
+                                          cText(text: item.nom, changeFont: true,),
+                                          cText(text: item.marque, size: 35,),
+                                          Text(
+                                            '${item.prix}\$',
+                                            style: TextStyle(
+                                              fontSize: 16,
+                                              fontWeight: FontWeight.bold,
+                                            ),
+                                          ),
+                                        ],
+                                      ),
+                                    ],
+                                  ),
+
+                                  // Right Section
+                                  Row(
+                                    children: [
+                                      60.w.horizontalSpace,
+                                      Stack(
+                                        children: [
+                                          Icon(CupertinoIcons.cart_fill, color: config.backgroundColor),
+                                          Positioned(
+                                            top: 0,
+                                            right: 0,
+                                            child: Icon(CupertinoIcons.cart),
+                                          ),
+                                        ],
+                                      ),
+                                      15.w.horizontalSpace
+                                    ],
+                                  ),
+                                ],
+                              ),
                             ),
                           ),
                         );
