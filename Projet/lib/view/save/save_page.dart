@@ -5,8 +5,6 @@ import 'package:get/get.dart';
 import 'package:myproj/config/configuration.dart';
 import 'package:myproj/custom/cText.dart';
 import 'package:myproj/view/save/save_controller.dart';
-import '../details/details_page.dart';
-
 
 class SavePage extends StatelessWidget {
   @override

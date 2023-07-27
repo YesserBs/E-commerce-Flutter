@@ -8,11 +8,9 @@ import 'package:get_storage/get_storage.dart';
 import 'package:myproj/config/configuration.dart';
 import 'package:myproj/main_settings/appPages.dart';
 import 'package:myproj/view/auth/auth.dart';
+import 'package:myproj/view/profile/profile_page.dart';
 
-void main() async {
-  WidgetsFlutterBinding.ensureInitialized();
-  await Firebase.initializeApp();
-  await GetStorage.init();
+void main() {
   runApp(MyApp());
 }
 
@@ -20,20 +18,26 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     ScreenUtil.init(context, designSize: Size(1080, 2340));
-    return GetMaterialApp(
-      initialRoute: auth(),
-      theme: ThemeData(colorScheme: ColorScheme.fromSwatch().copyWith(
-          primary: config.secondaryColor),
+    return MaterialApp(
+      home: SafeArea(
+        child: Scaffold(
+          body: CustomScrollView(
+            slivers: [
+              SliverAppBar(
+                backgroundColor: Colors.white,
+                expandedHeight: 274,
+                flexibleSpace: FlexibleSpaceBar(
+                  background: Image.asset("assets/images/soldes.jpeg"),
+                ),
+              ),
+              SliverFillRemaining(
+                hasScrollBody: true,
+                child: ProfilePage(),
+              ),
+            ],
+          ),
+        ),
       ),
-      getPages: AppPages.list,
-      debugShowCheckedModeBanner: false,
     );
   }
 }
-
-
-
-
-
-
-
