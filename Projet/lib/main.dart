@@ -1,14 +1,7 @@
-import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:get/get.dart';
-import 'package:get/get_navigation/src/root/get_material_app.dart';
-import 'package:get_storage/get_storage.dart';
 import 'package:myproj/config/configuration.dart';
-import 'package:myproj/main_settings/appPages.dart';
-import 'package:myproj/view/auth/auth.dart';
-import 'package:myproj/view/profile/profile_page.dart';
 
 void main() {
   runApp(MyApp());
@@ -24,10 +17,51 @@ class MyApp extends StatelessWidget {
           body: CustomScrollView(
             slivers: [
               SliverAppBar(
+                title: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Container(
+                        height: 40,
+                        width: 65,
+                        child: RoundedBorderTextButton(text: "Filter", onPressed: (){},)),
+                    Row(
+                      children: [
+                        Container(
+                            height: 40,
+                            width: 50,
+                            child: RoundedBorderTextButton(text: "All", onPressed: (){},)),
+                        SizedBox(width: 10.0,),
+                        Container(
+                            height: 40,
+                            width: 85,
+                            child: RoundedBorderTextButton(text: "Gadgets", onPressed: (){},)),
+                        SizedBox(width: 10.0,),
+                        Container(
+                            height: 40,
+                            width: 80,
+                            child: RoundedBorderTextButton(text: "Clothes", onPressed: (){},)),
+                      ],
+                    ),
+
+                  ],
+                ),
+                elevation: 0.0,
                 backgroundColor: Colors.white,
                 expandedHeight: 274,
+                pinned: true,
                 flexibleSpace: FlexibleSpaceBar(
-                  background: Image.asset("assets/images/soldes.jpeg"),
+                  background: Stack(
+                    children: [
+                      Image.asset("assets/images/soldes.jpeg"),
+                      Positioned(
+                        top: 210,
+                        right: 300,
+                        child: RoundedBorderTextButton(text: "S A L E S", onPressed: (){
+
+                        },)
+                      ),
+                    ],
+                  ),
                 ),
               ),
               SliverFillRemaining(
@@ -41,3 +75,93 @@ class MyApp extends StatelessWidget {
     );
   }
 }
+
+class ProfilePage extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return SingleChildScrollView(
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Container(
+            color: Colors.white,
+            height: 200,
+            child: Center(
+              child: Text(
+                "data",
+                style: TextStyle(fontSize: 20),
+              ),
+            ),
+          ),
+          Container(
+            color: Colors.white,
+            height: 200,
+            child: Center(
+              child: Text(
+                "data",
+                style: TextStyle(fontSize: 20),
+              ),
+            ),
+          ),
+          Container(
+            color: Colors.white,
+            height: 200,
+            child: Center(
+              child: Text(
+                "data",
+                style: TextStyle(fontSize: 20),
+              ),
+            ),
+          ),
+          Container(
+            color: Colors.white,
+            height: 200,
+            child: Center(
+              child: Text(
+                "data",
+                style: TextStyle(fontSize: 20),
+              ),
+            ),
+          ),
+          Container(
+            color: Colors.white,
+            height: 200,
+            child: Center(
+              child: Text(
+                "data",
+                style: TextStyle(fontSize: 20),
+              ),
+            ),
+          ),
+
+
+        ],
+      ),
+    );
+  }
+}
+
+
+class RoundedBorderTextButton extends StatelessWidget {
+  final String text;
+  final VoidCallback onPressed;
+
+  RoundedBorderTextButton({required this.text, required this.onPressed});
+
+  @override
+  Widget build(BuildContext context) {
+    return MaterialButton(
+      onPressed: onPressed,
+      //color: Colors.grey[200],
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(8.0),
+        side: BorderSide(color: Colors.greenAccent),
+      ),
+      child: Text(
+        text,
+        style: TextStyle(color: Colors.black),
+      ),
+    );
+  }
+}
+
