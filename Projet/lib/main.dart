@@ -1,7 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:myproj/config/configuration.dart';
 
 void main() {
   runApp(MyApp());
@@ -17,33 +16,42 @@ class MyApp extends StatelessWidget {
           body: CustomScrollView(
             slivers: [
               SliverAppBar(
-                title: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Container(
-                        height: 40,
-                        width: 65,
-                        child: RoundedBorderTextButton(text: "Filter", onPressed: (){},)),
-                    Row(
-                      children: [
-                        Container(
-                            height: 40,
-                            width: 50,
-                            child: RoundedBorderTextButton(text: "All", onPressed: (){},)),
-                        SizedBox(width: 10.0,),
-                        Container(
-                            height: 40,
-                            width: 85,
-                            child: RoundedBorderTextButton(text: "Gadgets", onPressed: (){},)),
-                        SizedBox(width: 10.0,),
-                        Container(
-                            height: 40,
-                            width: 80,
-                            child: RoundedBorderTextButton(text: "Clothes", onPressed: (){},)),
-                      ],
-                    ),
+                title: SingleChildScrollView(
+                  scrollDirection: Axis.horizontal,
+                  child: Row(
+                    children: [
+                      Container(
+                          height: 40,
+                          width: 81,
+                          child: RoundedBorderTextButton(text: "Filter", onPressed: (){},)),
+                      SizedBox(width: 10.0,),
+                      Container(
+                          height: 40,
+                          width: 81,
+                          child: RoundedBorderTextButton(text: "All", onPressed: (){},)),
+                      SizedBox(width: 10.0,),
+                      Container(
+                          height: 40,
+                          width: 81,
+                          child: RoundedBorderTextButton(text: "Gadgets", onPressed: (){},)),
+                      SizedBox(width: 10.0,),
+                      Container(
+                          height: 40,
+                          width: 81,
+                          child: RoundedBorderTextButton(text: "Clothes", onPressed: (){},)),
+                      SizedBox(width: 10.0,),
+                      Container(
+                          height: 40,
+                          width: 81,
+                          child: RoundedBorderTextButton(text: "other", onPressed: (){},)),
+                      SizedBox(width: 10.0,),
+                      Container(
+                          height: 40,
+                          width: 81,
+                          child: RoundedBorderTextButton(text: "other", onPressed: (){},)),
 
-                  ],
+                    ],
+                  ),
                 ),
                 elevation: 0.0,
                 backgroundColor: Colors.white,
@@ -65,7 +73,7 @@ class MyApp extends StatelessWidget {
                 ),
               ),
               SliverFillRemaining(
-                hasScrollBody: true,
+                hasScrollBody: false,
                 child: ProfilePage(),
               ),
             ],
@@ -154,12 +162,12 @@ class RoundedBorderTextButton extends StatelessWidget {
       onPressed: onPressed,
       //color: Colors.grey[200],
       shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(8.0),
+        borderRadius: BorderRadius.circular(7.0),
         side: BorderSide(color: Colors.greenAccent),
       ),
       child: Text(
         text,
-        style: TextStyle(color: Colors.black),
+        style: TextStyle(color: Colors.black, fontSize: 13, fontWeight: FontWeight.bold),
       ),
     );
   }
