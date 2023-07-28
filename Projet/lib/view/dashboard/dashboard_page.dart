@@ -8,6 +8,8 @@ import 'package:myproj/custom/cText.dart';
 import 'package:myproj/view/auth/auth.dart';
 import 'package:myproj/view/auth/signup/signup_controller.dart';
 import 'package:myproj/view/profile/profile_page.dart';
+import 'package:myproj/view/voucer/voucer_page.dart';
+import 'package:myproj/view/wallet/wallet_page.dart';
 import '../../custom/cButton.dart';
 import '../cart/cart_page.dart';
 import '../home/home_page.dart';
@@ -73,32 +75,34 @@ class DashboardPage extends StatelessWidget {
               index: controller.tabIndex,
               children: [
                 HomePage(),
+                VoucerPage(),
+                WalletPage(),
                 CartPage(),
-                SavePage(),
+                SavePage()
               ],
             ),
           ),
           bottomNavigationBar: BottomNavigationBar(
-            unselectedItemColor: Colors.grey,
-            selectedItemColor: config.secondaryColor,
+            unselectedItemColor: config.secondaryColor,
+            selectedItemColor: config.primaryColor,
             onTap: controller.changeTabIndex,
-            currentIndex: controller.tabIndex,
+            currentIndex: controller.tabIndex < 3 ? controller.tabIndex : controller.lastIndex,
             showSelectedLabels: false,
             showUnselectedLabels: false,
             type: BottomNavigationBarType.fixed,
-            backgroundColor: config.backgroundColor,
+            backgroundColor: Colors.white,
             elevation: 0,
             items: [
               _bottomNavigationBarItem(
-                icon: CupertinoIcons.home,
+                icon: FontAwesomeIcons.home,
                 label: 'Home',
               ),
               _bottomNavigationBarItem(
-                icon: CupertinoIcons.cart,
+                icon: CupertinoIcons.tickets_fill,
                 label: 'Cart',
               ),
               _bottomNavigationBarItem(
-                icon: CupertinoIcons.star,
+                icon: FontAwesomeIcons.wallet,
                 label: 'Saved',
               ),
             ],
@@ -110,7 +114,7 @@ class DashboardPage extends StatelessWidget {
 
   _bottomNavigationBarItem({required IconData icon, required String label}) {
     return BottomNavigationBarItem(
-      icon: Icon(icon),
+      icon: Icon(icon, size: 20),
       label: label,
     );
   }

@@ -7,6 +7,7 @@ import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:myproj/config/configuration.dart';
 import 'package:myproj/view/cart/cart_controller.dart';
+import 'package:myproj/view/dashboard/dashboard_controller.dart';
 import 'package:myproj/view/details/details_page.dart';
 import 'package:myproj/view/home/home_controller.dart';
 import 'package:myproj/view/save/save_controller.dart';
@@ -15,6 +16,7 @@ import '../../objects/user.dart';
 
 class HomePage extends StatelessWidget {
   UserController userController = UserController();
+  DashboardController DC = Get.find();
 
   @override
   Widget build(BuildContext context) {
@@ -34,12 +36,54 @@ class HomePage extends StatelessWidget {
                   Positioned(
                     top: 28.0,
                     right: 18.0,
-                    child: Icon(CupertinoIcons.cart, size: 32, color: Colors.grey[800],),
+                    child: GestureDetector(
+                        onTap: (){
+                          DC.changeTabIndex(3);
+                        },
+                        child: Icon(CupertinoIcons.cart, size: 32, color: Colors.grey[800],
+                        )
+                    ),
+                  ),
+                  Positioned(
+                      top: 118,
+                      left: 20.0,
+                      child: Text("-30%",
+                      style: TextStyle(
+                        fontSize: 50,
+                        fontWeight: FontWeight.bold,
+                      ),
+                  )
+
+                  ),
+                  Positioned(
+                    bottom: 60,
+                    left: 20.0,
+                    child: Container(
+                      height: 30,
+                      width: 110,
+                      decoration: BoxDecoration(
+                        border: Border.all(color: config.secondaryColor, width: 1.4),
+                        borderRadius: BorderRadius.circular(5.0)
+                      ),
+                      child: Container(
+                        child: Center(
+                          child: Text(
+                            "Check out",
+                            style: TextStyle(color: config.secondaryColor, fontSize: 20, fontWeight: FontWeight.bold),
+                          ),
+                        ),
+                      ),
+                    )
+
                   ),
                   Positioned(
                     top: 28.0,
                     right: 65.0,
-                    child: Icon(CupertinoIcons.heart, size: 32, color: Colors.grey[800]),
+                    child: GestureDetector(
+                      onTap: (){
+                        DC.changeTabIndex(3);
+                      },
+                        child: Icon(CupertinoIcons.heart, size: 32, color: Colors.grey[800])),
                   ),
                   Positioned(
                     bottom: -20,
@@ -50,11 +94,6 @@ class HomePage extends StatelessWidget {
                           decoration: BoxDecoration(
                               color: Colors.white,
                               borderRadius: BorderRadius.circular(40.0)),
-
-                          /*decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(10),
-                          )*/
-
                       )
                   )
                 ],
@@ -138,7 +177,7 @@ Widget _ListItems() {
                             ),
                             GestureDetector(
                               onTap: (){
-
+                                CC.addToCart(item);
                                 },
                               child: Container(
                                 child: Icon(
