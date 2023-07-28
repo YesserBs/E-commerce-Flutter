@@ -2,9 +2,11 @@ import 'package:flutter/material.dart';
 
 class config {
   // colors
-  static const Color primaryColor = Color(0xFF0093FF);
+  static const Color primaryColor = Color(0xFF06CE8E);
+  static const Color secondaryColor = Color(0xFF353C43);
   static const Color backgroundColor = Color(0xFFDCF0FF);
-  static const Color secondaryColor = Color(0xFF001E47);
+
+  static const Color lightGrey = Color(0xFFBBBBBB);
 
   // font sizes
   static const double FontSizeBigTitle = 135;

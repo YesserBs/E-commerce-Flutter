@@ -12,8 +12,6 @@ import 'package:myproj/view/home/home_controller.dart';
 import 'package:myproj/view/save/save_controller.dart';
 import '../../custom/cText.dart';
 import '../../objects/user.dart';
-import '../auth/signup/signup_controller.dart';
-
 
 class HomePage extends StatelessWidget {
   UserController userController = UserController();
@@ -24,24 +22,45 @@ class HomePage extends StatelessWidget {
       dismissOnCapturedTaps: true,
       child: SafeArea(
         child: Scaffold(
-          body: Padding(
-            padding: EdgeInsets.all(20.0),
-            child: Column(
-              children: [
-                _SearchFormField(),
-                100.h.verticalSpace,
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    DropdownButtonWidget(),
-                    createBorderedButton(Icon(Icons.filter_alt, color: Colors.black, size: 20,), (){})
-                  ],
-                ),
-                100.h.verticalSpace,
-                Divider(thickness: 2.5, color: config.backgroundColor, height: 0),
-                _ListItems()
-              ],
-            ),
+          body: Column(
+            children: [
+
+              Stack(
+                children: [
+                  Image.asset("assets/images/soldes.jpeg"),
+                  Positioned(
+                    child: _SearchFormField(),
+                  ),
+                  Positioned(
+                    top: 28.0,
+                    right: 18.0,
+                    child: Icon(CupertinoIcons.cart, size: 32, color: Colors.grey[800],),
+                  ),
+                  Positioned(
+                    top: 28.0,
+                    right: 65.0,
+                    child: Icon(CupertinoIcons.heart, size: 32, color: Colors.grey[800]),
+                  ),
+                  Positioned(
+                    bottom: -20,
+                      child: 
+                      Container(
+                        height: 30.0,
+                          width: 412.0,
+                          decoration: BoxDecoration(
+                              color: Colors.white,
+                              borderRadius: BorderRadius.circular(40.0)),
+
+                          /*decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(10),
+                          )*/
+
+                      )
+                  )
+                ],
+              ),
+              _ListItems()
+            ],
           ),
         ),
       ),
@@ -52,10 +71,14 @@ class HomePage extends StatelessWidget {
 Widget _SearchFormField() {
   HomeController _controller = Get.find();
   return Container(
-    margin: EdgeInsets.fromLTRB(8.0, 16.0, 8.0, 0.0),
+    margin: EdgeInsets.fromLTRB(25.0, 16.0, 110.0, 0.0),
     decoration: BoxDecoration(
-      color: Colors.grey[200],
-      borderRadius: BorderRadius.circular(40),
+      color: Colors.transparent,
+      borderRadius: BorderRadius.circular(10),
+      border: Border.all(
+        color: config.lightGrey, // Set the color of the border
+        width: 2.0, // Set the width of the border
+      ),
     ),
     child: TextFormField(
       onChanged: _controller.filterList,
@@ -63,13 +86,13 @@ Widget _SearchFormField() {
         border: InputBorder.none,
         prefixIcon: Icon(
           Icons.search,
-          color: config.secondaryColor,
+          color: Colors.grey,
         ),
       ),
+      style: TextStyle(color: Colors.black), // Set the text color of the TextFormField
     ),
   );
 }
-
 Widget _ListItems() {
   HomeController _controller = Get.find();
   CartController CC = Get.find();
@@ -77,21 +100,23 @@ Widget _ListItems() {
 
   return Expanded(
     child: Obx(
-          () => GridView.count(
+          () => Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 10.0),
+            child: GridView.count(
         crossAxisCount: 2,
-        childAspectRatio: 1.7.h,
+        childAspectRatio: 2.h,
         children: List.generate(_controller.filteredArticles.length, (index) {
-          final item = _controller.filteredArticles[index];
-          return Stack(
-            children: [
-              Card(
-                child: ListTile(
-                  onTap: () {
-                    Get.to(DetailsPage(), arguments: item);
-                  },
-                  title: Padding(
-                    padding: EdgeInsets.fromLTRB(0.0, 15.0, 0.0, 0.0),
-                    child: Column(
+            final item = _controller.filteredArticles[index];
+            return Stack(
+              children: [
+                Card(
+                  //color: Colors.red,
+                  child: ListTile(
+                    onTap: () {
+                      Get.to(DetailsPage(), arguments: item);
+                    },
+                    title: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Container(
                           height: 400.0.w,
@@ -100,7 +125,7 @@ Widget _ListItems() {
                         50.h.verticalSpace,
                         cText(
                           text: item.nom,
-                          changeFont: true,
+                          //changeFont: true,
                         ),
                         cText(text: item.marque, size: 35,),
                         10.h.verticalSpace,
@@ -109,23 +134,17 @@ Widget _ListItems() {
                           children: [
                             Text(
                               "${item.prix.toString()}\$",
-                              style: TextStyle(fontWeight: FontWeight.bold),
+                              style: TextStyle(fontWeight: FontWeight.bold, color: config.primaryColor, fontSize: 19),
                             ),
-                            Container(
-                              child: ElevatedButton(
-                                onPressed: () {
-                                  CC.addToCart(item);
-                                  },
-                                style: ElevatedButton.styleFrom(
-                                  padding:
-                                  EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0),
-                                  primary: config.backgroundColor,
-                                  elevation: 0.0.sp,
-                                ),
+                            GestureDetector(
+                              onTap: (){
+
+                                },
+                              child: Container(
                                 child: Icon(
-                                  FontAwesomeIcons.plus,
-                                  size: 18,
-                                  color: Colors.black,
+                                  CupertinoIcons.cart,
+                                  size: 25,
+                                  color: Colors.grey[500],
                                 ),
                               ),
                             )
@@ -135,26 +154,27 @@ Widget _ListItems() {
                     ),
                   ),
                 ),
-              ),
-              Positioned(
-                top: 15,
-                right: 12,
-                child: Icon(CupertinoIcons.star_fill, size: 22, color: config.backgroundColor),
-              ),
-              Positioned(
-                top: 15,
-                right: 12,
-                child: GestureDetector(
-                  onTap: () {
-                    SC.addToSave(item);
-                  },
-                  child: Icon(CupertinoIcons.star, size: 22, color: config.secondaryColor),
+                Positioned(
+                  top: 17,
+                  right: 10,
+                  child: Icon(CupertinoIcons.heart_fill, size: 25, color: Colors.red[300]),
                 ),
-              ),
-            ],
-          );
+
+                Positioned(
+                  top: 17,
+                  right: 10,
+                  child: GestureDetector(
+                    onTap: () {
+                      SC.addToSave(item);
+                    },
+                    child: Icon(CupertinoIcons.heart, size: 25, color: Colors.red[300]),
+                  ),
+                ),
+              ],
+            );
         }),
       ),
+          ),
     ),
   );
 }
@@ -164,7 +184,7 @@ OutlinedButton createBorderedButton(Widget child, VoidCallback onPressed) {
   return OutlinedButton(
     onPressed: onPressed,
     style: OutlinedButton.styleFrom(
-      backgroundColor: config.backgroundColor,
+      backgroundColor: config.lightGrey,
       //side: BorderSide(width: 1, color: Colors.black),
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
     ),

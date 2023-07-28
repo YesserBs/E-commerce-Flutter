@@ -7,7 +7,6 @@ import 'package:myproj/config/configuration.dart';
 import 'package:myproj/custom/cText.dart';
 import 'package:myproj/view/auth/auth.dart';
 import 'package:myproj/view/auth/signup/signup_controller.dart';
-import 'package:myproj/view/details/details_page.dart';
 import 'package:myproj/view/profile/profile_page.dart';
 import '../../custom/cButton.dart';
 import '../cart/cart_page.dart';
@@ -23,35 +22,51 @@ class DashboardPage extends StatelessWidget {
     return GetBuilder<DashboardController>(
       builder: (controller) {
         return Scaffold(
-          appBar: AppBar(backgroundColor: config.backgroundColor, elevation: 0, foregroundColor: config.secondaryColor,
+          appBar: controller.tabIndex == 0 // Check if the index is 0
+              ? null // Set the AppBar to null to hide it
+              : AppBar(
+            backgroundColor: config.backgroundColor,
+            elevation: 0,
+            foregroundColor: config.secondaryColor,
             actions: [
               IconButton(
-                icon: Icon(CupertinoIcons.person, color: Colors.black,),
+                icon: Icon(CupertinoIcons.person, color: Colors.black),
                 onPressed: () {
                   Get.to(ProfilePage());
                 },
               ),
             ],
           ),
-          drawer: Drawer(backgroundColor: config.backgroundColor,
-          child: Column(
-            children: [
-              800.h.verticalSpace,
-              CircleAvatar(
-                radius: 165.sp,
-                backgroundColor: config.secondaryColor,
-                child: CircleAvatar(
-                  radius: 160.sp,
-                  backgroundImage: AssetImage('assets/images/profile.jpg'),
+          drawer: Drawer(
+            backgroundColor: config.backgroundColor,
+            child: Column(
+              children: [
+                800.h.verticalSpace,
+                CircleAvatar(
+                  radius: 165.sp,
+                  backgroundColor: config.secondaryColor,
+                  child: CircleAvatar(
+                    radius: 160.sp,
+                    backgroundImage: AssetImage('assets/images/profile.jpg'),
+                  ),
                 ),
-              ),
-              150.h.verticalSpace,
-              Obx(() => cText(text: SC.username.value, changeFont: true, size: config.FontSizeTitle-20,),),
-              150.h.verticalSpace,
-              cButton(text: "Log out", icon: FontAwesomeIcons.signOut, onPressed: (){logOut();}
-              )
-            ],
-          )),
+                150.h.verticalSpace,
+                Obx(() => cText(
+                  text: SC.username.value,
+                  changeFont: true,
+                  size: config.FontSizeTitle - 20,
+                )),
+                150.h.verticalSpace,
+                cButton(
+                  text: "Log out",
+                  icon: FontAwesomeIcons.signOut,
+                  onPressed: () {
+                    logOut();
+                  },
+                ),
+              ],
+            ),
+          ),
           body: SafeArea(
             // The page that will be displayed from stack depending on the index from bottomNavBar index returned
             child: IndexedStack(
