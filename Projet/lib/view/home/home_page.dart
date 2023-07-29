@@ -81,7 +81,7 @@ class HomePage extends StatelessWidget {
                     right: 65.0,
                     child: GestureDetector(
                       onTap: (){
-                        DC.changeTabIndex(3);
+                        DC.changeTabIndex(4);
                       },
                         child: Icon(CupertinoIcons.heart, size: 32, color: Colors.grey[800])),
                   ),

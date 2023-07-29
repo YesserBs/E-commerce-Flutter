@@ -27,7 +27,7 @@ class DashboardPage extends StatelessWidget {
           appBar: controller.tabIndex == 0 // Check if the index is 0
               ? null // Set the AppBar to null to hide it
               : AppBar(
-            backgroundColor: config.backgroundColor,
+            backgroundColor: Colors.white,
             elevation: 0,
             foregroundColor: config.secondaryColor,
             actions: [
@@ -40,7 +40,7 @@ class DashboardPage extends StatelessWidget {
             ],
           ),
           drawer: Drawer(
-            backgroundColor: config.backgroundColor,
+            backgroundColor: Colors.white,
             child: Column(
               children: [
                 800.h.verticalSpace,
@@ -83,7 +83,7 @@ class DashboardPage extends StatelessWidget {
             ),
           ),
           bottomNavigationBar: BottomNavigationBar(
-            unselectedItemColor: config.secondaryColor,
+            unselectedItemColor: config.lightGrey,
             selectedItemColor: config.primaryColor,
             onTap: controller.changeTabIndex,
             currentIndex: controller.tabIndex < 3 ? controller.tabIndex : controller.lastIndex,
