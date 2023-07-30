@@ -32,7 +32,13 @@ class DashboardPage extends StatelessWidget {
             foregroundColor: config.secondaryColor,
             actions: [
               IconButton(
-                icon: Icon(CupertinoIcons.person, color: Colors.black),
+              icon: Icon(CupertinoIcons.heart, size: 32, color: Colors.grey[800]),
+              onPressed: () {
+                Get.to(ProfilePage());
+              },
+            ),
+              IconButton(
+                icon: Icon(CupertinoIcons.cart, size: 32, color: Colors.grey[800]),
                 onPressed: () {
                   Get.to(ProfilePage());
                 },

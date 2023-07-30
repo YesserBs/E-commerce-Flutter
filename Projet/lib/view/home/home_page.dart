@@ -170,6 +170,7 @@ Widget _ListItems() {
                         10.h.verticalSpace,
                         Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Text(
                               "${item.prix.toString()}\$",
@@ -180,11 +181,16 @@ Widget _ListItems() {
                                 CC.addToCart(item);
                                 },
                               child: Container(
-                                child: Icon(
+                                child: CC.addedArticles.contains(item) ? Icon(
+                                  CupertinoIcons.xmark,
+                                  size: 20,
+                                  color: config.primaryColor,
+                                )
+                                    : Icon(
                                   CupertinoIcons.cart,
                                   size: 25,
                                   color: Colors.grey[500],
-                                ),
+                                )
                               ),
                             )
                           ],
@@ -193,10 +199,11 @@ Widget _ListItems() {
                     ),
                   ),
                 ),
+
                 Positioned(
                   top: 17,
                   right: 10,
-                  child: Icon(CupertinoIcons.heart_fill, size: 25, color: Colors.red[300]),
+                  child: Icon(CupertinoIcons.heart_fill, size: 25, color: SC.SavedArticles.contains(item) ? Colors.red[300] : Colors.white),
                 ),
 
                 Positioned(
@@ -206,7 +213,7 @@ Widget _ListItems() {
                     onTap: () {
                       SC.addToSave(item);
                     },
-                    child: Icon(CupertinoIcons.heart, size: 25, color: Colors.red[300]),
+                    child: Icon(CupertinoIcons.heart, size: 25, color: SC.SavedArticles.contains(item) ? Colors.red[300] : config.secondaryColor),
                   ),
                 ),
               ],
