@@ -33,8 +33,8 @@ class HomePage extends StatelessWidget {
                     child: _SearchFormField(),
                   ),
                   Positioned(
-                    top: 28.0,
-                    right: 18.0,
+                    top: 12.0,
+                    right: 8.0,
                     child: GestureDetector(
                         onTap: (){
                           DC.changeTabIndex(3);
@@ -44,46 +44,55 @@ class HomePage extends StatelessWidget {
                     ),
                   ),
                   Positioned(
-                      top: 118,
+                      top: 145,
                       left: 20.0,
-                      child: Text("-30%",
-                      style: TextStyle(
-                        fontSize: 50,
-                        fontWeight: FontWeight.bold,
-                      ),
-                  )
-
-                  ),
-                  Positioned(
-                    bottom: 60,
-                    left: 20.0,
-                    child: Container(
-                      height: 30,
-                      width: 110,
-                      decoration: BoxDecoration(
-                        border: Border.all(color: config.secondaryColor, width: 1.4),
-                        borderRadius: BorderRadius.circular(5.0)
-                      ),
                       child: Container(
-                        child: Center(
-                          child: Text(
-                            "Check out",
-                            style: TextStyle(color: config.secondaryColor, fontSize: 20, fontWeight: FontWeight.bold),
-                          ),
+                        padding: EdgeInsets.all(8),
+                        decoration: BoxDecoration(
+                          color: Colors.white.withOpacity(0.6), // 70% opacity (slightly transparent white)
+                          borderRadius: BorderRadius.circular(10), // Adjust the value as per your desired border radius
                         ),
-                      ),
-                    )
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          children: [
+                            Text("-30%",
+                            style: TextStyle(
+                              fontSize: 50,
+                              fontWeight: FontWeight.bold,
+                            ),
+                        ),
+                            10.h.verticalSpace,
+                            Container(
+                              height: 30,
+                              width: 110,
+                              decoration: BoxDecoration(
+                                  border: Border.all(color: config.secondaryColor, width: 1.4),
+                                  borderRadius: BorderRadius.circular(5.0)
+                              ),
+                              child: Container(
+                                child: Center(
+                                  child: Text(
+                                    "Check out",
+                                    style: TextStyle(color: config.secondaryColor, fontSize: 20, fontWeight: FontWeight.bold),
+                                  ),
+                                ),
+                              ),
+                            )
+                          ],
+                        ),
+                      )
 
                   ),
                   Positioned(
-                    top: 28.0,
-                    right: 65.0,
+                    top: 12.0,
+                    right: 56.0,
                     child: GestureDetector(
                       onTap: (){
                         DC.changeTabIndex(4);
                       },
                         child: Icon(CupertinoIcons.heart, size: 32, color: Colors.grey[800])),
                   ),
+
                   Positioned(
                     bottom: -20,
                       child: 
@@ -109,10 +118,11 @@ class HomePage extends StatelessWidget {
 Widget _SearchFormField() {
   HomeController _controller = Get.find();
   return Container(
-    margin: EdgeInsets.fromLTRB(25.0, 16.0, 110.0, 0.0),
+    height: 32.0,
+    margin: EdgeInsets.fromLTRB(25.0, 12.0, 110.0, 0.0),
     decoration: BoxDecoration(
       color: Colors.transparent,
-      borderRadius: BorderRadius.circular(10),
+      borderRadius: BorderRadius.circular(9),
       border: Border.all(
         color: config.lightGrey, // Set the color of the border
         width: 2.0, // Set the width of the border
