@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
-import 'package:get_storage/get_storage.dart';
 import 'package:myproj/config/configuration.dart';
 import 'package:myproj/custom/cText.dart';
 import '../details/details_page.dart';
@@ -54,78 +53,76 @@ class CartPage extends StatelessWidget {
                                 Get.to(DetailsPage(), arguments: item);
                               },
                               child: Card(
-                                child: Padding(
-                                  padding: const EdgeInsets.all(7),
-                                  child: Row(
-                                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                    children: [
-                                      // Left Section
-                                      Row(
-                                        children: [
-                                          Image.asset(
-                                            item.image,
-                                            width: 100,
-                                            height: 100,
-                                          ),
-                                          35.w.horizontalSpace,
-                                          Column(
-                                            crossAxisAlignment: CrossAxisAlignment.start,
-                                            children: [
-                                              cText(text: item.nom, changeFont: true,),
-                                              cText(text: item.marque, size: 35,),
-                                              Text(
-                                                '${item.prix}\$',
-                                                style: TextStyle(
-                                                  fontSize: 16,
-                                                  fontWeight: FontWeight.bold,
-                                                ),
-                                              ),
-                                            ],
-                                          ),
-                                        ],
-                                      ),
+                                child: Row(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  mainAxisAlignment: MainAxisAlignment.start,
+                                  children: [
+                                    Image.asset(
+                                      item.image,
+                                      width: 100,
+                                      height: 100,
+                                    ),
+                                    Row(
+                                      children: [
+                                        80.w.horizontalSpace,
+                                        Column(
 
-                                      // Right Section
-                                      Row(
-                                        children: [
-                                          GestureDetector(
-                                              child: Container(
-                                                  height: 50,
-                                                  child: Icon(CupertinoIcons.minus_square, size: 20, color: config.primaryColor,)),
-                                              onTap: (){
-                                                if (item.added > 1){
-                                                  cartController.decreaseAdded(item, index);
-                                                }
-                                              }
-                                          ),
-                                          Container(
-                                              height: 150.h,
-                                              width: 90.w,
-                                              child: Center(child: Obx(() => Text(cartController.quantityList.value[index]!.toString(), style: TextStyle(fontSize: 18))))),
-                                          GestureDetector(
-                                              child: Container(
-                                                  height: 50,
-                                                  child: Icon(CupertinoIcons.plus_app_fill, size: 20, color: config.primaryColor,)),
-                                              onTap: (){
-                                                cartController.increaseAdded(item, index);
-                                              }
-                                          ),
-                                          120.w.horizontalSpace,
-                                          Stack(
-                                            children: [
-                                              Icon(CupertinoIcons.heart_fill, color: Colors.transparent, size: 22),
-                                              Positioned(
-                                                top: 0,
-                                                right: 0,
-                                                child: Icon(CupertinoIcons.heart, size: 22, color: config.secondaryColor,),
+                                          crossAxisAlignment: CrossAxisAlignment.start,
+                                          children: [
+                                            100.h.verticalSpace,
+                                            cText(text: item.nom, changeFont: true,),
+                                            Row(
+                                              children: [
+                                                cText(text: item.marque, size: 40,),
+                                                500.w.horizontalSpace,
+                                                GestureDetector(
+                                                    child: Container(
+                                                        height: 20,
+                                                        child: Icon(CupertinoIcons.minus_square, size: 20, color: config.primaryColor,)),
+                                                    onTap: (){
+                                                      if (item.added > 1){
+                                                        cartController.decreaseAdded(item, index);
+                                                      }
+                                                    }
+                                                ),
+                                                Container(
+                                                    height: 60.h,
+                                                    width: 90.w,
+                                                    child: Center(child: Obx(() => Text(cartController.quantityList.value[index]!.toString(), style: TextStyle(fontSize: 18))))),
+                                                GestureDetector(
+                                                    child: Container(
+                                                        height: 20,
+                                                        child: Icon(CupertinoIcons.plus_app_fill, size: 20, color: config.primaryColor,)),
+                                                    onTap: (){
+                                                      cartController.increaseAdded(item, index);
+                                                    }
+                                                ),
+                                                120.w.horizontalSpace,
+                                                Stack(
+                                                  children: [
+                                                    Icon(CupertinoIcons.heart_fill, color: Colors.transparent, size: 22),
+                                                    Positioned(
+                                                      top: 0,
+                                                      right: 0,
+                                                      child: Icon(CupertinoIcons.heart, size: 22, color: config.secondaryColor,),
+                                                    ),
+                                                  ],
+                                                ),
+                                                15.w.horizontalSpace
+                                              ],
+                                            ),
+                                            Text(
+                                              '${item.prix}\$',
+                                              style: TextStyle(
+                                                fontSize: 16,
+                                                fontWeight: FontWeight.bold,
                                               ),
-                                            ],
-                                          ),
-                                          15.w.horizontalSpace
-                                        ],
-                                      ),
-                                    ],
-                                  ),
+                                            ),
+                                          ],
+                                        ),
+                                      ],
+                                    ),
+                                  ],
                                 ),
                               ),
                             ),

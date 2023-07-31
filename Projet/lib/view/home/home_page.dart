@@ -81,7 +81,6 @@ class HomePage extends StatelessWidget {
                           ],
                         ),
                       )
-
                   ),
                   Positioned(
                     top: 12.0,
@@ -152,7 +151,8 @@ Widget _ListItems() {
             padding: const EdgeInsets.symmetric(horizontal: 10.0),
             child: GridView.count(
         crossAxisCount: 2,
-        childAspectRatio: 1.7.h,        children: List.generate(_controller.filteredArticles.length, (index) {
+        childAspectRatio: 1.7.h,
+              children: List.generate(_controller.filteredArticles.length, (index) {
             final item = _controller.filteredArticles[index];
             return Stack(
               children: [
