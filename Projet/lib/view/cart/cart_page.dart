@@ -36,12 +36,12 @@ class CartPage extends StatelessWidget {
                             direction: DismissDirection.endToStart,
                             background: Container(
                               alignment: Alignment.centerRight,
-                              color: config.backgroundColor,
+                              color: Colors.transparent,
                               child: Padding(
                                 padding: EdgeInsets.symmetric(horizontal: 16),
                                 child: Icon(
                                   Icons.delete,
-                                  color: config.secondaryColor,
+                                  color: config.lightRed,
                                 ),
                               ),
                             ),
@@ -91,7 +91,7 @@ class CartPage extends StatelessWidget {
                                           GestureDetector(
                                               child: Container(
                                                   height: 50,
-                                                  child: Icon(CupertinoIcons.minus_rectangle, size: 20,)),
+                                                  child: Icon(CupertinoIcons.minus_square, size: 20, color: config.primaryColor,)),
                                               onTap: (){
                                                 if (item.added > 1){
                                                   cartController.decreaseAdded(item, index);
@@ -105,7 +105,7 @@ class CartPage extends StatelessWidget {
                                           GestureDetector(
                                               child: Container(
                                                   height: 50,
-                                                  child: Icon(CupertinoIcons.plus_rectangle, size: 20,)),
+                                                  child: Icon(CupertinoIcons.plus_app_fill, size: 20, color: config.primaryColor,)),
                                               onTap: (){
                                                 cartController.increaseAdded(item, index);
                                               }
@@ -113,11 +113,11 @@ class CartPage extends StatelessWidget {
                                           120.w.horizontalSpace,
                                           Stack(
                                             children: [
-                                              Icon(Icons.star, color: config.backgroundColor,),
+                                              Icon(CupertinoIcons.heart_fill, color: Colors.transparent, size: 22),
                                               Positioned(
                                                 top: 0,
                                                 right: 0,
-                                                child: Icon(CupertinoIcons.star, size: 22),
+                                                child: Icon(CupertinoIcons.heart, size: 22, color: config.secondaryColor,),
                                               ),
                                             ],
                                           ),

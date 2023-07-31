@@ -12,13 +12,13 @@ class SignupPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(backgroundColor: config.backgroundColor, elevation: 0.0,
+      appBar: AppBar(backgroundColor: Colors.white, elevation: 0.0,
         leading: GestureDetector(
             onTap: (){
               Get.back();
             },
             child: Icon(Icons.arrow_back, color: config.secondaryColor,)),),
-      backgroundColor: config.backgroundColor,
+      backgroundColor: Colors.white,
       body: SafeArea(
         child: SingleChildScrollView(
           child: Padding(

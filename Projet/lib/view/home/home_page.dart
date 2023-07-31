@@ -2,7 +2,6 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_keyboard_visibility/flutter_keyboard_visibility.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:myproj/config/configuration.dart';
@@ -143,58 +142,69 @@ Widget _ListItems() {
             padding: const EdgeInsets.symmetric(horizontal: 10.0),
             child: GridView.count(
         crossAxisCount: 2,
-        childAspectRatio: 2.h,
-        children: List.generate(_controller.filteredArticles.length, (index) {
+        childAspectRatio: 1.7.h,        children: List.generate(_controller.filteredArticles.length, (index) {
             final item = _controller.filteredArticles[index];
             return Stack(
               children: [
                 Card(
-                  //color: Colors.red,
-                  child: ListTile(
+                  //color: Colors.blue,
+                  child: GestureDetector(
                     onTap: () {
                       Get.to(DetailsPage(), arguments: item);
                     },
-                    title: Column(
+                    child: Column(
+                      //mainAxisAlignment: MainAxisAlignment.start,
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Container(
-                          height: 400.0.w,
-                          child: Image.asset(item.image),
-                        ),
+                        Image.asset(item.image),
                         50.h.verticalSpace,
-                        cText(
-                          text: item.nom,
-                          //changeFont: true,
-                        ),
-                        cText(text: item.marque, size: 35,),
-                        10.h.verticalSpace,
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Text(
-                              "${item.prix.toString()}\$",
-                              style: TextStyle(fontWeight: FontWeight.bold, color: config.primaryColor, fontSize: 19),
-                            ),
-                            GestureDetector(
-                              onTap: (){
-                                CC.addToCart(item);
-                                },
-                              child: Container(
-                                child: CC.addedArticles.contains(item) ? Icon(
-                                  CupertinoIcons.xmark,
-                                  size: 20,
-                                  color: config.primaryColor,
-                                )
-                                    : Icon(
-                                  CupertinoIcons.cart,
-                                  size: 25,
-                                  color: Colors.grey[500],
-                                )
+                        Padding(
+                          padding: const EdgeInsets.fromLTRB(20.0, 5.0, 0, 0),
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              cText(
+                                text: item.nom,
+                                changeFont: true,
+                                size: 65,
                               ),
-                            )
-                          ],
-                        ),
+                              cText(text: item.marque, size: 35,),
+                              10.h.verticalSpace,
+                              Row(
+                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Text(
+                                    "${item.prix.toString()}\$",
+                                    style: TextStyle(fontWeight: FontWeight.bold, color: config.primaryColor, fontSize: 19),
+                                  ),
+                                  Row(
+                                    children: [
+                                      GestureDetector(
+                                        onTap: (){
+                                          CC.addToCart(item);
+                                        },
+                                        child: Container(
+                                            child: CC.addedArticles.contains(item) ? Icon(
+                                              CupertinoIcons.xmark,
+                                              size: 20,
+                                              color: config.primaryColor,
+                                            )
+                                                : Icon(
+                                              CupertinoIcons.cart,
+                                              size: 25,
+                                              color: Colors.grey[500],
+                                            )
+                                        ),
+                                      ),
+                                      75.w.horizontalSpace
+                                    ],
+                                  )
+                                ],
+                              ),
+                            ],
+                          ),
+                        )
                       ],
                     ),
                   ),
@@ -203,7 +213,7 @@ Widget _ListItems() {
                 Positioned(
                   top: 17,
                   right: 10,
-                  child: Icon(CupertinoIcons.heart_fill, size: 25, color: SC.SavedArticles.contains(item) ? Colors.red[300] : Colors.white),
+                  child: Icon(CupertinoIcons.heart_fill, size: 25, color: SC.SavedArticles.contains(item) ? Colors.red[300] : Colors.transparent),
                 ),
 
                 Positioned(
