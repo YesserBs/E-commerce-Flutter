@@ -25,10 +25,49 @@ class HomePage extends StatelessWidget {
         child: Scaffold(
           body: Column(
             children: [
-
               Stack(
                 children: [
                   Image.asset("assets/images/soldes.jpeg"),
+                  Positioned(
+                    top: 52,
+                      left: 5,
+                      right: 5,
+                      height: 34,
+                      child: ListView(
+                        scrollDirection: Axis.horizontal,
+                          children: [
+                            Container(
+                              width: 50,
+                              height: 36,
+                              decoration: BoxDecoration(
+                                color: Colors.white.withOpacity(0.7),
+                                border: Border.all(
+                                  color: config.lightGrey, // Specify the border color
+                                  width: 2.0, // Specify the border width
+                                ),
+                                borderRadius: BorderRadius.circular(10), // Adjust the value as per your desired border radius
+                              ),
+                              child: Center(
+                                child: Icon(
+                                  Icons.filter_alt,
+                                  color: config.lightGrey,
+                                  size: 20,
+                                ),
+                              ),
+                            ),
+                            50.0.w.horizontalSpace,
+                            buildTextContainer("promotions"),
+                            50.0.w.horizontalSpace,
+                            buildTextContainer("recommanded"),
+                            50.0.w.horizontalSpace,
+                            buildTextContainer("shoes"),
+                            50.0.w.horizontalSpace,
+                            buildTextContainer("hats"),
+                            50.0.w.horizontalSpace,
+                            buildTextContainer("pants")
+                          ],
+                      )
+                  ),
                   Positioned(
                     child: _SearchFormField(),
                   ),
@@ -44,12 +83,12 @@ class HomePage extends StatelessWidget {
                     ),
                   ),
                   Positioned(
-                      top: 145,
+                      top: 122,
                       left: 20.0,
                       child: Container(
                         padding: EdgeInsets.all(8),
                         decoration: BoxDecoration(
-                          color: Colors.white.withOpacity(0.6), // 70% opacity (slightly transparent white)
+                          color: Colors.white.withOpacity(0.7), // 70% opacity (slightly transparent white)
                           borderRadius: BorderRadius.circular(10), // Adjust the value as per your desired border radius
                         ),
                         child: Column(
@@ -94,7 +133,7 @@ class HomePage extends StatelessWidget {
 
                   Positioned(
                     bottom: -20,
-                      child: 
+                      child:
                       Container(
                         height: 30.0,
                           width: 412.0,
@@ -289,3 +328,28 @@ class _DropdownButtonWidgetState extends State<DropdownButtonWidget> {
   }
 }
 
+
+Container buildTextContainer(String text) {
+  return Container(
+    width: 100,
+    height: 36,
+    decoration: BoxDecoration(
+      color: Colors.white.withOpacity(0.3),
+      border: Border.all(
+        color: config.lightGrey,
+        width: 2.0, // Specify the border width
+      ),
+      borderRadius: BorderRadius.circular(10), // Adjust the value as per your desired border radius
+    ),
+    child: Center(
+      child: Text(
+        text,
+        style: TextStyle(
+          fontSize: 13,
+          fontWeight: FontWeight.bold,
+          color: config.lightGrey
+        ),
+      ),
+    ),
+  );
+}

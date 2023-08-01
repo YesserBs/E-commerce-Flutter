@@ -5,8 +5,9 @@ class DashboardController extends GetxController {
   var lastIndex = 0; // Must be < 2 => the number of elements in bottomNavBar-1
 
   void changeTabIndex(int index) {
-    lastIndex = tabIndex;
-    print(lastIndex);
+    if (tabIndex < 3){
+      lastIndex = tabIndex;
+    }
     tabIndex = index;
     update();
   }

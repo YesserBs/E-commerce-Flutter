@@ -37,10 +37,11 @@ class CartPage extends StatelessWidget {
                               alignment: Alignment.centerRight,
                               color: Colors.transparent,
                               child: Padding(
-                                padding: EdgeInsets.symmetric(horizontal: 16),
+                                padding: EdgeInsets.only(right: 25),
                                 child: Icon(
                                   Icons.delete,
                                   color: config.lightRed,
+                                  size: 28,
                                 ),
                               ),
                             ),
@@ -89,7 +90,7 @@ class CartPage extends StatelessWidget {
                                     ),
                                   ),
                                   Positioned(
-                                    right: 100,
+                                    right: 102,
                                       top: 40,
                                       child: GestureDetector(
                                           child: Container(
@@ -102,7 +103,7 @@ class CartPage extends StatelessWidget {
                                           }
                                       ),),
                                   Positioned(
-                                    right: 65,
+                                    right: 71,
                                     top: 40,
                                       child: Container(
                                           height: 60.h,
@@ -110,7 +111,7 @@ class CartPage extends StatelessWidget {
                                           child: Center(child: Obx(() => Text(cartController.quantityList.value[index]!.toString(), style: TextStyle(fontSize: 19))))),
                                   ),
                                   Positioned(
-                                    right: 40,
+                                    right: 48,
                                     top: 40,
                                       child: GestureDetector(
                                           child: Container(
@@ -122,8 +123,8 @@ class CartPage extends StatelessWidget {
                                       ),
                                   ),
                                   Positioned(
-                                      right: 10,
-                                    top: 40,
+                                      right: 13,
+                                    top: 42,
                                       //top: ,
                                       child: Stack(
                                         children: [

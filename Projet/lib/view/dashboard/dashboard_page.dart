@@ -7,7 +7,6 @@ import 'package:myproj/config/configuration.dart';
 import 'package:myproj/custom/cText.dart';
 import 'package:myproj/view/auth/auth.dart';
 import 'package:myproj/view/auth/signup/signup_controller.dart';
-import 'package:myproj/view/profile/profile_page.dart';
 import 'package:myproj/view/voucer/voucer_page.dart';
 import 'package:myproj/view/wallet/wallet_page.dart';
 import '../../custom/cButton.dart';
@@ -34,13 +33,13 @@ class DashboardPage extends StatelessWidget {
               IconButton(
               icon: Icon(CupertinoIcons.heart, size: 32, color: Colors.grey[800]),
               onPressed: () {
-                Get.to(ProfilePage());
+                controller.changeTabIndex(4);
               },
             ),
               IconButton(
                 icon: Icon(CupertinoIcons.cart, size: 32, color: Colors.grey[800]),
                 onPressed: () {
-                  Get.to(ProfilePage());
+                  controller.changeTabIndex(3);
                 },
               ),
             ],

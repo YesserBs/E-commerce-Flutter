@@ -7,6 +7,8 @@ import 'package:myproj/config/configuration.dart';
 import 'package:myproj/custom/cText.dart';
 import 'package:myproj/view/save/save_controller.dart';
 
+import '../details/details_page.dart';
+
 class SavePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
@@ -34,69 +36,66 @@ class SavePage extends StatelessWidget {
                             direction: DismissDirection.endToStart,
                             background: Container(
                               alignment: Alignment.centerRight,
-                              color: config.backgroundColor,
+                              color: Colors.transparent,
                               child: Padding(
-                                padding: EdgeInsets.symmetric(horizontal: 16),
+                                padding: EdgeInsets.symmetric(horizontal: 25),
                                 child: Icon(
                                   Icons.delete,
-                                  color: config.secondaryColor,
+                                  color: config.lightRed,
+                                  size: 28,
                                 ),
                               ),
                             ),
                             onDismissed: (_) {
                               controller.removeCartItem(item);
                             },
-                            child: Card(
-                              child: Padding(
-                                padding: const EdgeInsets.all(7),
-                                child: Row(
-                                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                  children: [
-                                    // Left Section
-                                    Row(
+                            child: GestureDetector(
+                              onTap: (){
+                                Get.to(DetailsPage(), arguments: item);
+                              },
+                              child: Stack(
+                                children: [
+                                  Card(
+                                    child: Row(
+                                      crossAxisAlignment: CrossAxisAlignment.start,
+                                      mainAxisAlignment: MainAxisAlignment.start,
                                       children: [
                                         Image.asset(
                                           item.image,
                                           width: 100,
                                           height: 100,
                                         ),
-                                        35.w.horizontalSpace,
-                                        Column(
-                                          crossAxisAlignment: CrossAxisAlignment.start,
+                                        Row(
                                           children: [
-                                            cText(text: item.nom, changeFont: true,),
-                                            cText(text: item.marque, size: 35,),
-                                            Text(
-                                              '${item.prix}\$',
-                                              style: TextStyle(
-                                                fontSize: 16,
-                                                fontWeight: FontWeight.bold,
-                                              ),
-                                            ),
-                                          ],
-                                        ),
-                                      ],
-                                    ),
+                                            80.w.horizontalSpace,
+                                            Column(
 
-                                    // Right Section
-                                    Row(
-                                      children: [
-                                        60.w.horizontalSpace,
-                                        Stack(
-                                          children: [
-                                            Icon(CupertinoIcons.cart_fill, color: config.backgroundColor),
-                                            Positioned(
-                                              top: 0,
-                                              right: 0,
-                                              child: Icon(CupertinoIcons.cart),
+                                              crossAxisAlignment: CrossAxisAlignment.start,
+                                              children: [
+                                                100.h.verticalSpace,
+                                                cText(text: item.nom, changeFont: true,),
+                                                cText(text: item.marque, size: 40,),
+                                                Text(
+                                                  '${item.prix}\$',
+                                                  style: TextStyle(
+                                                    fontSize: 16,
+                                                    fontWeight: FontWeight.bold,
+                                                  ),
+                                                ),
+                                              ],
                                             ),
                                           ],
                                         ),
-                                        15.w.horizontalSpace
                                       ],
                                     ),
-                                  ],
-                                ),
+                                  ),
+                                  Positioned(
+                                    right: 17,
+                                    top: 41,
+                                    //top: ,
+                                    child: Icon(CupertinoIcons.cart, size: 24, color: config.secondaryColor,),
+                                  )
+                                ],
                               ),
                             ),
                           );
