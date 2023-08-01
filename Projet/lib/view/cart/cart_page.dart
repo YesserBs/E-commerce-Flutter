@@ -5,6 +5,7 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
 import 'package:myproj/config/configuration.dart';
 import 'package:myproj/custom/cText.dart';
+import 'package:myproj/view/save/save_controller.dart';
 import '../details/details_page.dart';
 import 'cart_controller.dart';
 
@@ -12,6 +13,7 @@ class CartPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final CartController cartController = Get.find();
+    final SaveController SC = Get.find();
 
     return SafeArea(
       child: Scaffold(
@@ -126,16 +128,26 @@ class CartPage extends StatelessWidget {
                                       right: 13,
                                     top: 42,
                                       //top: ,
-                                      child: Stack(
+                                      child: Obx(()=> Stack(
                                         children: [
-                                          Icon(CupertinoIcons.heart_fill, color: Colors.transparent, size: 22),
+                                          Icon(CupertinoIcons.heart_fill,color: SC.SavedArticles.contains(item) ? Colors.red[300] : Colors.transparent, size: 22),
                                           Positioned(
                                             top: 0,
                                             right: 0,
-                                            child: Icon(CupertinoIcons.heart, size: 22, color: config.secondaryColor,),
+                                            child: GestureDetector(
+                                                onTap: (){
+                                                  if (!SC.SavedArticles.contains(item))
+                                                    {
+                                                      SC.addToSave(item);
+                                                    }
+                                                  else {
+                                                    SC.removeCartItem(item);
+                                                  }
+                                                },
+                                                child: Icon(CupertinoIcons.heart, size: 22, color: SC.SavedArticles.contains(item) ? Colors.red[300] : config.secondaryColor)),
                                           ),
                                         ],
-                                      ),
+                                      )),
                                   )
                                 ],
                               ),
