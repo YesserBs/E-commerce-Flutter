@@ -231,7 +231,14 @@ Widget _ListItems() {
                                     children: [
                                       GestureDetector(
                                         onTap: (){
-                                          CC.addToCart(item);
+                                          int SaveIndex = CC.addedArticles.indexOf(item);
+                                          if (!CC.addedArticles.contains(item))
+                                          {
+                                            CC.addToCart(item);
+                                          }
+                                          else {
+                                            CC.removeCartItem(item, SaveIndex);
+                                          }
                                         },
                                         child: Container(
                                             child: CC.addedArticles.contains(item) ? Icon(
@@ -270,7 +277,13 @@ Widget _ListItems() {
                   right: 10,
                   child: GestureDetector(
                     onTap: () {
-                      SC.addToSave(item);
+                      if (!SC.SavedArticles.contains(item))
+                      {
+                        SC.addToSave(item);
+                      }
+                      else {
+                        SC.removeCartItem(item);
+                      }
                     },
                     child: Icon(CupertinoIcons.heart, size: 25, color: SC.SavedArticles.contains(item) ? Colors.red[300] : config.secondaryColor),
                   ),
