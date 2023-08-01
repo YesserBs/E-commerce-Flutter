@@ -231,13 +231,13 @@ Widget _ListItems() {
                                     children: [
                                       GestureDetector(
                                         onTap: (){
-                                          int SaveIndex = CC.addedArticles.indexOf(item);
+                                          int CartIndex = CC.addedArticles.indexOf(item);
                                           if (!CC.addedArticles.contains(item))
                                           {
                                             CC.addToCart(item);
                                           }
                                           else {
-                                            CC.removeCartItem(item, SaveIndex);
+                                            CC.removeCartItem(item, CartIndex);
                                           }
                                         },
                                         child: Container(
