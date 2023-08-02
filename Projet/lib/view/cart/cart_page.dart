@@ -23,7 +23,6 @@ class CartPage extends StatelessWidget {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                SizedBox(height: 20),
                 Obx(() =>
                     Expanded(
                     child: cartController.addedArticles.length > 0
