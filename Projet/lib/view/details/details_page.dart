@@ -11,6 +11,11 @@ import '../../custom/cText.dart';
 import 'details_controller.dart';
 
 class DetailsPage extends StatelessWidget {
+  final List<String> imagePaths = [
+    "assets/images/shoe.webp",
+    "assets/images/shoe2.webp",
+    "assets/images/shoe3.webp",
+  ];
 
   @override
   Widget build(BuildContext context) {
@@ -25,7 +30,12 @@ class DetailsPage extends StatelessWidget {
                 450.h.verticalSpace,
                 Container(
                   height: 350,
-                  color: Colors.grey,
+                  child: PageView.builder(
+                    itemCount: imagePaths.length,
+                    itemBuilder: (context, index) {
+                      return ShoeImage(imagePath: imagePaths[index]);
+                    },
+                  ),
                 ),
                 Padding(
                   padding: const EdgeInsets.only(left: 20.0, right: 20.0),
@@ -66,7 +76,7 @@ class DetailsPage extends StatelessWidget {
                       ),
                       50.h.verticalSpace,
                       Text("${arguments.prix.toString()}\$",
-                      style: TextStyle(fontWeight: FontWeight.bold, fontSize: 26)
+                          style: TextStyle(fontWeight: FontWeight.bold, fontSize: 26)
                       )
                     ],
                   ),
@@ -74,6 +84,24 @@ class DetailsPage extends StatelessWidget {
               ],
             ),
           ),
+        ),
+      ),
+    );
+  }
+}
+
+class ShoeImage extends StatelessWidget {
+  final String imagePath;
+
+  const ShoeImage({required this.imagePath});
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      decoration: BoxDecoration(
+        image: DecorationImage(
+          image: AssetImage(imagePath),
+          fit: BoxFit.cover,
         ),
       ),
     );
