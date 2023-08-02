@@ -49,15 +49,3 @@ void printUser(){
 }
 
 
-// Will be deleted later on as i will make the same function in the user class
-void retriveUserInfos(){
-  FirebaseAuth auth = FirebaseAuth.instance;
-  User? user = auth.currentUser;
-  TheUser? currentUser;
-
-  if (user != null) {
-    currentUser = TheUser.fromFirebaseUser(user);
-    print("email: ${currentUser.email} | uid: ${currentUser.uid}");
-  }
-}
-
