@@ -62,7 +62,7 @@ class CartPage extends StatelessWidget {
                                       mainAxisAlignment: MainAxisAlignment.start,
                                       children: [
                                         Image.asset(
-                                          item.image,
+                                          item.image[0],
                                           width: 100,
                                           height: 100,
                                         ),

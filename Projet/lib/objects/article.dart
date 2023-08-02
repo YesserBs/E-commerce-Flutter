@@ -1,7 +1,7 @@
 class Article {
   String uid;
   String nom;
-  String image;
+  List<String> image; // New field to store the images
   String marque;
   int prix;
   int added;
@@ -9,7 +9,7 @@ class Article {
   Article({
     this.uid = '',
     this.nom = '',
-    this.image = '',
+    this.image = const [], // Initialize the image list as an empty list
     this.marque = '',
     this.prix = 0,
     this.added = 0,

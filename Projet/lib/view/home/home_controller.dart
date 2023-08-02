@@ -23,10 +23,10 @@ class HomeController extends GetxController {
         return Article(
           uid: doc.id,
           nom: data?['nom'] as String? ?? '',
-          image: data?['image'] as String? ?? '',
           marque: data?['marque'] as String? ?? '',
           prix: data?['prix'] as int? ?? 0,
           added: data?['added'] as int? ?? 0,
+          image: List<String>.from(data?['image'] ?? []), // Fetch and store the 'image' array
         );
       }).toList();
       articles.value = fetchedArticles;
@@ -35,6 +35,7 @@ class HomeController extends GetxController {
       print('Error fetching articles: $e');
     }
   }
+
 
   void filterList(String value) {
     if (value.isEmpty) {

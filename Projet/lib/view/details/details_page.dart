@@ -6,15 +6,9 @@ import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:myproj/config/configuration.dart';
 import 'package:myproj/objects/article.dart';
-import '../../custom/cText.dart';
 
 
 class DetailsPage extends StatelessWidget {
-  final List<String> imagePaths = [
-    "assets/images/shoe.webp",
-    "assets/images/shoe2.webp",
-    "assets/images/shoe3.webp",
-  ];
 
   @override
   Widget build(BuildContext context) {
@@ -53,7 +47,7 @@ class DetailsPage extends StatelessWidget {
                     children: [
                       Container(
                         height: 410,
-                        child: ShoeCarousel(imagePaths: imagePaths),
+                        child: ShoeCarousel(imagePaths: arguments.image),
                       ),
                       Padding(
                         padding: const EdgeInsets.only(left: 20.0, right: 20.0),

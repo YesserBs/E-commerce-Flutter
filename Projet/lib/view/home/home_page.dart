@@ -205,7 +205,7 @@ Widget _ListItems() {
                       //mainAxisAlignment: MainAxisAlignment.start,
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Image.asset(item.image),
+                        Image.asset(item.image[0]),
                         50.h.verticalSpace,
                         Padding(
                           padding: const EdgeInsets.fromLTRB(20.0, 5.0, 0, 0),
