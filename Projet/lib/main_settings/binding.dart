@@ -19,7 +19,7 @@ class Binding extends Bindings {
     Get.lazyPut<SignupController>(() => SignupController());
     Get.lazyPut<ProfileController>(() => ProfileController());
     Get.lazyPut<CartController>(() => CartController());
-    Get.lazyPut<DetailsController>(() => DetailsController());
     Get.lazyPut<SaveController>(() => SaveController());
+    Get.put(DetailsController());
   }
 }

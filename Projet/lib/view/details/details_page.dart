@@ -7,6 +7,7 @@ import 'package:get/get_core/src/get_main.dart';
 import 'package:myproj/config/configuration.dart';
 import 'package:myproj/objects/article.dart';
 import 'package:myproj/view/cart/cart_controller.dart';
+import 'package:myproj/view/details/details_controller.dart';
 import 'package:myproj/view/save/save_controller.dart';
 
 
@@ -17,6 +18,7 @@ class DetailsPage extends StatelessWidget {
     Article arguments = Get.arguments;
     CartController CC = Get.find();
     SaveController SC = Get.find();
+    DetailsController DC = Get.find();
 
     return Scaffold(
       body: SafeArea(
@@ -56,21 +58,32 @@ class DetailsPage extends StatelessWidget {
                                     ),
                                   ],
                                 ),
-                                Stack(
-                                  children: [
-                                    Icon(
-                                      CupertinoIcons.heart_fill,
-                                      color: Colors.transparent,
-                                      size: 28,
-                                    ),
-                                    Positioned(
-                                      child: Icon(
-                                        CupertinoIcons.heart,
-                                        color: Colors.grey[700],
+                                GestureDetector(
+                                  onTap: (){
+                                    if (!SC.SavedArticles.contains(arguments))
+                                    {
+                                      SC.addToSave(arguments);
+                                    }
+                                    else {
+                                      SC.removeCartItem(arguments);
+                                    }
+                                  },
+                                  child: Obx(() => Stack(
+                                    children: [
+                                      Icon(
+                                        CupertinoIcons.heart_fill,
+                                        color: SC.SavedArticles.contains(arguments) ? Colors.red[300] : Colors.transparent,
                                         size: 28,
                                       ),
-                                    )
-                                  ],
+                                      Positioned(
+                                        child: Icon(
+                                          CupertinoIcons.heart,
+                                          color: SC.SavedArticles.contains(arguments) ? Colors.red[300] : config.secondaryColor,
+                                          size: 28,
+                                        ),
+                                      )
+                                    ],
+                                  )),
                                 )
                               ],
                             ),
@@ -119,24 +132,38 @@ class DetailsPage extends StatelessWidget {
                       Row(
                         children: [
                           120.w.horizontalSpace,
-                          Obx(() => Icon(CupertinoIcons.minus_square,
-                            color: CC.addedArticles.contains(arguments)
-                                ? config.lightGrey
-                                : config.primaryColor,
-                            size: 37,),),
+                          GestureDetector(
+                            onTap: (){
+                              if (!CC.addedArticles.contains(arguments)){
+                                DC.decreaseQuantity();
+                              }
+                            },
+                            child: Obx(() => Icon(CupertinoIcons.minus_square,
+                              color: CC.addedArticles.contains(arguments)
+                                  ? config.lightGrey
+                                  : config.primaryColor,
+                              size: 37,),),
+                          ),
                           Obx(() => Container(
                               height: 50,
                               width: 35,
                               //color: Colors.red,
-                              child: Center(child: Text("1", style: TextStyle(fontSize: 20,
+                              child: Center(child: Text(DC.quantity.value.toString(), style: TextStyle(fontSize: 20,
                                 color: CC.addedArticles.contains(arguments)
                                     ? config.lightGrey
                                     : config.secondaryColor,),))),),
-                          Obx(() => Icon(CupertinoIcons.plus_app_fill,
-                            color: CC.addedArticles.contains(arguments)
-                                ? config.lightGrey
-                                : config.primaryColor,
-                            size: 37,),)
+                          Obx(() => GestureDetector(
+                            onTap: (){
+                              if (!CC.addedArticles.contains(arguments)){
+                                DC.increaseQuantity();
+                              }
+                            },
+                            child: Icon(CupertinoIcons.plus_app_fill,
+                              color: CC.addedArticles.contains(arguments)
+                                  ? config.lightGrey
+                                  : config.primaryColor,
+                              size: 37,),
+                          ),)
                         ],
                       ),
                       Row(
