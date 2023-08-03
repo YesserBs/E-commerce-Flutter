@@ -88,7 +88,7 @@ class HomePage extends StatelessWidget {
                       child: Container(
                         padding: EdgeInsets.all(8),
                         decoration: BoxDecoration(
-                          color: Colors.white.withOpacity(0.7), // 70% opacity (slightly transparent white)
+                          color: Colors.white.withOpacity(0.8),
                           borderRadius: BorderRadius.circular(10), // Adjust the value as per your desired border radius
                         ),
                         child: Column(

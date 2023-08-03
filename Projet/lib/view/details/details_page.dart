@@ -6,6 +6,8 @@ import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:myproj/config/configuration.dart';
 import 'package:myproj/objects/article.dart';
+import 'package:myproj/view/cart/cart_controller.dart';
+import 'package:myproj/view/save/save_controller.dart';
 
 
 class DetailsPage extends StatelessWidget {
@@ -13,33 +15,13 @@ class DetailsPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     Article arguments = Get.arguments;
+    CartController CC = Get.find();
+    SaveController SC = Get.find();
 
-    return SafeArea(
-      child: Scaffold(
-        body: Column(
+    return Scaffold(
+      body: SafeArea(
+        child: Column(
           children: [
-            Row(
-              mainAxisAlignment: MainAxisAlignment.start,
-              children: [
-                GestureDetector(
-                  onTap: (){
-                    print("Back");
-                  },
-                  child: Container(
-                    color: Colors.transparent,
-                    height: 130.h,
-                    width: 100,
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.start,
-                      children: [
-                        80.w.horizontalSpace,
-                        Icon(CupertinoIcons.back, size: 27, color: Colors.grey[800],),
-                      ],
-                    ),
-                  ),
-                ),
-              ],
-            ),
             Expanded(
               child: SingleChildScrollView(
                 child: Center(
@@ -126,7 +108,7 @@ class DetailsPage extends StatelessWidget {
               ),
             ),
             Container(
-              height: 200.h,
+              height: 175.h,
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: [
@@ -137,25 +119,57 @@ class DetailsPage extends StatelessWidget {
                       Row(
                         children: [
                           120.w.horizontalSpace,
-                          Icon(CupertinoIcons.minus_square, color: config.primaryColor,size: 37,),
-                          Container(
-                            height: 50,
+                          Obx(() => Icon(CupertinoIcons.minus_square,
+                            color: CC.addedArticles.contains(arguments)
+                                ? config.lightGrey
+                                : config.primaryColor,
+                            size: 37,),),
+                          Obx(() => Container(
+                              height: 50,
                               width: 35,
                               //color: Colors.red,
-                              child: Center(child: Text("1", style: TextStyle(fontSize: 20, color: config.secondaryColor),))),
-                          Icon(CupertinoIcons.plus_app_fill, color: config.primaryColor, size: 37,),
+                              child: Center(child: Text("1", style: TextStyle(fontSize: 20,
+                                color: CC.addedArticles.contains(arguments)
+                                    ? config.lightGrey
+                                    : config.secondaryColor,),))),),
+                          Obx(() => Icon(CupertinoIcons.plus_app_fill,
+                            color: CC.addedArticles.contains(arguments)
+                                ? config.lightGrey
+                                : config.primaryColor,
+                            size: 37,),)
                         ],
                       ),
                       Row(
                         children: [
-                          Container(
-                            height: 50,
-                            width: 560.w,
-                            decoration: BoxDecoration(
-                              color: config.primaryColor,
-                              borderRadius: BorderRadius.circular(10)
-                            ),
-                            child: Center(child: Text("ADD TO CART", style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold, color: Colors.white),)),
+                          GestureDetector(
+                            onTap: (){
+                              int CartIndex = CC.addedArticles.indexOf(arguments);
+                              if (!CC.addedArticles.contains(arguments))
+                              {
+                                CC.addToCart(arguments);
+                              }
+                              else {
+                                CC.removeCartItem(arguments, CartIndex);
+                              }
+                            },
+                            child: Obx(() =>
+                            Container(
+                              height: 50,
+                              width: 560.w,
+                              decoration: BoxDecoration(
+                                  color:
+                                  CC.addedArticles.contains(arguments)
+                                      ? config.lightGrey
+                                      : config.primaryColor,
+                                  borderRadius: BorderRadius.circular(10)
+                              ),
+                              child: Center(child: Text(
+                                  CC.addedArticles.contains(arguments)
+                                      ? "REMOVE"
+                                      : "ADD TO CART",
+
+                                  style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold, color: Colors.white),)),
+                            )),
                           ),
                           100.w.horizontalSpace
                         ],
