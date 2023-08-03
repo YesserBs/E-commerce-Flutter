@@ -33,13 +33,13 @@ class DashboardPage extends StatelessWidget {
               IconButton(
               icon: Icon(CupertinoIcons.heart, size: 32, color: Colors.grey[800]),
               onPressed: () {
-                controller.changeTabIndex(4);
+                controller.changeTabIndex(5);
               },
             ),
               IconButton(
                 icon: Icon(CupertinoIcons.cart, size: 32, color: Colors.grey[800]),
                 onPressed: () {
-                  controller.changeTabIndex(3);
+                  controller.changeTabIndex(4);
                 },
               ),
             ],
@@ -82,8 +82,9 @@ class DashboardPage extends StatelessWidget {
                 HomePage(),
                 VoucerPage(),
                 WalletPage(),
+                WalletPage(),
                 CartPage(),
-                SavePage()
+                SavePage(),
               ],
             ),
           ),
@@ -91,7 +92,7 @@ class DashboardPage extends StatelessWidget {
             unselectedItemColor: config.lightGrey,
             selectedItemColor: config.primaryColor,
             onTap: controller.changeTabIndex,
-            currentIndex: controller.tabIndex < 3 ? controller.tabIndex : controller.lastIndex,
+            currentIndex: controller.tabIndex < 4 ? controller.tabIndex : controller.lastIndex,
             showSelectedLabels: false,
             showUnselectedLabels: false,
             type: BottomNavigationBarType.fixed,
@@ -105,6 +106,10 @@ class DashboardPage extends StatelessWidget {
               _bottomNavigationBarItem(
                 icon: CupertinoIcons.tickets_fill,
                 label: 'Cart',
+              ),
+              _bottomNavigationBarItem(
+                icon: FontAwesomeIcons.wallet,
+                label: 'Saved',
               ),
               _bottomNavigationBarItem(
                 icon: FontAwesomeIcons.wallet,

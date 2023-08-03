@@ -22,7 +22,6 @@ class SavePage extends StatelessWidget {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                SizedBox(height: 20),
                 Obx(()=>
                     Expanded(
                     child: controller.SavedArticles.length > 0
