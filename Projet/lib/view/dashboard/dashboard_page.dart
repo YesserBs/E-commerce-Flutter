@@ -12,6 +12,7 @@ import 'package:myproj/view/wallet/wallet_page.dart';
 import '../../custom/cButton.dart';
 import '../cart/cart_page.dart';
 import '../home/home_page.dart';
+import '../profile/profile_page.dart';
 import '../save/save_page.dart';
 import 'dashboard_controller.dart';
 
@@ -82,7 +83,7 @@ class DashboardPage extends StatelessWidget {
                 HomePage(),
                 VoucerPage(),
                 WalletPage(),
-                WalletPage(),
+                ProfilePage(),
                 CartPage(),
                 SavePage(),
               ],
@@ -112,8 +113,8 @@ class DashboardPage extends StatelessWidget {
                 label: 'Saved',
               ),
               _bottomNavigationBarItem(
-                icon: FontAwesomeIcons.wallet,
-                label: 'Saved',
+                icon: Icons.person,
+                label: 'Profile',
               ),
             ],
           ),

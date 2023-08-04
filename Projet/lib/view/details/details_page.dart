@@ -4,6 +4,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
+import 'package:get_storage/get_storage.dart';
 import 'package:myproj/config/configuration.dart';
 import 'package:myproj/objects/article.dart';
 import 'package:myproj/view/cart/cart_controller.dart';
@@ -171,9 +172,10 @@ class DetailsPage extends StatelessWidget {
                           GestureDetector(
                             onTap: (){
                               int CartIndex = CC.addedArticles.indexOf(arguments);
-                              if (!CC.addedArticles.contains(arguments))
+                              if (CartIndex == -1)
                               {
                                 CC.addToCart(arguments);
+                                CC.changeAdded(DC.quantity.value, CC.addedArticles.indexOf(arguments));
                               }
                               else {
                                 CC.removeCartItem(arguments, CartIndex);

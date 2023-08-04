@@ -29,6 +29,10 @@ class CartController extends GetxController {
     added.value = item.added;
     update();
   }
+  void changeAdded(int value, int index)
+  {
+    quantityList[index] = value;
+  }
 
   void decreaseAdded(Article item, int index)
   {
@@ -46,7 +50,7 @@ class CartController extends GetxController {
       animationDuration: Duration(milliseconds: 650),
       duration: Duration(milliseconds: 900), // Set the duration to 1 second (adjust as needed)
       snackPosition: SnackPosition.BOTTOM, // Show the snackbar from the top
-      margin: EdgeInsets.only(bottom: 52),
+      margin: EdgeInsets.symmetric(vertical: 52, horizontal: 20),
       // You can add more options for the snackbar here if needed
     );
   }
