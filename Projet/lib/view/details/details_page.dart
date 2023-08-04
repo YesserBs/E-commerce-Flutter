@@ -21,6 +21,9 @@ class DetailsPage extends StatelessWidget {
     SaveController SC = Get.find();
     DetailsController DC = Get.find();
 
+    int CartIndex = CC.addedArticles.indexOf(arguments);
+    DC.setQuantity(CartIndex, arguments.added);
+
     return Scaffold(
       body: SafeArea(
         child: Column(
@@ -149,7 +152,9 @@ class DetailsPage extends StatelessWidget {
                               height: 50,
                               width: 35,
                               //color: Colors.red,
-                              child: Center(child: Text(DC.quantity.value.toString(), style: TextStyle(fontSize: 20,
+                              child: Center(child:
+                              Text(DC.quantity.value.toString(),
+                                style: TextStyle(fontSize: 20,
                                 color: CC.addedArticles.contains(arguments)
                                     ? config.lightGrey
                                     : config.secondaryColor,),))),),
@@ -171,11 +176,13 @@ class DetailsPage extends StatelessWidget {
                         children: [
                           GestureDetector(
                             onTap: (){
-                              int CartIndex = CC.addedArticles.indexOf(arguments);
+                              CartIndex = CC.addedArticles.indexOf(arguments);
                               if (CartIndex == -1)
                               {
                                 CC.addToCart(arguments);
                                 CC.changeAdded(DC.quantity.value, CC.addedArticles.indexOf(arguments));
+                                arguments.added = DC.quantity.value;
+
                               }
                               else {
                                 CC.removeCartItem(arguments, CartIndex);
