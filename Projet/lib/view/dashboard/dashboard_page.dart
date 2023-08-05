@@ -7,6 +7,7 @@ import 'package:myproj/config/configuration.dart';
 import 'package:myproj/custom/cText.dart';
 import 'package:myproj/view/auth/auth.dart';
 import 'package:myproj/view/auth/signup/signup_controller.dart';
+import 'package:myproj/view/details/details_page.dart';
 import 'package:myproj/view/voucer/voucer_page.dart';
 import 'package:myproj/view/wallet/wallet_page.dart';
 import '../../custom/cButton.dart';
@@ -86,6 +87,7 @@ class DashboardPage extends StatelessWidget {
                 ProfilePage(),
                 CartPage(),
                 SavePage(),
+                DetailsPage()
               ],
             ),
           ),

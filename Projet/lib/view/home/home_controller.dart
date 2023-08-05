@@ -40,16 +40,10 @@ class HomeController extends GetxController {
   void filterList(String value) {
     if (value.isEmpty) {
       filteredArticles.value = articles;
-      print("articles: $articles");
     } else {
       filteredArticles.value = articles
           .where((article) => article.nom.toLowerCase().contains(value.toLowerCase()))
           .toList();
     }
-  }
-
-  // For changing screen might need it later
-  int toggleIndex(int currentIndex) {
-    return currentIndex == 0 ? 1 : 0;
   }
 }

@@ -4,9 +4,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
-import 'package:get_storage/get_storage.dart';
 import 'package:myproj/config/configuration.dart';
-import 'package:myproj/objects/article.dart';
 import 'package:myproj/view/cart/cart_controller.dart';
 import 'package:myproj/view/details/details_controller.dart';
 import 'package:myproj/view/save/save_controller.dart';
@@ -16,13 +14,12 @@ class DetailsPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    Article arguments = Get.arguments;
     CartController CC = Get.find();
     SaveController SC = Get.find();
     DetailsController DC = Get.find();
 
-    int CartIndex = CC.addedArticles.indexOf(arguments);
-    DC.setQuantity(CartIndex, arguments.added);
+    int CartIndex = CC.addedArticles.indexOf(DC.arguments);
+    DC.setQuantity(CartIndex, DC.arguments.added);
 
     return Scaffold(
       body: SafeArea(
@@ -35,7 +32,7 @@ class DetailsPage extends StatelessWidget {
                     children: [
                       Container(
                         height: 410,
-                        child: ShoeCarousel(imagePaths: arguments.image),
+                        child: ShoeCarousel(imagePaths: DC.arguments.image),
                       ),
                       Padding(
                         padding: const EdgeInsets.only(left: 20.0, right: 20.0),
@@ -54,7 +51,7 @@ class DetailsPage extends StatelessWidget {
                                     ),
                                     20.w.horizontalSpace,
                                     Text(
-                                      arguments.marque,
+                                      DC.arguments.marque,
                                       style: TextStyle(
                                         fontSize: 20,
                                         color: config.lightGrey,
@@ -64,25 +61,25 @@ class DetailsPage extends StatelessWidget {
                                 ),
                                 GestureDetector(
                                   onTap: (){
-                                    if (!SC.SavedArticles.contains(arguments))
+                                    if (!SC.SavedArticles.contains(DC.arguments))
                                     {
-                                      SC.addToSave(arguments);
+                                      SC.addToSave(DC.arguments);
                                     }
                                     else {
-                                      SC.removeCartItem(arguments);
+                                      SC.removeCartItem(DC.arguments);
                                     }
                                   },
                                   child: Obx(() => Stack(
                                     children: [
                                       Icon(
                                         CupertinoIcons.heart_fill,
-                                        color: SC.SavedArticles.contains(arguments) ? Colors.red[300] : Colors.transparent,
+                                        color: SC.SavedArticles.contains(DC.arguments) ? Colors.red[300] : Colors.transparent,
                                         size: 28,
                                       ),
                                       Positioned(
                                         child: Icon(
                                           CupertinoIcons.heart,
-                                          color: SC.SavedArticles.contains(arguments) ? Colors.red[300] : config.secondaryColor,
+                                          color: SC.SavedArticles.contains(DC.arguments) ? Colors.red[300] : config.secondaryColor,
                                           size: 28,
                                         ),
                                       )
@@ -93,7 +90,7 @@ class DetailsPage extends StatelessWidget {
                             ),
                             50.h.verticalSpace,
                             Text(
-                              arguments.nom,
+                              DC.arguments.nom,
                               style: TextStyle(
                                 fontWeight: FontWeight.bold,
                                 fontSize: 30,
@@ -102,7 +99,7 @@ class DetailsPage extends StatelessWidget {
                             ),
                             50.h.verticalSpace,
                             Text(
-                              "${arguments.prix.toString()}\$",
+                              "${DC.arguments.prix.toString()}\$",
                               style: TextStyle(
                                 fontWeight: FontWeight.bold,
                                 fontSize: 26,
@@ -138,12 +135,12 @@ class DetailsPage extends StatelessWidget {
                           120.w.horizontalSpace,
                           GestureDetector(
                             onTap: (){
-                              if (!CC.addedArticles.contains(arguments)){
+                              if (!CC.addedArticles.contains(DC.arguments)){
                                 DC.decreaseQuantity();
                               }
                             },
                             child: Obx(() => Icon(CupertinoIcons.minus_square,
-                              color: CC.addedArticles.contains(arguments)
+                              color: CC.addedArticles.contains(DC.arguments)
                                   ? config.lightGrey
                                   : config.primaryColor,
                               size: 37,),),
@@ -155,17 +152,17 @@ class DetailsPage extends StatelessWidget {
                               child: Center(child:
                               Text(DC.quantity.value.toString(),
                                 style: TextStyle(fontSize: 20,
-                                color: CC.addedArticles.contains(arguments)
+                                color: CC.addedArticles.contains(DC.arguments)
                                     ? config.lightGrey
                                     : config.secondaryColor,),))),),
                           Obx(() => GestureDetector(
                             onTap: (){
-                              if (!CC.addedArticles.contains(arguments)){
+                              if (!CC.addedArticles.contains(DC.arguments)){
                                 DC.increaseQuantity();
                               }
                             },
                             child: Icon(CupertinoIcons.plus_app_fill,
-                              color: CC.addedArticles.contains(arguments)
+                              color: CC.addedArticles.contains(DC.arguments)
                                   ? config.lightGrey
                                   : config.primaryColor,
                               size: 37,),
@@ -176,16 +173,16 @@ class DetailsPage extends StatelessWidget {
                         children: [
                           GestureDetector(
                             onTap: (){
-                              CartIndex = CC.addedArticles.indexOf(arguments);
+                              CartIndex = CC.addedArticles.indexOf(DC.arguments);
                               if (CartIndex == -1)
                               {
-                                CC.addToCart(arguments);
-                                CC.changeAdded(DC.quantity.value, CC.addedArticles.indexOf(arguments));
-                                arguments.added = DC.quantity.value;
+                                CC.addToCart(DC.arguments);
+                                CC.changeAdded(DC.quantity.value, CC.addedArticles.indexOf(DC.arguments));
+                                DC.arguments.added = DC.quantity.value;
 
                               }
                               else {
-                                CC.removeCartItem(arguments, CartIndex);
+                                CC.removeCartItem(DC.arguments, CartIndex);
                               }
                             },
                             child: Obx(() =>
@@ -194,13 +191,13 @@ class DetailsPage extends StatelessWidget {
                               width: 560.w,
                               decoration: BoxDecoration(
                                   color:
-                                  CC.addedArticles.contains(arguments)
+                                  CC.addedArticles.contains(DC.arguments)
                                       ? config.lightGrey
                                       : config.primaryColor,
                                   borderRadius: BorderRadius.circular(10)
                               ),
                               child: Center(child: Text(
-                                  CC.addedArticles.contains(arguments)
+                                  CC.addedArticles.contains(DC.arguments)
                                       ? "REMOVE"
                                       : "ADD TO CART",
 

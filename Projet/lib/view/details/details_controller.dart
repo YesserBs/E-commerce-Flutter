@@ -4,7 +4,7 @@ import 'package:get_storage/get_storage.dart';
 import '../../objects/article.dart';
 
 class DetailsController extends GetxController {
-  Rx<Article> article = Rx<Article>(Article());
+  late Article arguments = Article(); // Initialize the field
   var quantity = 1.obs;
 
   void increaseQuantity(){
@@ -24,5 +24,17 @@ class DetailsController extends GetxController {
     else{
       quantity.value = argumentsAdded;
     }
+  }
+
+  void getArguments(Article item) {
+    arguments = item;
+  }
+
+  void createDefaultArticle() {
+    // Creating an instance of Article with default values
+    Article defaultArticle = Article();
+
+    // Calling getArguments to set the defaultArticle as arguments
+    getArguments(defaultArticle);
   }
 }

@@ -7,6 +7,7 @@ import 'package:get/get_core/src/get_main.dart';
 import 'package:myproj/config/configuration.dart';
 import 'package:myproj/view/cart/cart_controller.dart';
 import 'package:myproj/view/dashboard/dashboard_controller.dart';
+import 'package:myproj/view/details/details_controller.dart';
 import 'package:myproj/view/details/details_page.dart';
 import 'package:myproj/view/home/home_controller.dart';
 import 'package:myproj/view/save/save_controller.dart';
@@ -183,6 +184,8 @@ Widget _ListItems() {
   HomeController _controller = Get.find();
   CartController CC = Get.find();
   SaveController SC = Get.find();
+  DetailsController detailsController = Get.find();
+  DashboardController dashboardController = Get.find();
 
   return Expanded(
     child: Obx(
@@ -199,10 +202,10 @@ Widget _ListItems() {
                   //color: Colors.blue,
                   child: GestureDetector(
                     onTap: () {
-                      Get.to(DetailsPage(), arguments: item);
+                      detailsController.getArguments(item);
+                      dashboardController.changeTabIndex(6);
                     },
                     child: Column(
-                      //mainAxisAlignment: MainAxisAlignment.start,
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Image.asset(item.image[0]),
@@ -265,7 +268,6 @@ Widget _ListItems() {
                     ),
                   ),
                 ),
-
                 Positioned(
                   top: 17,
                   right: 10,

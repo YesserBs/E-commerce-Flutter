@@ -5,14 +5,18 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
 import 'package:myproj/config/configuration.dart';
 import 'package:myproj/custom/cText.dart';
+import 'package:myproj/view/dashboard/dashboard_controller.dart';
 import 'package:myproj/view/save/save_controller.dart';
 
+import '../details/details_controller.dart';
 import '../details/details_page.dart';
 
 class SavePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final SaveController controller = Get.find();
+    DetailsController detailsController = Get.find();
+    DashboardController dashboardController = Get.find();
 
     return SafeArea(
       child: Scaffold(
@@ -50,7 +54,8 @@ class SavePage extends StatelessWidget {
                             },
                             child: GestureDetector(
                               onTap: (){
-                                Get.to(DetailsPage(), arguments: item);
+                                detailsController.getArguments(item);
+                                dashboardController.changeTabIndex(6);
                               },
                               child: Stack(
                                 children: [
