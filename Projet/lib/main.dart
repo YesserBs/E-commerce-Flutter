@@ -1,38 +1,83 @@
-import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:get/get.dart';
-import 'package:get/get_navigation/src/root/get_material_app.dart';
-import 'package:get_storage/get_storage.dart';
 import 'package:myproj/config/configuration.dart';
-import 'package:myproj/main_settings/appPages.dart';
-import 'package:myproj/view/auth/auth.dart';
 
-void main() async {
-  WidgetsFlutterBinding.ensureInitialized();
-  await Firebase.initializeApp();
-  await GetStorage.init();
+void main() {
   runApp(MyApp());
 }
 
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    ScreenUtil.init(context, designSize: Size(1080, 2340));
-    return GetMaterialApp(
-      initialRoute: auth(),
-      theme: ThemeData(colorScheme: ColorScheme.fromSwatch().copyWith(
-          primary: config.secondaryColor),
-      ),
-      getPages: AppPages.list,
-      debugShowCheckedModeBanner: false,
+    return MaterialApp(
+      home: AnimatedContainerExample(),
     );
   }
 }
 
+class AnimatedContainerExample extends StatefulWidget {
+  @override
+  _AnimatedContainerExampleState createState() => _AnimatedContainerExampleState();
+}
 
+class _AnimatedContainerExampleState extends State<AnimatedContainerExample> {
+  bool _showImage = false;
 
+  void _toggleImage() {
+    setState(() {
+      _showImage = !_showImage;
+    });
+  }
 
-
-
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      body: Center(
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          mainAxisAlignment: MainAxisAlignment.start,
+          children: [
+            SizedBox(
+              height: 200,
+            ),
+            Stack(
+              children: [
+                AnimatedContainer(
+                  color: config.primaryColor,
+                  duration: Duration(milliseconds: 300),
+                  width: 411,
+                  height: _showImage ? 255 : 0,
+                ),
+                Positioned(
+                  right: 20,
+                  top: 20,
+                  child: Container(
+                    height: 231,
+                    width: 411,
+                    child: Image.asset('assets/images/PromoAd.jpg'),
+                  ),
+                ),
+              ],
+            ),
+            SizedBox(height: 8.0),
+            Row(
+              children: [
+                SizedBox(width: 20.0,),
+                GestureDetector(
+                  onTap: () {
+                    _toggleImage();
+                  },
+                  child: _showImage
+                      ? Icon(CupertinoIcons.chevron_up, size: 15,)
+                      : Icon(CupertinoIcons.chevron_down, size: 15,),
+                ),
+                SizedBox(width: 5,),
+                Text("SALES")
+              ],
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}
