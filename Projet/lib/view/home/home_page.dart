@@ -4,11 +4,11 @@ import 'package:flutter_keyboard_visibility/flutter_keyboard_visibility.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
+import 'package:get_storage/get_storage.dart';
 import 'package:myproj/config/configuration.dart';
 import 'package:myproj/view/cart/cart_controller.dart';
 import 'package:myproj/view/dashboard/dashboard_controller.dart';
 import 'package:myproj/view/details/details_controller.dart';
-import 'package:myproj/view/details/details_page.dart';
 import 'package:myproj/view/home/home_controller.dart';
 import 'package:myproj/view/save/save_controller.dart';
 import '../../custom/cText.dart';
@@ -17,6 +17,7 @@ import '../../objects/user.dart';
 class HomePage extends StatelessWidget {
   UserController userController = UserController();
   DashboardController DC = Get.find();
+  HomeController HC = Get.find();
 
   @override
   Widget build(BuildContext context) {
@@ -28,7 +29,9 @@ class HomePage extends StatelessWidget {
             children: [
               Stack(
                 children: [
-                  Image.asset("assets/images/soldes.jpeg"),
+                  Container(
+                    height: 100,
+                  ),
                   Positioned(
                     top: 52,
                       left: 5,
@@ -41,7 +44,7 @@ class HomePage extends StatelessWidget {
                               width: 50,
                               height: 36,
                               decoration: BoxDecoration(
-                                color: Colors.white.withOpacity(0.7),
+                                color: Colors.white.withOpacity(0.3),
                                 border: Border.all(
                                   color: config.lightGrey, // Specify the border color
                                   width: 2.0, // Specify the border width
@@ -84,45 +87,6 @@ class HomePage extends StatelessWidget {
                     ),
                   ),
                   Positioned(
-                      top: 122,
-                      left: 20.0,
-                      child: Container(
-                        padding: EdgeInsets.all(8),
-                        decoration: BoxDecoration(
-                          color: Colors.white.withOpacity(0.8),
-                          borderRadius: BorderRadius.circular(10), // Adjust the value as per your desired border radius
-                        ),
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.center,
-                          children: [
-                            Text("-30%",
-                            style: TextStyle(
-                              fontSize: 50,
-                              fontWeight: FontWeight.bold,
-                            ),
-                        ),
-                            10.h.verticalSpace,
-                            Container(
-                              height: 30,
-                              width: 110,
-                              decoration: BoxDecoration(
-                                  border: Border.all(color: config.secondaryColor, width: 1.4),
-                                  borderRadius: BorderRadius.circular(5.0)
-                              ),
-                              child: Container(
-                                child: Center(
-                                  child: Text(
-                                    "Check out",
-                                    style: TextStyle(color: config.secondaryColor, fontSize: 20, fontWeight: FontWeight.bold),
-                                  ),
-                                ),
-                              ),
-                            )
-                          ],
-                        ),
-                      )
-                  ),
-                  Positioned(
                     top: 12.0,
                     right: 56.0,
                     child: GestureDetector(
@@ -143,6 +107,49 @@ class HomePage extends StatelessWidget {
                               borderRadius: BorderRadius.circular(40.0)),
                       )
                   )
+                ],
+              ),
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      GestureDetector(
+                        onTap: (){
+                          HC.toggleShowImage();
+                        },
+                        child: Row(
+                          children: [
+                            Container(
+                              width: 120,
+                              height: 25,
+                              color: Colors.transparent,
+                              child: Obx(()=>Row(
+                                children: [
+                                  50.w.horizontalSpace,
+                                  HC.showAd.value
+                                      ? Icon(CupertinoIcons.chevron_up, color: config.secondaryColor, size: 17,)
+                                      : Icon(CupertinoIcons.chevron_down, color: config.secondaryColor, size: 17),
+                                  SizedBox(width: 5,),
+                                  cText(text: "S A L E S", size: 45,)
+
+                                ],
+                              ),)
+
+                            ),
+                          ],
+                        ),
+                      ),
+                      Container(
+                        color: Colors.transparent,
+                        width: 120,
+                        height: 25,
+                        child: Center(child: cText(text: "FILTER", size: 45)),
+                      )
+                    ],
+                  ),
+                  Obx(() => _buildAnimatedContainer()),
                 ],
               ),
               _ListItems()
@@ -366,5 +373,30 @@ Container buildTextContainer(String text) {
         ),
       ),
     ),
+  );
+}
+
+
+Widget _buildAnimatedContainer() {
+  HomeController HC = Get.find();
+
+  return Stack(
+    children: [
+      AnimatedContainer(
+        color: Colors.grey[400],
+        duration: Duration(milliseconds: 300),
+        width: 411,
+        height: HC.showAd.value ? 255 : 0,
+      ),
+      Positioned(
+        right: 0, // This is not useless shall be kept
+        top: 0, // Same thing here
+        child: Container(
+          width: 411,
+          height: 255,
+          child: Image.asset("assets/images/PromoAd.jpg"),
+        ),
+      )
+    ],
   );
 }

@@ -6,6 +6,7 @@ import '../../objects/article.dart';
 class HomeController extends GetxController {
   final articles = <Article>[].obs;
   final filteredArticles = <Article>[].obs;
+  final showAd = false.obs;
 
   @override
   void onInit() {
@@ -45,5 +46,9 @@ class HomeController extends GetxController {
           .where((article) => article.nom.toLowerCase().contains(value.toLowerCase()))
           .toList();
     }
+  }
+
+  void toggleShowImage() {
+    showAd.value = !showAd.value;
   }
 }
