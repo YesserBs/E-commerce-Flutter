@@ -4,7 +4,6 @@ import 'package:flutter_keyboard_visibility/flutter_keyboard_visibility.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
-import 'package:get_storage/get_storage.dart';
 import 'package:myproj/config/configuration.dart';
 import 'package:myproj/view/cart/cart_controller.dart';
 import 'package:myproj/view/dashboard/dashboard_controller.dart';
@@ -30,45 +29,23 @@ class HomePage extends StatelessWidget {
               Stack(
                 children: [
                   Container(
-                    height: 100,
+                    height: 106,
                   ),
                   Positioned(
-                    top: 52,
+                    top: 59,
                       left: 5,
                       right: 5,
                       height: 34,
                       child: ListView(
                         scrollDirection: Axis.horizontal,
                           children: [
-                            Container(
-                              width: 50,
-                              height: 36,
-                              decoration: BoxDecoration(
-                                color: Colors.white.withOpacity(0.3),
-                                border: Border.all(
-                                  color: config.lightGrey, // Specify the border color
-                                  width: 2.0, // Specify the border width
-                                ),
-                                borderRadius: BorderRadius.circular(10), // Adjust the value as per your desired border radius
-                              ),
-                              child: Center(
-                                child: Icon(
-                                  Icons.filter_alt,
-                                  color: config.lightGrey,
-                                  size: 20,
-                                ),
-                              ),
-                            ),
+                            buildTextContainer("FOR YOU"),
                             50.0.w.horizontalSpace,
-                            buildTextContainer("promotions"),
+                            buildTextContainer("SHOES"),
                             50.0.w.horizontalSpace,
-                            buildTextContainer("recommanded"),
+                            buildTextContainer("HATS"),
                             50.0.w.horizontalSpace,
-                            buildTextContainer("shoes"),
-                            50.0.w.horizontalSpace,
-                            buildTextContainer("hats"),
-                            50.0.w.horizontalSpace,
-                            buildTextContainer("pants")
+                            buildTextContainer("PANTS")
                           ],
                       )
                   ),
@@ -127,7 +104,7 @@ class HomePage extends StatelessWidget {
                               color: Colors.transparent,
                               child: Obx(()=>Row(
                                 children: [
-                                  50.w.horizontalSpace,
+                                  130.w.horizontalSpace,
                                   HC.showAd.value
                                       ? Icon(CupertinoIcons.chevron_up, color: config.secondaryColor, size: 17,)
                                       : Icon(CupertinoIcons.chevron_down, color: config.secondaryColor, size: 17),
@@ -164,14 +141,14 @@ class HomePage extends StatelessWidget {
 Widget _SearchFormField() {
   HomeController _controller = Get.find();
   return Container(
-    height: 32.0,
+    height: 35.0,
     margin: EdgeInsets.fromLTRB(25.0, 12.0, 110.0, 0.0),
     decoration: BoxDecoration(
       color: Colors.transparent,
       borderRadius: BorderRadius.circular(9),
       border: Border.all(
-        color: config.lightGrey, // Set the color of the border
-        width: 2.0, // Set the width of the border
+        color: config.secondaryColor, // Set the color of the border
+        width: 1.2, // Set the width of the border
       ),
     ),
     child: TextFormField(
@@ -179,8 +156,8 @@ Widget _SearchFormField() {
       decoration: InputDecoration(
         border: InputBorder.none,
         prefixIcon: Icon(
-          Icons.search,
-          color: Colors.grey,
+          CupertinoIcons.search,
+          color: config.secondaryColor,
         ),
       ),
       style: TextStyle(color: Colors.black), // Set the text color of the TextFormField
@@ -200,7 +177,7 @@ Widget _ListItems() {
             padding: const EdgeInsets.symmetric(horizontal: 10.0),
             child: GridView.count(
         crossAxisCount: 2,
-        childAspectRatio: 1.7.h,
+        childAspectRatio: 1.78.h,
               children: List.generate(_controller.filteredArticles.length, (index) {
             final item = _controller.filteredArticles[index];
             return Stack(
@@ -352,14 +329,18 @@ class _DropdownButtonWidgetState extends State<DropdownButtonWidget> {
 
 
 Container buildTextContainer(String text) {
+  HomeController HC = Get.find();
+
   return Container(
     width: 100,
     height: 36,
     decoration: BoxDecoration(
-      color: Colors.white.withOpacity(0.3),
       border: Border.all(
-        color: config.lightGrey,
-        width: 2.0, // Specify the border width
+        color:
+        HC.filter == text
+        ? config.primaryColor
+        : config.lightGrey,
+        width: 1.2, // Specify the border width
       ),
       borderRadius: BorderRadius.circular(10), // Adjust the value as per your desired border radius
     ),
@@ -368,8 +349,14 @@ Container buildTextContainer(String text) {
         text,
         style: TextStyle(
           fontSize: 13,
-          fontWeight: FontWeight.bold,
-          color: config.lightGrey
+          fontWeight:
+          HC.filter == text
+              ? FontWeight.bold
+              : null,
+          color:
+          HC.filter == text
+              ? config.primaryColor
+              : config.lightGrey,
         ),
       ),
     ),
@@ -383,10 +370,13 @@ Widget _buildAnimatedContainer() {
   return Stack(
     children: [
       AnimatedContainer(
-        color: Colors.grey[400],
+        //
         duration: Duration(milliseconds: 300),
         width: 411,
         height: HC.showAd.value ? 255 : 0,
+        decoration: BoxDecoration(borderRadius: BorderRadius.circular(20),
+          //color: Colors.grey[400],
+        ),
       ),
       Positioned(
         right: 0, // This is not useless shall be kept

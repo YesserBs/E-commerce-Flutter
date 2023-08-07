@@ -6,7 +6,8 @@ import '../../objects/article.dart';
 class HomeController extends GetxController {
   final articles = <Article>[].obs;
   final filteredArticles = <Article>[].obs;
-  final showAd = false.obs;
+  final showAd = true.obs;
+  final filter = "FOR YOU";
 
   @override
   void onInit() {
@@ -26,7 +27,6 @@ class HomeController extends GetxController {
           nom: data?['nom'] as String? ?? '',
           marque: data?['marque'] as String? ?? '',
           prix: data?['prix'] as int? ?? 0,
-          added: data?['added'] as int? ?? 0,
           image: List<String>.from(data?['image'] ?? []), // Fetch and store the 'image' array
         );
       }).toList();

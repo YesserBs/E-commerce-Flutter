@@ -24,7 +24,7 @@ class SaveController extends GetxController {
       animationDuration: Duration(milliseconds: 650),
       duration: Duration(milliseconds: 900), // Set the duration to 1 second (adjust as needed)
       snackPosition: SnackPosition.BOTTOM, // Show the snackbar from the top
-      margin: EdgeInsets.only(bottom: 52),
+      margin: EdgeInsets.symmetric(vertical: 52, horizontal: 20),
       // You can add more options for the snackbar here if needed
     );
   }
