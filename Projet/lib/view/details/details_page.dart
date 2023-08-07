@@ -108,7 +108,7 @@ class DetailsPage extends StatelessWidget {
                             ),
                             50.h.verticalSpace,
                             Text(
-                              "A vibrant and elegant dress, crafted from soft, flowing silk, adorned with delicate floral patterns that dance across its pastel blue fabric. Its A-line silhouette flatters any figure, and the subtle sweetheart neckline adds a touch of romance. A vibrant and elegant dress, crafted from soft, flowing silk, adorned with delicate floral patterns that dance across its pastel blue fabric. Its A-line silhouette flatters any figure, and the subtle sweetheart neckline adds a touch of romance",
+                                DC.arguments.description,
                               style: TextStyle(
                                 fontSize: 16
                               ),

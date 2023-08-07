@@ -7,7 +7,7 @@ class HomeController extends GetxController {
   final articles = <Article>[].obs;
   final filteredArticles = <Article>[].obs;
   final showAd = true.obs;
-  final filter = "FOR YOU";
+  var type = "FOR YOU".obs;
 
   @override
   void onInit() {
@@ -26,6 +26,8 @@ class HomeController extends GetxController {
           uid: doc.id,
           nom: data?['nom'] as String? ?? '',
           marque: data?['marque'] as String? ?? '',
+          type: data?['type'] as String? ?? '',
+          description: data?['description'] as String? ?? '',
           prix: data?['prix'] as int? ?? 0,
           image: List<String>.from(data?['image'] ?? []), // Fetch and store the 'image' array
         );
@@ -39,12 +41,26 @@ class HomeController extends GetxController {
 
 
   void filterList(String value) {
-    if (value.isEmpty) {
-      filteredArticles.value = articles;
-    } else {
-      filteredArticles.value = articles
-          .where((article) => article.nom.toLowerCase().contains(value.toLowerCase()))
-          .toList();
+
+    if (type.value == ''){
+      if (value.isEmpty) {
+        filteredArticles.value = articles;
+      } else {
+        filteredArticles.value = articles
+            .where((article) => article.nom.toLowerCase().contains(value.toLowerCase()))
+            .toList();
+      }
+    }
+    else{
+      if (value.isEmpty) {
+        filteredArticles.value = articles;
+      } else {
+        filteredArticles.value = articles
+            .where((article) => article.nom.toLowerCase().contains(value.toLowerCase())
+            &&
+            article.type.toLowerCase() == type.value.toLowerCase())
+            .toList();
+      }
     }
   }
 

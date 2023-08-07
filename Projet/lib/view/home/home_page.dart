@@ -36,17 +36,19 @@ class HomePage extends StatelessWidget {
                       left: 5,
                       right: 5,
                       height: 34,
-                      child: ListView(
-                        scrollDirection: Axis.horizontal,
-                          children: [
-                            buildTextContainer("FOR YOU"),
-                            50.0.w.horizontalSpace,
-                            buildTextContainer("SHOES"),
-                            50.0.w.horizontalSpace,
-                            buildTextContainer("HATS"),
-                            50.0.w.horizontalSpace,
-                            buildTextContainer("PANTS")
-                          ],
+                      child: Obx(()=>
+                          ListView(
+                            scrollDirection: Axis.horizontal,
+                            children: [
+                              buildTextContainer("FOR YOU"),
+                              50.0.w.horizontalSpace,
+                              buildTextContainer("SHOES"),
+                              50.0.w.horizontalSpace,
+                              buildTextContainer("HATS"),
+                              50.0.w.horizontalSpace,
+                              buildTextContainer("PANTS")
+                            ],
+                          )
                       )
                   ),
                   Positioned(
@@ -328,35 +330,47 @@ class _DropdownButtonWidgetState extends State<DropdownButtonWidget> {
 }
 
 
-Container buildTextContainer(String text) {
+GestureDetector buildTextContainer(String text) {
   HomeController HC = Get.find();
 
-  return Container(
-    width: 100,
-    height: 36,
-    decoration: BoxDecoration(
-      border: Border.all(
-        color:
-        HC.filter == text
-        ? config.primaryColor
-        : config.lightGrey,
-        width: 1.2, // Specify the border width
-      ),
-      borderRadius: BorderRadius.circular(10), // Adjust the value as per your desired border radius
-    ),
-    child: Center(
-      child: Text(
-        text,
-        style: TextStyle(
-          fontSize: 13,
-          fontWeight:
-          HC.filter == text
-              ? FontWeight.bold
-              : null,
+  return GestureDetector(
+    onTap: (){
+      if (HC.type.value == text){
+        HC.type.value = '';
+      }
+      else{
+        HC.type.value = text;
+        print(HC.type.value);
+      }
+      // HC.filterList(); I have to fix this, whenever clicked the type must be updated
+    },
+    child: Container(
+      width: 100,
+      height: 36,
+      decoration: BoxDecoration(
+        border: Border.all(
           color:
-          HC.filter == text
-              ? config.primaryColor
-              : config.lightGrey,
+          HC.type.value == text
+          ? config.primaryColor
+          : config.lightGrey,
+          width: 1.2, // Specify the border width
+        ),
+        borderRadius: BorderRadius.circular(7), // Adjust the value as per your desired border radius
+      ),
+      child: Center(
+        child: Text(
+          text,
+          style: TextStyle(
+            fontSize: 13,
+            fontWeight:
+            HC.type.value == text
+                ? FontWeight.bold
+                : null,
+            color:
+            HC.type.value == text
+                ? config.primaryColor
+                : config.lightGrey,
+          ),
         ),
       ),
     ),
@@ -372,7 +386,7 @@ Widget _buildAnimatedContainer() {
       AnimatedContainer(
         //
         duration: Duration(milliseconds: 300),
-        width: 411,
+        width: 410,
         height: HC.showAd.value ? 255 : 0,
         decoration: BoxDecoration(borderRadius: BorderRadius.circular(20),
           //color: Colors.grey[400],
@@ -382,7 +396,6 @@ Widget _buildAnimatedContainer() {
         right: 0, // This is not useless shall be kept
         top: 0, // Same thing here
         child: Container(
-          width: 411,
           height: 255,
           child: Image.asset("assets/images/PromoAd.jpg"),
         ),
