@@ -154,7 +154,7 @@ Widget _SearchFormField() {
       ),
     ),
     child: TextFormField(
-      onChanged: _controller.filterList,
+      onChanged: _controller.getSearchText,
       decoration: InputDecoration(
         border: InputBorder.none,
         prefixIcon: Icon(
@@ -213,7 +213,7 @@ Widget _ListItems() {
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
                                   Text(
-                                    "${item.prix.toString()}\$",
+                                    "\$${item.prix.toString()}.00",
                                     style: TextStyle(fontWeight: FontWeight.bold, color: config.primaryColor, fontSize: 19),
                                   ),
                                   Row(
@@ -233,12 +233,12 @@ Widget _ListItems() {
                                             child: CC.addedArticles.contains(item) ? Icon(
                                               CupertinoIcons.xmark,
                                               size: 20,
-                                              color: config.primaryColor,
+                                              color: Colors.grey,
                                             )
                                                 : Icon(
                                               CupertinoIcons.cart,
                                               size: 25,
-                                              color: Colors.grey[500],
+                                              color: Colors.grey,
                                             )
                                         ),
                                       ),
@@ -342,7 +342,7 @@ GestureDetector buildTextContainer(String text) {
         HC.type.value = text;
         print(HC.type.value);
       }
-      // HC.filterList(); I have to fix this, whenever clicked the type must be updated
+      HC.filterList(HC.searchedText);
     },
     child: Container(
       width: 100,
@@ -393,7 +393,7 @@ Widget _buildAnimatedContainer() {
         ),
       ),
       Positioned(
-        right: 0, // This is not useless shall be kept
+        right: 0, // This is not useless, shall be kept
         top: 0, // Same thing here
         child: Container(
           height: 255,

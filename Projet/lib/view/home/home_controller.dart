@@ -8,13 +8,13 @@ class HomeController extends GetxController {
   final filteredArticles = <Article>[].obs;
   final showAd = true.obs;
   var type = "FOR YOU".obs;
+  String searchedText = "";
 
   @override
   void onInit() {
     super.onInit();
     fetchArticles();
   }
-
 
   void fetchArticles() async {
     try {
@@ -42,7 +42,7 @@ class HomeController extends GetxController {
 
   void filterList(String value) {
 
-    if (type.value == ''){
+    if (type.value == '' || type.value == 'FOR YOU'){
       if (value.isEmpty) {
         filteredArticles.value = articles;
       } else {
@@ -53,7 +53,10 @@ class HomeController extends GetxController {
     }
     else{
       if (value.isEmpty) {
-        filteredArticles.value = articles;
+        filteredArticles.value = articles
+            .where((article) =>
+            article.type.toLowerCase() == type.value.toLowerCase())
+            .toList();
       } else {
         filteredArticles.value = articles
             .where((article) => article.nom.toLowerCase().contains(value.toLowerCase())
@@ -66,5 +69,10 @@ class HomeController extends GetxController {
 
   void toggleShowImage() {
     showAd.value = !showAd.value;
+  }
+
+  void getSearchText(String value){
+    searchedText = value;
+    filterList(value);
   }
 }

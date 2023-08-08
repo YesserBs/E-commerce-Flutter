@@ -99,7 +99,7 @@ class DetailsPage extends StatelessWidget {
                             ),
                             50.h.verticalSpace,
                             Text(
-                              "${DC.arguments.prix.toString()}\$",
+                              "\$${DC.arguments.prix.toString()}",
                               style: TextStyle(
                                 fontWeight: FontWeight.bold,
                                 fontSize: 26,
@@ -252,6 +252,8 @@ class _ShoeCarouselState extends State<ShoeCarousel> {
 
   @override
   Widget build(BuildContext context) {
+    int imageIndex = 0;
+
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
@@ -262,7 +264,8 @@ class _ShoeCarouselState extends State<ShoeCarousel> {
             onPageChanged: _onPageChanged,
             itemCount: widget.imagePaths.length,
             itemBuilder: (context, index) {
-              return ShoeImage(imagePath: widget.imagePaths[index]);
+              imageIndex = index;
+              return ShoeImage(imagePath: widget.imagePaths[imageIndex]);
             },
           ),
         ),
