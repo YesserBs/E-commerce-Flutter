@@ -17,6 +17,7 @@ class HomePage extends StatelessWidget {
   UserController userController = UserController();
   DashboardController DC = Get.find();
   HomeController HC = Get.find();
+  CartController CC = Get.find();
 
   @override
   Widget build(BuildContext context) {
@@ -24,70 +25,44 @@ class HomePage extends StatelessWidget {
       dismissOnCapturedTaps: true,
       child: SafeArea(
         child: Scaffold(
+          backgroundColor: Colors.white,
           body: Column(
             children: [
-              Stack(
+              Column(
                 children: [
-                  Container(
-                    height: 106,
-                  ),
-                  Positioned(
-                    top: 59,
-                      left: 5,
-                      right: 5,
-                      height: 34,
-                      child: Obx(()=>
-                          ListView(
-                            scrollDirection: Axis.horizontal,
-                            children: [
-                              buildTextContainer("FOR YOU"),
-                              50.0.w.horizontalSpace,
-                              buildTextContainer("SHOES"),
-                              50.0.w.horizontalSpace,
-                              buildTextContainer("HATS"),
-                              50.0.w.horizontalSpace,
-                              buildTextContainer("PANTS")
-                            ],
-                          )
-                      )
-                  ),
-                  Positioned(
-                    child: _SearchFormField(),
-                  ),
-                  Positioned(
-                    top: 12.0,
-                    right: 8.0,
-                    child: GestureDetector(
-                        onTap: (){
-                          DC.changeTabIndex(4);
-                        },
-                        child: Icon(CupertinoIcons.cart, size: 32, color: Colors.grey[800],
-                        )
-                    ),
-                  ),
-                  Positioned(
-                    top: 12.0,
-                    right: 56.0,
-                    child: GestureDetector(
-                      onTap: (){
-                        DC.changeTabIndex(5);
-                      },
-                        child: Icon(CupertinoIcons.heart, size: 32, color: Colors.grey[800])),
-                  ),
 
-                  Positioned(
-                    bottom: -20,
-                      child:
-                      Container(
-                        height: 30.0,
-                          width: 412.0,
-                          decoration: BoxDecoration(
-                              color: Colors.white,
-                              borderRadius: BorderRadius.circular(40.0)),
-                      )
-                  )
+                  Row(
+                    children: [
+                      Expanded(child: _SearchFormField()),
+                      Row(
+                        children: [
+                          55.w.horizontalSpace,
+                          GestureDetector(
+                              onTap: (){
+                                DC.changeTabIndex(5);
+                              },
+                              child: Icon(CupertinoIcons.heart, size: 32, color: Colors.grey[800])),
+                          110.w.horizontalSpace,
+                          GestureDetector(
+                              onTap: (){
+                                CC.calculateTotal();
+                                DC.changeTabIndex(4);
+                              },
+                              child: Icon(CupertinoIcons.cart, size: 32, color: Colors.grey[800],
+                              )
+                          ),
+                          55.w.horizontalSpace,
+
+
+                        ],
+                      ),
+                    ],
+                  ),
                 ],
               ),
+              HorizontalListView(),
+              40.h.verticalSpace,
+
               Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
@@ -143,13 +118,13 @@ class HomePage extends StatelessWidget {
 Widget _SearchFormField() {
   HomeController _controller = Get.find();
   return Container(
-    height: 35.0,
-    margin: EdgeInsets.fromLTRB(25.0, 12.0, 110.0, 0.0),
+    height: 36.0,
+    margin: EdgeInsets.all(10.0),
     decoration: BoxDecoration(
       color: Colors.transparent,
       borderRadius: BorderRadius.circular(9),
       border: Border.all(
-        color: config.secondaryColor, // Set the color of the border
+        color: config.lightGrey, // Set the color of the border
         width: 1.2, // Set the width of the border
       ),
     ),
@@ -159,10 +134,11 @@ Widget _SearchFormField() {
         border: InputBorder.none,
         prefixIcon: Icon(
           CupertinoIcons.search,
-          color: config.secondaryColor,
+          color: config.lightGrey,
         ),
+        contentPadding: EdgeInsets.symmetric(vertical: 0.0, horizontal: 16.0),
       ),
-      style: TextStyle(color: Colors.black), // Set the text color of the TextFormField
+      style: TextStyle(color: Colors.grey), // Set the text color of the TextFormField
     ),
   );
 }
@@ -184,73 +160,78 @@ Widget _ListItems() {
             final item = _controller.filteredArticles[index];
             return Stack(
               children: [
-                Card(
-                  //color: Colors.blue,
-                  child: GestureDetector(
-                    onTap: () {
-                      detailsController.getArguments(item);
-                      dashboardController.changeTabIndex(6);
-                    },
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Image.asset(item.image[0]),
-                        50.h.verticalSpace,
-                        Padding(
-                          padding: const EdgeInsets.fromLTRB(20.0, 5.0, 0, 0),
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              cText(
-                                text: item.nom,
-                                changeFont: true,
-                                size: 65,
-                              ),
-                              cText(text: item.marque, size: 35,),
-                              10.h.verticalSpace,
-                              Row(
-                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Text(
-                                    "\$${item.prix.toString()}.00",
-                                    style: TextStyle(fontWeight: FontWeight.bold, color: config.primaryColor, fontSize: 19),
-                                  ),
-                                  Row(
-                                    children: [
-                                      GestureDetector(
-                                        onTap: (){
-                                          int CartIndex = CC.addedArticles.indexOf(item);
-                                          if (!CC.addedArticles.contains(item))
-                                          {
-                                            CC.addToCart(item);
-                                          }
-                                          else {
-                                            CC.removeCartItem(item, CartIndex);
-                                          }
-                                        },
-                                        child: Container(
-                                            child: CC.addedArticles.contains(item) ? Icon(
-                                              CupertinoIcons.xmark,
-                                              size: 20,
-                                              color: Colors.grey,
-                                            )
-                                                : Icon(
-                                              CupertinoIcons.cart,
-                                              size: 25,
-                                              color: Colors.grey,
-                                            )
+                PhysicalModel(
+                  borderRadius: BorderRadius.circular(50),
+                  elevation: 15,
+                  shadowColor: config.lightPrimaryColor.withAlpha(85),
+                  color: Colors.transparent,
+                  child: Card(
+                    //color: Colors.blue,
+                    child: GestureDetector(
+                      onTap: () {
+                        dashboardController.changeTabIndex(6);
+                      },
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Image.asset(item.image[0]),
+                          50.h.verticalSpace,
+                          Padding(
+                            padding: const EdgeInsets.fromLTRB(20.0, 5.0, 0, 0),
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                cText(
+                                  text: item.nom,
+                                  changeFont: true,
+                                  size: 65,
+                                ),
+                                cText(text: item.marque, size: 35,),
+                                10.h.verticalSpace,
+                                Row(
+                                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Text(
+                                      "\$${item.prix.toString()}.00",
+                                      style: TextStyle(fontWeight: FontWeight.bold, color: config.lightGrey, fontSize: 19),
+                                    ),
+                                    Row(
+                                      children: [
+                                        GestureDetector(
+                                          onTap: (){
+                                            int CartIndex = CC.addedArticles.indexOf(item);
+                                            if (!CC.addedArticles.contains(item))
+                                            {
+                                              CC.addToCart(item);
+                                            }
+                                            else {
+                                              CC.removeCartItem(item, CartIndex);
+                                            }
+                                          },
+                                          child: Container(
+                                              child: CC.addedArticles.contains(item) ? Icon(
+                                                CupertinoIcons.xmark,
+                                                size: 20,
+                                                color: Colors.grey,
+                                              )
+                                                  : Icon(
+                                                CupertinoIcons.cart,
+                                                size: 25,
+                                                color: Colors.grey,
+                                              )
+                                          ),
                                         ),
-                                      ),
-                                      75.w.horizontalSpace
-                                    ],
-                                  )
-                                ],
-                              ),
-                            ],
-                          ),
-                        )
-                      ],
+                                        75.w.horizontalSpace
+                                      ],
+                                    )
+                                  ],
+                                ),
+                              ],
+                            ),
+                          )
+                        ],
+                      ),
                     ),
                   ),
                 ),
@@ -286,48 +267,6 @@ Widget _ListItems() {
 }
 
 
-OutlinedButton createBorderedButton(Widget child, VoidCallback onPressed) {
-  return OutlinedButton(
-    onPressed: onPressed,
-    style: OutlinedButton.styleFrom(
-      backgroundColor: config.lightGrey,
-      //side: BorderSide(width: 1, color: Colors.black),
-      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
-    ),
-    child: child,
-  );
-}
-
-class DropdownButtonWidget extends StatefulWidget {
-  @override
-  _DropdownButtonWidgetState createState() => _DropdownButtonWidgetState();
-}
-
-class _DropdownButtonWidgetState extends State<DropdownButtonWidget> {
-  // List of items for the dropdown menu
-  List<String> _items = ['All', 'Gadgets', 'Clothes', 'Others'];
-
-  // The currently selected item
-  String _selectedItem = 'All';
-
-  @override
-  Widget build(BuildContext context) {
-    return DropdownButton<String>(
-      value: _selectedItem,
-      onChanged: (String? newValue) {
-        setState(() {
-          _selectedItem = newValue!;
-        });
-      },
-      items: _items.map((String item) {
-        return DropdownMenuItem<String>(
-          value: item,
-          child: Text(item),
-        );
-      }).toList(),
-    );
-  }
-}
 
 
 GestureDetector buildTextContainer(String text) {
@@ -384,22 +323,46 @@ Widget _buildAnimatedContainer() {
   return Stack(
     children: [
       AnimatedContainer(
-        //
+        color: Colors.white,
         duration: Duration(milliseconds: 300),
-        width: 410,
-        height: HC.showAd.value ? 255 : 0,
-        decoration: BoxDecoration(borderRadius: BorderRadius.circular(20),
-          //color: Colors.grey[400],
-        ),
+        width: 430,
+        height: HC.showAd.value ? 232 : 0,
       ),
       Positioned(
         right: 0, // This is not useless, shall be kept
         top: 0, // Same thing here
         child: Container(
-          height: 255,
-          child: Image.asset("assets/images/PromoAd.jpg"),
+          height: 232,
+          child: Image.asset("assets/images/AdidPromo.jpg"),
         ),
       )
     ],
   );
+}
+
+
+
+class HorizontalListView extends StatelessWidget {
+  final HomeController hc = HomeController();
+  final List<String> items = ['FOR YOU', 'SHOES', 'HATS', 'PANTS'];
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      height: 35, // Adjust the height as needed
+      child: ListView.builder(
+        scrollDirection: Axis.horizontal,
+        itemCount: items.length,
+        itemBuilder: (context, index) {
+          return Obx(() => Row(
+            children: [
+              15.w.horizontalSpace,
+              buildTextContainer(items[index]),
+              15.w.horizontalSpace,
+            ],
+          ));
+        },
+      ),
+    );
+  }
 }

@@ -20,6 +20,7 @@ class SavePage extends StatelessWidget {
 
     return SafeArea(
       child: Scaffold(
+        backgroundColor: Colors.white,
         body: Padding(
           padding: EdgeInsets.all(20.0),
           child: Center(

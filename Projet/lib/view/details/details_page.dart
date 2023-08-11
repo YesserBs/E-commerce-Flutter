@@ -288,7 +288,7 @@ class _ShoeCarouselState extends State<ShoeCarousel> {
       height: 10,
       decoration: BoxDecoration(
         shape: BoxShape.circle,
-        color: _currentPage == index ? Colors.green : Colors.grey[300],
+        color: _currentPage == index ? config.primaryColor : Colors.grey[300],
       ),
     );
   }

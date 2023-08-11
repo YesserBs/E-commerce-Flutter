@@ -52,10 +52,10 @@ class DashboardPage extends StatelessWidget {
               children: [
                 800.h.verticalSpace,
                 CircleAvatar(
-                  radius: 165.sp,
+                  radius: 129.sp,
                   backgroundColor: config.secondaryColor,
                   child: CircleAvatar(
-                    radius: 160.sp,
+                    radius: 125.sp,
                     backgroundImage: AssetImage('assets/images/profile.jpg'),
                   ),
                 ),

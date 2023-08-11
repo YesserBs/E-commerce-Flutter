@@ -8,6 +8,7 @@ class CartController extends GetxController {
   final addedArticles = <Article>[].obs;
   final quantityList = <int>[].obs;
   var added = 1.obs;
+  var total = 0.obs;
 
 
   Future<void> addToCart(Article item) async {
@@ -16,9 +17,7 @@ class CartController extends GetxController {
       addedArticles.add(item);
       quantityList.add(item.added);
       print("Added articles: $addedArticles Quantity list: $quantityList");
-      showSnackBar(item.nom);
-    } else {
-      print("Item already in cart");
+      showSnackBar("Item added to cart", item.nom);
     }
   }
 
@@ -42,16 +41,24 @@ class CartController extends GetxController {
     update();
   }
 
+  void calculateTotal(){
+    int sum = 0;
+    for (int i = 0; i < addedArticles.length; i++) {
+        sum = sum + addedArticles[i].prix * quantityList[i];
+    }
+    total.value = sum;
+    update();
+  }
 
-  void showSnackBar(String name) {
+
+  void showSnackBar(String title, String subtitle) {
     Get.snackbar(
-      'Item added to Cart', // Title of the snackbar
-      name, // Message of the snackbar
+      title, // Title of the snackbar
+      subtitle, // Message of the snackbar
       animationDuration: Duration(milliseconds: 650),
-      duration: Duration(milliseconds: 900), // Set the duration to 1 second (adjust as needed)
-      snackPosition: SnackPosition.BOTTOM, // Show the snackbar from the top
+      duration: Duration(milliseconds: 900), // Set the duration to 1 second
+      snackPosition: SnackPosition.BOTTOM,
       margin: EdgeInsets.symmetric(vertical: 52, horizontal: 20),
-      // You can add more options for the snackbar here if needed
     );
   }
 

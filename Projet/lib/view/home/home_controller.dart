@@ -16,6 +16,7 @@ class HomeController extends GetxController {
     fetchArticles();
   }
 
+  // If there is a problem with fetching, consider updating the security rules in firebase
   void fetchArticles() async {
     try {
       final QuerySnapshot snapshot = await FirebaseFirestore.instance.collection('items').get();
